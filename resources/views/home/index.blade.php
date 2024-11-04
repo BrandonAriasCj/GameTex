@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameTex</title>
-</head>
-
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#">TIENDA</a></li>
-                <li><a href="#">TORNEOS</a></li>
-            </ul>
-            <a href="#"><img width="100px" src="https://img.freepik.com/vector-premium/moderno-creativo-aislado-esports-tournament-emblem-logo-vector-gaming-league-o-sports-team_126068-221.jpg"></a>
-            <ul>
-                <li><a href="#">INICIAR SESIÓN</a></li>
-                <li><a href="#">REGISTRARME</a></li>
-            </ul>
-        </nav>
-    </header>
+    @include('layouts.header')
     <main>
         <section>
             <div>
@@ -50,42 +28,42 @@
             <div>
                 <div>
                     <div>
-                       <img width="200px" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/550/capsule_616x353.jpg?t=1729702523"> 
+                        <img width="200px" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/550/capsule_616x353.jpg?t=1729702523">
                     </div>
                 </div>
                 <div>
                     <div>
-                       <img width="200px" src="https://i.3djuegos.com/juegos/19026/counterstrike_2/fotos/ficha/counterstrike_2-5835305.webp"> 
+                        <img width="200px" src="https://i.3djuegos.com/juegos/19026/counterstrike_2/fotos/ficha/counterstrike_2-5835305.webp">
                     </div>
                 </div>
                 <div>
                     <div>
-                       <img width="200px" src="https://cdn1.epicgames.com/offer/24b9b5e323bc40eea252a10cdd3b2f10/EGS_LeagueofLegends_RiotGames_S2_1200x1600-905a96cea329205358868f5871393042"> 
+                        <img width="200px" src="https://cdn1.epicgames.com/offer/24b9b5e323bc40eea252a10cdd3b2f10/EGS_LeagueofLegends_RiotGames_S2_1200x1600-905a96cea329205358868f5871393042">
                     </div>
                 </div>
                 <div>
                     <div>
-                       <img width="200px" src="https://image.api.playstation.com/vulcan/ap/rnd/202312/0123/978efa66c9645e4692ac7036a31aa002a49d0efb4b88b45c.png"> 
+                        <img width="200px" src="https://image.api.playstation.com/vulcan/ap/rnd/202312/0123/978efa66c9645e4692ac7036a31aa002a49d0efb4b88b45c.png">
                     </div>
                 </div>
                 <div>
                     <div>
-                       <img width="200px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdSb-TKKNAAHlD_K3QJ4qFHqKRFIxNN6EqaLeHvSjecvpYo2ETpJ6yd7NDgwXmIhPlBvM&usqp=CAU"> 
+                        <img width="200px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdSb-TKKNAAHlD_K3QJ4qFHqKRFIxNN6EqaLeHvSjecvpYo2ETpJ6yd7NDgwXmIhPlBvM&usqp=CAU">
                     </div>
                 </div>
                 <div>
                     <div>
-                       <img width="200px" src="https://supercell.com/images/e93a34598d3723641a72eb9ce02691f6/790/games_thumbnail_brawlstars.5cd76330.webp"> 
+                        <img width="200px" src="https://supercell.com/images/e93a34598d3723641a72eb9ce02691f6/790/games_thumbnail_brawlstars.5cd76330.webp">
                     </div>
                 </div>
                 <div>
                     <div>
-                       <img width="200px" src="https://yt3.googleusercontent.com/ytc/AIdro_m0DtuBhZUI1Mie9JUspzzqediBM76hO49vWA8hM5hwu9s=s900-c-k-c0x00ffffff-no-rj"> 
+                        <img width="200px" src="https://yt3.googleusercontent.com/ytc/AIdro_m0DtuBhZUI1Mie9JUspzzqediBM76hO49vWA8hM5hwu9s=s900-c-k-c0x00ffffff-no-rj">
                     </div>
                 </div>
                 <div>
                     <div>
-                       <img width="200px" src="https://image.api.playstation.com/cdn/UP0700/CUSA09072_00/2eBPISxxvTv5foYSDlqiBJfmRj5LZxv3.png"> 
+                        <img width="200px" src="https://image.api.playstation.com/cdn/UP0700/CUSA09072_00/2eBPISxxvTv5foYSDlqiBJfmRj5LZxv3.png">
                     </div>
                 </div>
             </div>
@@ -160,36 +138,7 @@
                 <p>Pese a que Rockstar no ha proporcionado fechas específicas de lanzamiento ...</p>
                 <a href="#"><img width="200px" src="https://gestion.pe/resizer/v2/QMVAHCKXFNGM3MZFPMXCZHVTEI.jpg?auth=6259b894995b1a16c13c4734421227cf3912c51b25aaaf1783506063eb1de7cd&width=1200&height=900&quality=75&smart=true"></a>
                 <a href="#">Leer más</a>
-            <article>
+                <article>
         </section>
     </main>
-    <footer>
-        <div>
-            <h3>ACERCA</h3>
-            <p>Nosotros</p>
-            <p>Medios de pago</p>
-            <p>Tienda</p>
-            <p>Torneos</p>
-            <p>Eventos</p>
-            <p>Categorías</p>
-        </div>
-        <div>
-            <h3>TÉRMINOS</h3>
-            <p>Políticas de Privacidad</p>
-            <p>Terminos y Condiciones</p>
-            <p>Política de Reembolsos</p>
-            <p>Política de Cookies</p>
-        </div>
-        <div>
-            <h3>SÍGUENOS</h3>
-            <a href="#"><img width="50px" src="https://cdn-icons-png.flaticon.com/512/60/60580.png"></a>
-            <a href="#"><img width="50px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1vD1f6LCHjLfVrK0OhOrqG6yJOpv8HtAGZg&s"></a>
-            <a href="#"><img width="50px" src="https://i.pinimg.com/1200x/6d/0a/e6/6d0ae64489762fcf1c31ed88bdd852a3.jpg"></a>
-            <a href="#"><img width="50px" src="https://thumbs.dreamstime.com/b/icono-del-logotipo-de-youtube-en-blanco-y-negro-cuadrado-alta-resoluci%C3%B3n-archivo-pasos-vectoriales-tambi%C3%A9n-disponible-para-189206686.jpg"></a>
-            <a href="#"><img width="50px" src="https://img.freepik.com/vector-premium/ilustracion-icono-twitch-logotipo-aplicacion-twitch-icono-redes-sociales_561158-3633.jpg"></a>
-            <a href="#"><img width="50px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_aCvIriPAhgz0qsDIFR6S1ishGxqzhK3eNw&s"></a>
-        </div>
-    </footer>
-</body>
-
-</html>
+    @include('layouts.footer')

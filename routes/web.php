@@ -10,6 +10,10 @@ Route::get('index', function () {
     return view('/home/index');
 });
 
+Route::get('nosotros', function () {
+    return view('/footer/terminos/politicas_reembolso');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
