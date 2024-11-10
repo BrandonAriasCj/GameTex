@@ -2,21 +2,21 @@
         <div>
             <h3>ACERCA</h3>
             <ul>
-                <li><a href="#">Nosotros</a></li>
+                <li><a href="{{ 'f_nosotros' }}">Nosotros</a></li>
                 <li><a href="#">Medios de Pago</a></li>
-                <li><a href="#">Tienda</a></li>
-                <li><a href="#">Torneos</a></li>
-                <li><a href="#">Eventos</a></li>
-                <li><a href="#">Categorías</a></li>
+                <li><a href="{{ 'f_tienda' }}">Tienda</a></li>
+                <li><a href="{{ 'f_torneos' }}">Torneos</a></li>
+                <li><a href="{{ 'f_eventos' }}">Eventos</a></li>
+                <li><a href="{{ 'f_categorias' }}">Categorías</a></li>
             </ul>
         </div>
         <div>
             <h3>TÉRMINOS</h3>
             <ul>
-                <li><a href="#">Políticas de Privacidad</a></li>
-                <li><a href="#">Terminos y Condiciones</a></li>
-                <li><a href="#">Política de Reembolsos</a></li>
-                <li><a href="#">Política de Cookies</a></li>
+                <li><a href="{{ 'f_poli_privacidad' }}">Políticas de Privacidad</a></li>
+                <li><a href="{{ 'f_termin_condiciones' }}">Terminos y Condiciones</a></li>
+                <li><a href="{{ 'f_poli_reembolsos' }}">Política de Reembolsos</a></li>
+                <li><a href="{{ 'f_poli_cookies' }}">Política de Cookies</a></li>
             </ul>
         </div>
         <div>
