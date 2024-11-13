@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -12,7 +12,7 @@
         <nav>
             <ul>
                 <li><a href="{{ 'tienda' }}">TIENDA</a></li>
-                <li><a href="#">TORNEOS</a></li>
+                <li><a href="{{ 'torneos' }}">TORNEOS</a></li>
             </ul>
             <a href="#"><img width="100px" src="https://img.freepik.com/vector-premium/moderno-creativo-aislado-esports-tournament-emblem-logo-vector-gaming-league-o-sports-team_126068-221.jpg"></a>
             @if (Route::has('login'))

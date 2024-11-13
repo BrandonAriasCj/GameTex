@@ -29,6 +29,10 @@ Route::get('tienda', function () {
     return view('tienda/index');
 });
 
+Route::get('torneos', function () {
+    return view('torneos/index');
+});
+
 
 #Rooter - FOOTER:
 #Acerca:
