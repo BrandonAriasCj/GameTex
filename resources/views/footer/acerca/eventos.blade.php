@@ -1,5 +1,6 @@
-@include('layouts.header')
+@extends('layouts.layout')
 
+@section('contenido')
 <main>
     <div>
         <h2>Participa en los Eventos de GameTex</h2>
@@ -36,5 +37,4 @@
         </div>
     </article>
 </main>
-
-@include('layouts.footer')
+@endsection
