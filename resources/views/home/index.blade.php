@@ -1,4 +1,6 @@
-    @include('layouts.header')
+    @extends('layouts.layout')
+
+    @section('contenido')
     <main>
         <section>
             <div>
@@ -141,4 +143,4 @@
                 <article>
         </section>
     </main>
-    @include('layouts.footer')
+    @endsection
