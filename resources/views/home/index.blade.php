@@ -1,11 +1,8 @@
-<<<<<<< HEAD
     @extends('layouts.layout')
 
     @section('contenido')
-=======
+
     @vite('resources/css/app.css')
-    
->>>>>>> 38c331ee0291b9ed961c867faaeee703513c077b
     <main>
         <section>
             <div>
