@@ -4,7 +4,6 @@
     @section('contenido')
 =======
     @vite('resources/css/app.css')
-    @include('layouts.header')
     
 >>>>>>> 38c331ee0291b9ed961c867faaeee703513c077b
     <main>
