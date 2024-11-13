@@ -1,4 +1,6 @@
+    @vite('resources/css/app.css')
     @include('layouts.header')
+    
     <main>
         <section>
             <div>
@@ -6,9 +8,9 @@
                 <p>"¡Únete a la batalla y demuestra tu habilidad en nuestros emocionantes torneos de videojuegos! Donde los mejores gamers se enfrentan por la gloria y grandes premios."</p>
             </div>
         </section>
-        <section>
-            <h2>EVENTOS</h2>
-            <div>
+        <x-seccion>
+        <h2>EVENTOS</h2>
+            <div style="display:flex;">
                 <div>
                     <a href="#"><img width="100px" src="https://image.api.playstation.com/vulcan/ap/rnd/202405/2117/bd406f42e9352fdb398efcf21a4ffe575b2306ac40089d21.png"></a>
                     <a href="#">Participar</a>
@@ -22,10 +24,11 @@
                     <a href="#">Participar</a>
                 </div>
             </div>
-        </section>
-        <section>
-            <h2>TORNEOS</h2>
-            <div>
+        </x-seccion>
+ 
+        <x-seccion>
+        <h2>TORNEOS</h2>
+            <div style="display:flex">
                 <div>
                     <div>
                         <img width="200px" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/550/capsule_616x353.jpg?t=1729702523">
@@ -67,8 +70,8 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section>
+        </x-seccion>
+        <x-seccion>
             <h2>JUGADORES DE LA SEMANA</h2>
             <div>
                 <div>
@@ -112,8 +115,8 @@
                     <a href="#">Ver Perfil</a>
                 </div>
             </div>
-        </section>
-        <section>
+        </x-seccion>
+        <x-seccion>
             <h2>NOTICIAS RECIENTES</h2>
             <article>
                 <h3>The international 2024 cuenta con representación peruana</h3>
@@ -139,6 +142,6 @@
                 <a href="#"><img width="200px" src="https://gestion.pe/resizer/v2/QMVAHCKXFNGM3MZFPMXCZHVTEI.jpg?auth=6259b894995b1a16c13c4734421227cf3912c51b25aaaf1783506063eb1de7cd&width=1200&height=900&quality=75&smart=true"></a>
                 <a href="#">Leer más</a>
                 <article>
-        </section>
+        </x-seccion>
     </main>
     @include('layouts.footer')
