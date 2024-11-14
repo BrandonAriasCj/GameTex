@@ -1,15 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-<<<<<<< HEAD
-
-use Illuminate\Http\Request;
-
-class ModerDashController extends Controller
-{
-    //
-}
-=======
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 class ModerDashController extends Controller { 
@@ -26,4 +17,3 @@ class ModerDashController extends Controller {
     } 
 }
 
->>>>>>> a04c7158db67accb3e6d5b879b5b4e4edca1f5c5
