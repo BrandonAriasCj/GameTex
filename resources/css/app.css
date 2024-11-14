@@ -5,4 +5,9 @@
 [x-cloak] {
     display: none;
 }
- 
+
+[x-card] {
+    background-color: purple;
+
+}
+
