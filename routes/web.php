@@ -1,10 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminDashController;
+use App\Http\Controllers\ModerDashController;
 #Route::get('/', function () {
     #return view('welcome');
 #});
+
+
+// Aplica los middlewares de autenticación de Jetstream a un grupo de rutas
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
 
 Route::get('/', function () {
     return view('/home/index');
@@ -18,21 +28,33 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('/dashboard');
-    })->name('dashboard');
+]);
+/////////////////////
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])
+    ->name('login.show');
+Route::post('/login', [LoginController::class, 'login'])
+    ->name('login.attempt');
+Route::post('/logout', [LoginController::class, 'logout'])
+    ->name('logout');
+
+// Rutas protegidas para administradores
+Route::middleware(['auth.admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminDashController::class, 'index'])
+        ->name('admin.dashboard');
+        Route::post('/admin/dashboard/store', [AdminDashController::class, 'store'])->name('admin.dashboard.store');
 });
 
 
-Route::get('tienda', function () {
-    return view('tienda/index');
+Route::middleware(['auth.moderator'])->group(function () {
+
+    Route::get('/moder/dashboard', [ModerDashController::class, 'index'])
+        ->name('moder.dashboard');
+        // Rutas protegidas para moderadores
 });
 
-Route::get('torneos', function () {
-    return view('torneos/index');
-});
 
+//////////////////////
 
 #Rooter - FOOTER:
 #Acerca:
