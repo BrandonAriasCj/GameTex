@@ -86,3 +86,9 @@ Route::get('f_poli_reembolsos', function () {
 Route::get('f_poli_cookies', function () {
     return view('footer.terminos.politicas_cookies');
 });
+
+
+
+Route::get('panel', function () {
+    return view('panelJugador');
+});
