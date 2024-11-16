@@ -40,9 +40,15 @@ Route::post('/logout', [LoginController::class, 'logout'])
 
 // Rutas protegidas para administradores
 Route::middleware(['auth.admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminDashController::class, 'index'])
-        ->name('admin.dashboard');
-        Route::post('/admin/dashboard/store', [AdminDashController::class, 'store'])->name('admin.dashboard.store');
+    Route::get('/admin/dashboard', [AdminDashController::class, 'index'])->name('admin.dashboard');
+
+    Route::get('/admin/dinamicas/eventos', [AdminDashController::class, 'eventos'])->name('admin.dinamicas.eventos');
+    Route::post('/admin/dinamicas/eventos', [AdminDashController::class, 'storeEventos'])->name('admin.dinamicas.store');
+    Route::get('/admin/dinamicas/eventos/{id}', [AdminDashController::class, 'showEventos'])->name('admin.dinamicas.show');
+    Route::delete('/admin/dinamicas/eventos/{id}', [AdminDashController::class, 'deleteEventos'])->name('admin.dinamicas.delete');
+    Route::get('/admin/dinamicas/eventos-edit/{id}/edit', [AdminDashController::class, 'editEventos'])->name('admin.dinamicas.eventos-edit');
+
+    Route::put('/admin/dinamicas/eventos/{id}', [AdminDashController::class, 'updateEventos'])->name('admin.dinamicas.update');
 });
 
 
