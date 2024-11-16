@@ -24,6 +24,10 @@ Route::get('nosotros', function () {
     return view('/footer/terminos/politicas_reembolso');
 });
 
+Route::get('tienda', function () {
+    return view('/tienda/index');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
