@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('eventos', function (Blueprint $table) {
             $table->id()->unique();
             $table->string('nombre');
-            $table->string('descripción');
+            $table->string('descripcion');
             $table->string('reglas');
             $table->timestamp('fecha_inicio')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('fecha_fin')->nullable(); // Esto permite que fecha_fin pueda ser nula
