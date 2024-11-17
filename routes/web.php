@@ -99,6 +99,31 @@ Route::get('f_poli_cookies', function () {
 
 
 
-Route::get('panel', function () {
-    return view('panelJugador');
+
+// Ruta principal del panel
+Route::prefix('panel')->group(function () {
+    // Ruta principal: /panel
+    Route::get('/', function () {
+        return view('jugador/index');
+    })->name('panel.index');
+    
+    // Subruta: /panel/descripcion
+    Route::get('/descripcion', function () {
+        return view('jugador/descripcion');
+    })->name('panel.descripcion');
+    
+    // Subruta: /panel/partidas
+    Route::get('/partidas', function () {
+        return view('jugador/partidas');
+    })->name('panel.partidas');
+    
+    // Subruta: /panel/ranquin
+    Route::get('/ranking', function () {
+        return view('jugador/ranking');
+    })->name('panel.ranking');
+    
+    // Subruta: /panel/reglas
+    Route::get('/reglas', function () {
+        return view('jugador/reglas');
+    })->name('panel.reglas');
 });

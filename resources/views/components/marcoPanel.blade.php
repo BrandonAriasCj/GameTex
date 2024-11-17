@@ -7,9 +7,9 @@
     
     <style>
     aside div{
-        height: 100px;
+        height: 10vh;
         width: 20vw;
-        background-color: blue;
+        background-color: slateblue;
         border: 1px solid white;
     }
     aside{
@@ -23,18 +23,18 @@
 
 <body>
     @include('layouts.header')
-    <div style="display:flex">
+    <div style="display:flex">                              
         <aside>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div><a href="{{route('panel.index')}}">Jugador</a></div>
+            <div><a href="{{route('panel.descripcion')}}">Descripcion</a></div>
+            <div><a href="{{route('panel.partidas')}}">Partidas</a></div>
+            <div><a href="{{route('panel.ranking')}}">Rankinks</a></div>
+            <div><a href="{{route('panel.reglas')}}">Reglas</a></div>
         </aside>
+        <div></div>
         <div>
             {{ $slot }}
         </div>
     </div>
 </body>
 </html>
-<!-- Se busca ahora que se tenga el head y el footer -->
