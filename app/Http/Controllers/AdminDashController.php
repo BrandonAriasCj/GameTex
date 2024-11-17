@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\eventosModel;
 
+//otro comentario
 class AdminDashController extends Controller
 {
     public function __construct()
