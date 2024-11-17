@@ -20,9 +20,6 @@ Route::get('/', function () {
     return view('/home/index');
 });
 
-Route::get('nosotros', function () {
-    return view('/footer/terminos/politicas_reembolso');
-});
 
 Route::get('tienda', function () {
     return view('/tienda/index');

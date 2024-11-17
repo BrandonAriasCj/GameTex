@@ -1,8 +1,8 @@
+@extends('layouts.header')
 
-<html>
-    @vite('resources/css/app.css')
+@vite('resources/css/app.css')
 <body class="bg-purple-600">
-    @include('layouts.header')
+    @section('administrador')
     <x-card class="m-2">
         <section class="bg-gray-500 flex  justify-center ">
             <!-- Aqui el formulario de Eventos -->
@@ -46,7 +46,7 @@
         </section>
 
     </x-card>
-
+    @endsection
     
 </body>
 </html>

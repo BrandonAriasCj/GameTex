@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -21,23 +21,24 @@
                 <a
                     href="{{ url('/dashboard') }}"
                     class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                    Dashboard
+                    Perfil
                 </a>
                 @else
                 <a
                     href="{{ route('login') }}"
                     class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                    Log in
+                    Iniciar sección
                 </a>
 
                 @if (Route::has('register'))
                 <a
                     href="{{ route('register') }}"
                     class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                    Register
+                    Registrarse
                 </a>
                 @endif
                 @endauth
             </nav>
             @endif
     </header>
+    @yield('administrador')

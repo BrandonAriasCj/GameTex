@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 
 @section('contenido')
+@vite(['resources/js/app.js'])
 <main>
     <section>
         <ul>
@@ -23,7 +24,7 @@
             <img height="160px" src="https://image.api.playstation.com/vulcan/ap/rnd/202110/2000/YMUoJUYNX0xWk6eTKuZLr5Iw.jpg">
             <img height="160px" src="https://www.dodmagazine.es/wp-content/uploads/2022/11/god-of-war-ragnarok-banda-sonora.jpg">
             <img height="160px" src="https://www.nerdpool.it/wp-content/uploads/2020/05/fallout-76-free-to-play-485x360.jpg">
-        </div> 
+        </div>
     </section>
     <section>
         <div>
@@ -73,9 +74,15 @@
                 <img height="140px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgcn8AdM2Ie-C_P0bo80wpJS8JfDIIk4JvWqjVNflsFh2rk7YEt_-RbKbW7_ZP-e5sk9U&usqp=CAU">
                 <h3>The Forest</h3>
                 <p>Juego de supervivencia en un entorno selvático donde debes enfrentarte a peligrosos enemigos y construir para sobrevivir.</p>
-                <button>
-                    <a href="#">Comprar</a>
+                <!-- Botón para Abrir el Modal -->
+                <button
+                    onclick="openModalEventos()"
+                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mt-4">
+                    Ver juego
                 </button>
+
+                <!-- Incluir el modal -->
+                @include('componentes.AmongUs')
             </div>
         </div>
         <div>
