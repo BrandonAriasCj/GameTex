@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+//pequeño comentario xdxdxdxddx
 class UserDashController extends Controller
 {
     public function __construct()
