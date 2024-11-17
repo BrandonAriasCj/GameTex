@@ -32,6 +32,7 @@
                     <option value="">Select User Type</option>
                     <option value="admin">Admin</option>
                     <option value="moderator">Moderator</option>
+                    <option value="users">User</option>
                 </select>
             </div>
 

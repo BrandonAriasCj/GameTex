@@ -5,15 +5,11 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\AdminModel;
-use App\Models\ModerModel;
+
 
 
 class LoginController extends Controller
 {
-    
-
-
     public function showLoginForm()
     {
         return view('auth.login');
@@ -24,27 +20,46 @@ class LoginController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-            'user_type' => 'required|in:admin,moderator'
+            'user_type' => 'required|in:admin,moderator,users'
         ]);
 
         $credentials = $request->only('email', 'password');
         $userType = $request->input('user_type');
 
-        if ($userType === 'admin') {
-            Auth::guard('moderator')->logout(); // Asegúrate de cerrar sesión de cualquier otro guardia
-            if (Auth::guard('admin')->attempt($credentials)) {
-                $request->session()->regenerate();
-                return redirect()->intended('/admin/dashboard');
-            }
-        } elseif ($userType === 'moderator') {
-            Auth::guard('admin')->logout(); // Asegúrate de cerrar sesión de cualquier otro guardia
-            if (Auth::guard('moderator')->attempt($credentials)) {
-                Log::info('Usuario autenticado como moderador');
-                $request->session()->regenerate();
-                return redirect()->intended('/moder/dashboard');
-            } else {
-                Log::info('Fallo en autenticación de moderador');
-            }
+        // Manejar autenticación según el tipo de usuario
+        switch ($userType) {
+            case 'admin':
+                Auth::guard('moderator')->logout(); // Cerrar sesión de cualquier otro guardia
+                Auth::guard('users')->logout();
+                if (Auth::guard('admin')->attempt($credentials)) {
+                    $request->session()->regenerate();
+                    return redirect()->intended('/admin/dashboard');
+                }
+                break;
+
+            case 'moderator':
+                Auth::guard('admin')->logout();
+                Auth::guard('users')->logout();
+                if (Auth::guard('moderator')->attempt($credentials)) {
+                    Log::info('Usuario autenticado como moderador');
+                    $request->session()->regenerate();
+                    return redirect()->intended('/moder/dashboard');
+                } else {
+                    Log::info('Fallo en autenticación de moderador');
+                }
+                break;
+
+            case 'users':
+                Auth::guard('admin')->logout();
+                Auth::guard('moderator')->logout();
+                if (Auth::guard('users')->attempt($credentials)) {
+                    Log::info('Usuario autenticado como usuario');
+                    $request->session()->regenerate();
+                    return redirect('/users/dashboard'); // Redirigir a '/user'
+                } else {
+                    Log::info('Fallo en autenticación de usuario');
+                }
+                break;
         }
 
         return back()->withErrors([
@@ -54,11 +69,13 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        // Determinamos qué guard está actualmente autenticado
+        // Determinar qué guard está actualmente autenticado
         if (Auth::guard('admin')->check()) {
             Auth::guard('admin')->logout();
         } elseif (Auth::guard('moderator')->check()) {
             Auth::guard('moderator')->logout();
+        } elseif (Auth::guard('users')->check()) {
+            Auth::guard('users')->logout();
         }
 
         $request->session()->invalidate();

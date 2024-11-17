@@ -33,7 +33,7 @@ class AdminDashController extends Controller
     
     public function eventos(){
         
-        $items= eventosModel::paginate(5);
+        $items= eventosModel::paginate(4);
         
         return view('/admin/dinamicas/eventos', compact('items'));
     }
