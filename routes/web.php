@@ -5,12 +5,14 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminDashController;
 use App\Http\Controllers\ModerDashController;
 use App\Http\Controllers\UserDashController;
+use App\Http\Controllers\RegisterController;
+
+
 #Route::get('/', function () {
     #return view('welcome');
 #});
 
 
-// Aplica los middlewares de autenticación de Jetstream a un grupo de rutas
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -39,7 +41,13 @@ Route::post('/login', [LoginController::class, 'login'])
     ->name('login.attempt');
 Route::post('/logout', [LoginController::class, 'logout'])
     ->name('logout');
-    
+
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])
+    ->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
+
+
+
 // Rutas protegidas para usuarios
 Route::middleware(['auth.users'])->group(function () {
     Route::get('users/dashboard', [UserDashController::class, 'index'])->name('users.dashboard');
