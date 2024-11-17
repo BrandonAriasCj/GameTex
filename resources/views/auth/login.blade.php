@@ -25,11 +25,22 @@
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
+<<<<<<< HEAD
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">
                     <x-checkbox id="remember_me" name="remember" />
                     <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
+=======
+            <div class="mt-4">
+                <x-label for="user_type" value="User Type" />
+                <select id="user_type" name="user_type" class="block mt-1 w-full" required>
+                    <option value="">Select User Type</option>
+                    <option value="admin">Admin</option>
+                    <option value="moderator">Moderator</option>
+                    <option value="users">User</option>
+                </select>
+>>>>>>> c4ca6b241327adec896324f15931856f13020e0b
             </div>
 
             <div class="flex items-center justify-end mt-4">
