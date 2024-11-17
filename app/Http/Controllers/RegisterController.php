@@ -35,7 +35,7 @@ class RegisterController extends Controller
 
         Auth::guard('users')->login($user);
 
-        return redirect()->route('login.show');
+        return redirect()->route('login');
     }
 
     /**

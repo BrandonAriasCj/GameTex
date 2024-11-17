@@ -35,8 +35,8 @@ Route::middleware([
 ]);
 /////////////////////
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])
-    ->name('login.show');
+#Route::get('/login', [LoginController::class, 'showLoginForm'])
+    #->name('login.show');
 Route::post('/login', [LoginController::class, 'login'])
     ->name('login.attempt');
 Route::post('/logout', [LoginController::class, 'logout'])
@@ -47,10 +47,9 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])
 Route::post('/register', [RegisterController::class, 'register']);
 
 
-
 // Rutas protegidas para usuarios
 Route::middleware(['auth.users'])->group(function () {
-    Route::get('users/dashboard', [UserDashController::class, 'index'])->name('users.dashboard');
+    Route::get('dashboard', [UserDashController::class, 'index'])->name('dashboard');
 
 });
 

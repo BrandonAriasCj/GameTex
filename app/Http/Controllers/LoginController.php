@@ -55,7 +55,7 @@ class LoginController extends Controller
                 if (Auth::guard('users')->attempt($credentials)) {
                     Log::info('Usuario autenticado como usuario');
                     $request->session()->regenerate();
-                    return redirect('/users/dashboard'); // Redirigir a '/user'
+                    return redirect('/dashboard'); // Redirigir a '/user'
                 } else {
                     Log::info('Fallo en autenticación de usuario');
                 }
