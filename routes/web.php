@@ -39,6 +39,7 @@ Route::post('/login', [LoginController::class, 'login'])
     ->name('login.attempt');
 Route::post('/logout', [LoginController::class, 'logout'])
     ->name('logout');
+    
 // Rutas protegidas para usuarios
 Route::middleware(['auth.users'])->group(function () {
     Route::get('users/dashboard', [UserDashController::class, 'index'])->name('users.dashboard');
