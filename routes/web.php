@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminDashController;
 use App\Http\Controllers\ModerDashController;
+use App\Http\Controllers\UserDashController;
 #Route::get('/', function () {
     #return view('welcome');
 #});
@@ -41,6 +42,11 @@ Route::post('/login', [LoginController::class, 'login'])
     ->name('login.attempt');
 Route::post('/logout', [LoginController::class, 'logout'])
     ->name('logout');
+// Rutas protegidas para usuarios
+Route::middleware(['auth.users'])->group(function () {
+    Route::get('users/dashboard', [UserDashController::class, 'index'])->name('users.dashboard');
+
+});
 
 // Rutas protegidas para administradores
 Route::middleware(['auth.admin'])->group(function () {

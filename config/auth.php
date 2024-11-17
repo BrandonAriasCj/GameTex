@@ -41,14 +41,21 @@ return [
             'provider' => 'users',
         ],
         'admin' => [
-        'driver' => 'session',
-        'provider' => 'administrators',
+            'driver' => 'session',
+            'provider' => 'administrators',
         ],
         'moderator' => [
             'driver' => 'session',
             'provider' => 'moderators',
         ],
+        'users' => [ // Asegúrate de que este guard esté correctamente definido
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
     ],
+
+
+
 
     /*
     |--------------------------------------------------------------------------
@@ -70,21 +77,16 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => App\Models\UserModel::class,
         ],
         'administrators' => [
-        'driver' => 'eloquent',
-        'model' => App\Models\AdminModel::class,
+            'driver' => 'eloquent',
+            'model' => App\Models\AdminModel::class,
         ],
         'moderators' => [
             'driver' => 'eloquent',
             'model' => App\Models\ModerModel::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
