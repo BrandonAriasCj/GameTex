@@ -17,9 +17,9 @@
             <div><a alt="Abrir Modal" class="w-34 h-34 cursor-pointer" onclick="openModalEventos()">crear</a></div>
             <x-eventos-modal></x-eventos-modal>
         </section>
-        <main class="row bg-slate-500">
-            <div class="card-body flex  p-3 m-3">
-                <table class="table table-sm table-bordered w-full table-fixed">
+        <main class="row bg-gray-100 justify-center">
+            <div class="card-body flex  m-2 p-2">
+                <table class="bg-gray-100 table table-sm table-bordered w-full table-fixed">
                     <thead>
                         <tr>
                             <th class="w-1/7 p-2" >Nombre</th>
