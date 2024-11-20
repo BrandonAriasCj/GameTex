@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call([ ModerSeeder::class]);
         $this->call([ eventosSeeder::class]);
         $this->call([UserSeeder::class]);
+        $this->call([juegosDSeeder::class]);
     }
 }

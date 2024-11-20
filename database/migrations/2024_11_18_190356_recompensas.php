@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -12,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('eventos', function (Blueprint $table) {
+        Schema::create('recompensas', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('fecha_inicio')->default(DB::raw('CURRENT_TIMESTAMP')); 
-            $table->timestamp('fecha_fin')->default(DB::raw('CURRENT_TIMESTAMP')); 
-            $table->timestamps();// Agrega created_at y updated_at
+            $table->string('nombre');
+            $table->integer('cantidad');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('eventos');
+        Schema::dropIfExists("recompensas");
     }
 };

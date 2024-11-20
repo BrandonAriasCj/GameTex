@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class eventosModel extends Model
+class eventosTipoModel extends Model
 {
-    protected $table = 'eventos';
+    protected $table = 'eventos_tipo';
     protected $fillable = [
         'id','fecha_inicio','fecha_fin',
         'updated_date',
