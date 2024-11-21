@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('noticias_tematica', function (Blueprint $table) {
+            $table->id();
             $table->string('nombre');
-            $table->timestamp('fecha_publicacion')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->foreignId('administrador_id')->constrained('administradores')->onDelete('cascade');
             $table->timestamps();
         });
     }
