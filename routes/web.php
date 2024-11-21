@@ -64,9 +64,18 @@ Route::middleware(['auth.admin'])->group(function () {
 
     Route::put('/admin/dinamicas/eventos/{id}', [AdminDashController::class, 'updateEventos'])->name('admin.dinamicas.update');
     //////////////////////////////////////////////////////////////////////
-    Route::get('/admin/dinamicas/torneos',[AdminDashController::class,'torneos'])->name('admin.dinamicas.torneos');
+
+    Route::get('/admin/dinamicas/torneos', [AdminDashController::class, 'torneos'])->name('admin.dinamicas.torneos');
+    Route::get('/admin/dinamicas/torneos/{id}', [AdminDashController::class, 'showTorneo'])->name('admin.dinamicas.showTorneo');
+    Route::post('/admin/dinamicas/torneos', [AdminDashController::class, 'storeTorneos'])->name('admin.dinamicas.storeTorneos');
+    Route::get('/admin/dinamicas/torneos-edit/{id}/edit', [AdminDashController::class, 'editTorneos'])->name('admin.dinamicas.torneos-edit');
+    Route::put('/admin/dinamicas/torneos/{id}', [AdminDashController::class, 'updateTorneos'])->name('admin.dinamicas.updateTorneos');
+    Route::delete('/admin/dinamicas/torneos/{id}', [AdminDashController::class, 'destroyTorneos'])->name('admin.dinamicas.destroyTorneos');
+    
     /////////////////////////////////////////////////////////////////////
     Route::get('/admin/dinamicas/recompensas',[AdminDashController::class,'recompensas'])->name('admin.dinamicas.recompensas');
+
+
 });
 
 

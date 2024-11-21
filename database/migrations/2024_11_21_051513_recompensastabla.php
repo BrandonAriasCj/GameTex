@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->integer('cantidad');
-            $table->timestamps();
             $table->foreignId('recompensa_tipo_id')->constrained('recompensas_tipo')->onDelete('cascade');
             $table->foreignId('torneo_id')->constrained('torneos')->onDelete('cascade');
             $table->timestamps();

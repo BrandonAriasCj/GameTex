@@ -14,10 +14,6 @@
             @method('PUT')
             <h2 class="text-xl font-bold mb-4">Editar Evento</h2>
             <div class="mb-4">
-                <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre del Evento</label>
-                <input type="text" name="nombre" id="nombre-editar" class="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring focus:border-blue-300" value="{{ $evento->nombre }}" required>
-            </div>
-            <div class="mb-4">
                 <label for="fecha_inicio" class="block text-sm font-medium text-gray-700">Fecha Inicio</label>
                 <input type="date" name="fecha_inicio" id="fecha_inicio-editar" class="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring focus:border-blue-300" value="{{ $evento->fecha_inicio }}" required>
             </div>

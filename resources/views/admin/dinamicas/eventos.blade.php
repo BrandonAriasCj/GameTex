@@ -12,11 +12,11 @@
     <x-card class="flex w-500px">
         <section class="bg-green-600 justify-center m-2 p-2 align-top">
             <div class="">
-                <input></input>
+                <form action="{{ route('admin.dinamicas.eventos') }}" method="GET">
+                    <x-eventos-busq />
+                </form>
             </div>
-            <div>
-                <a alt="Abrir Modal" class="w-34 h-34 cursor-pointer" onclick="openModalEventos()">Crear</a>
-            </div>
+
             <x-eventos-modal :eventosTipos="$eventosTipos" :moderadores="$moderadores" />
         </section>
         <main class="row bg-gray-100 justify-center">
@@ -67,9 +67,9 @@
                         @endforelse
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-end">{{ $items->links() }}</div>
             </div>
         </main>
+        <div class="d-flex justify-content-end">{{ $items->links() }}</div>
         <a href="{{ route('admin.dashboard') }}" class="bg-gray-100 btn btn-secondary mt-4">Volver</a>
     </x-card>
 

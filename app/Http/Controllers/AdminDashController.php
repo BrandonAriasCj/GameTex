@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminModel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\eventosModel;
 use App\Models\ModerModel;
 use App\Models\eventosTipoModel;
+use App\Models\juegosDModel;
+use App\Models\torneoModel;
+use App\Models\torneoJuegosModel;
 
 class AdminDashController extends Controller
 {
@@ -33,14 +37,33 @@ class AdminDashController extends Controller
         return redirect()->back()->with('success', 'Datos guardados correctamente');
     }
 
-    public function eventos()
+    public function eventos(Request $request)
     {
-        $items = eventosModel::with(['eventosTipo', 'moderador'])->paginate(4);
+        $query = eventosModel::with(['eventosTipo', 'moderador']);
+    
+        if ($request->has('search') && !empty($request->input('search')) && $request->has('search_type')) {
+            $search = $request->input('search');
+            $searchType = $request->input('search_type');
+    
+            if ($searchType == 'nombre') {
+                $query->whereHas('eventosTipo', function($q) use ($search) {
+                    $q->where('nombre', 'like', "%{$search}%");
+                });
+            } elseif ($searchType == 'moderador') {
+                $query->whereHas('moderador', function($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%");
+                });
+            }
+        }
+    
+        $items = $query->paginate(4);
         $moderadores = ModerModel::all();
         $eventosTipos = eventosTipoModel::all();
-
+    
         return view('/admin/dinamicas/eventos', compact('items', 'moderadores', 'eventosTipos'));
     }
+    
+    
 
     public function storeEventos(Request $request)
     {
@@ -132,16 +155,124 @@ class AdminDashController extends Controller
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
-    public function torneos()
+    public function torneos(Request $request)
     {
-        return view('/admin/dinamicas/torneos');
+        $query = torneoModel::with(['juego', 'eventoTipo', 'moderador', 'administrador']);
+    
+        if ($request->has('search') && !empty($request->input('search')) && $request->has('search_type')) {
+            $search = $request->input('search');
+            $searchType = $request->input('search_type');
+
+            if ($searchType == 'nombre') {
+                $query->where('nombrej', 'like', "%{$search}%");
+            } elseif ($searchType == 'nombrej') {
+                $query->whereHas('juego', function($q) use ($search) {
+                    $q->where('nombre', 'like', "%{$search}%");
+                });
+            } elseif ($searchType == 'moderador') {
+                $query->whereHas('moderador', function($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%");
+                });
+            }
+        }
+
+        $torneos = $query->paginate(4);
+        $juegos = juegosDModel::all(); 
+        $eventosTipos = eventosTipoModel::all();
+        $moderadores = ModerModel::all();
+        $administradores = AdminModel::all();
+
+        return view('/admin/dinamicas/torneos', compact('torneos', 'juegos', 'eventosTipos', 'moderadores', 'administradores'));
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
-    public function recompensas()
+    
+    public function storeTorneos(Request $request)
     {
-        return view('/admin/dinamicas/recompensas');
+        $validatedData = $request->validate([
+            'nombrej' => 'required|string',
+            'creador' => 'required|string',
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'required|date',
+            'exp' => 'required|string',
+            'juego_id' => 'required|exists:juegos_diccionary,id',
+            'evento_tipo_id' => 'required|exists:eventos_tipo,id',
+            'moderador_id' => 'required|exists:moderadores,id',
+            'administrador_id' => 'required|exists:administradores,id',
+        ]);
+
+        // Crear o verificar la existencia del juego en torneos_juegos
+        $juego = torneoJuegosModel::firstOrCreate(
+            ['nombre' => juegosDModel::find($validatedData['juego_id'])->nombre]
+        );
+
+        // Crear el torneo
+        torneoModel::create([
+            'nombrej' => $validatedData['nombrej'],
+            'creador' => $validatedData['creador'],
+            'fecha_inicio' => $validatedData['fecha_inicio'],
+            'fecha_fin' => $validatedData['fecha_fin'],
+            'exp' => $validatedData['exp'],
+            'torneo_juego_id' => $juego->id,
+            'evento_tipo_id' => $validatedData['evento_tipo_id'],
+            'moderador_id' => $validatedData['moderador_id'],
+            'administrador_id' => $validatedData['administrador_id'],
+        ]);
+
+        return redirect()->route('admin.dinamicas.torneos')->with('success', 'Torneo agregado');
     }
+
+    
+    public function editTorneos($id)
+    {
+        $torneo = torneoModel::findOrFail($id);
+        $juegos = torneoJuegosModel::all();
+        $eventosTipos = eventosTipoModel::all();
+        $moderadores = ModerModel::all();
+        $administradores = AdminModel::all();
+
+        return view('admin.dinamicas.torneos-edit', compact('torneo', 'juegos', 'eventosTipos', 'moderadores', 'administradores'));
+    }
+
+    
+    public function updateTorneos(Request $request, $id)
+    {
+            $validatedData = $request->validate([
+                'nombrej' => 'required|string',
+                'creador' => 'required|string',
+                'fecha_inicio' => 'required|date',
+                'fecha_fin' => 'required|date',
+                'exp' => 'required|string',
+                'torneo_juego_id' => 'required|exists:torneos_juegos,id',
+                'evento_tipo_id' => 'required|exists:eventos_tipo,id',
+                'moderador_id' => 'required|exists:moderadores,id',
+                'administrador_id' => 'required|exists:administradores,id',
+            ]);
+    
+            $torneo = torneoModel::findOrFail($id);
+            $torneo->update($validatedData);
+    
+            return redirect()->route('admin.dinamicas.torneos')->with('success', 'Torneo actualizado');
+    }
+    public function showTorneo($id)
+    {
+        $torneo = torneoModel::with(['juego', 'eventoTipo', 'moderador', 'administrador'])->findOrFail($id);
+
+        return view('admin.dinamicas.showTorneo', compact('torneo'));
+    }
+
+        
+    
+    public function destroyTorneos($id)
+    {
+            $torneo = torneoModel::findOrFail($id);
+            $torneo->delete();
+    
+            return redirect()->route('admin.dinamicas.torneos')->with('success', 'Torneo eliminado');
+    }
+    
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    
 
 
 }
