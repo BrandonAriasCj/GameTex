@@ -92,26 +92,44 @@ class AdminDashController extends Controller
     {
         $evento = eventosModel::findOrFail($id);
         $moderadores = ModerModel::all();
-        $eventosTipos = eventosTipoModel::all();
-        return view('admin.dinamicas.eventos-edit', compact('evento', 'moderadores', 'eventosTipos'));
+
+        return view('admin.dinamicas.eventos-edit', compact('evento', 'moderadores'));
     }
 
     public function updateEventos(Request $request, $id)
     {
         $validatedData = $request->validate([
             'nombre' => 'required|string',
-            'descripcion' => 'required|string',
-            'reglas' => 'required|string',
+            'fecha_inicio' => 'required|date',
             'fecha_fin' => 'required|date',
-            'evento_tipo_id' => 'required|exists:eventos_tipo,id',
             'moderador_id' => 'required|exists:moderadores,id',
+            'evento_tipo_nombre' => 'required|string|max:50',
+            'descripcion_tipo' => 'required|string',
+            'categoria_tipo' => 'required|string',
+            'reglas_tipo' => 'required|string|max:255',
         ]);
 
         $evento = eventosModel::findOrFail($id);
-        $evento->update($validatedData);
+        
+
+        $evento->eventosTipo->update([
+            'nombre' => $validatedData['evento_tipo_nombre'],
+            'descripcion' => $validatedData['descripcion_tipo'],
+            'categoria' => $validatedData['categoria_tipo'],
+            'reglas' => $validatedData['reglas_tipo'],
+        ]);
+
+    
+        $evento->update([
+            'nombre' => $validatedData['nombre'],
+            'fecha_inicio' => $validatedData['fecha_inicio'],
+            'fecha_fin' => $validatedData['fecha_fin'],
+            'moderador_id' => $validatedData['moderador_id'],
+        ]);
 
         return redirect()->route('admin.dinamicas.eventos')->with('success', 'Evento actualizado');
     }
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     public function torneos()
