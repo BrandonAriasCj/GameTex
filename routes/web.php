@@ -50,7 +50,36 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::middleware(['auth.users'])->group(function () {
     Route::get('dashboard', [UserDashController::class, 'index'])->name('dashboard');
 
+        // Ruta principal del panel
+    Route::prefix('panel')->group(function () {
+        // Ruta principal: /panel
+        Route::get('/', function () {
+            return view('jugador/index');
+        })->name('panel.index');
+        
+        // Subruta: /panel/descripcion
+        Route::get('/descripcion', function () {
+            return view('jugador/descripcion');
+        })->name('panel.descripcion');
+        
+        // Subruta: /panel/partidas
+        Route::get('/partidas', function () {
+            return view('jugador/partidas');
+        })->name('panel.partidas');
+        
+        // Subruta: /panel/ranquin
+        Route::get('/ranking', function () {
+            return view('jugador/ranking');
+        })->name('panel.ranking');
+        
+        // Subruta: /panel/reglas
+        Route::get('/reglas', function () {
+            return view('jugador/reglas');
+        })->name('panel.reglas');
+    });
+
 });
+
 
 // Rutas protegidas para administradores
 Route::middleware(['auth.admin'])->group(function () {
@@ -123,30 +152,3 @@ Route::get('f_poli_cookies', function () {
 
 
 
-// Ruta principal del panel
-Route::prefix('panel')->group(function () {
-    // Ruta principal: /panel
-    Route::get('/', function () {
-        return view('jugador/index');
-    })->name('panel.index');
-    
-    // Subruta: /panel/descripcion
-    Route::get('/descripcion', function () {
-        return view('jugador/descripcion');
-    })->name('panel.descripcion');
-    
-    // Subruta: /panel/partidas
-    Route::get('/partidas', function () {
-        return view('jugador/partidas');
-    })->name('panel.partidas');
-    
-    // Subruta: /panel/ranquin
-    Route::get('/ranking', function () {
-        return view('jugador/ranking');
-    })->name('panel.ranking');
-    
-    // Subruta: /panel/reglas
-    Route::get('/reglas', function () {
-        return view('jugador/reglas');
-    })->name('panel.reglas');
-});
