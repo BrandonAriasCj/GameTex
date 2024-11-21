@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameTex</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -26,6 +27,7 @@
                         <a href="{{ '/' }}">Inicio</a>
                         <a href="#">Torneos</a>
                         <a href="{{ 'tienda' }}">Tienda</a>
+                        <a href="{{ 'noticias' }}">Noticias</a>
                     </div>
                     <div class="flex flex-col items-center justify-center gap-2 py-2">
                         @if (Route::has('login'))
@@ -56,6 +58,7 @@
                     <a href="{{ '/' }}">Inicio</a>
                     <a href="#">Torneos</a>
                     <a href="{{ 'tienda' }}">Tienda</a>
+                    <a href="{{ 'noticias' }}">Noticias</a>
                 </div>
                 <div class="hidden w-1/5 items-center justify-evenly font-semibold md:flex">
                     @if (Route::has('login'))
@@ -100,110 +103,70 @@
 
     @yield('contenido')
 
-    <footer>
-        <div>
-            <h3>ACERCA</h3>
-            <ul>
-                <li><a href="{{ 'f_nosotros' }}">Nosotros</a></li>
-                <li><a href="#">Medios de Pago</a></li>
-                <li><a href="{{ 'f_tienda' }}">Tienda</a></li>
-                <li><a href="{{ 'f_torneos' }}">Torneos</a></li>
-                <li><a href="{{ 'f_eventos' }}">Eventos</a></li>
-                <li><a href="{{ 'f_categorias' }}">Categorías</a></li>
-            </ul>
-        </div>
-        <div>
-            <h3>TÉRMINOS</h3>
-            <ul>
-                <li><a href="{{ 'f_poli_privacidad' }}">Políticas de Privacidad</a></li>
-                <li><a href="{{ 'f_termin_condiciones' }}">Terminos y Condiciones</a></li>
-                <li><a href="{{ 'f_poli_reembolsos' }}">Política de Reembolsos</a></li>
-                <li><a href="{{ 'f_poli_cookies' }}">Política de Cookies</a></li>
-            </ul>
-        </div>
-        <div>
-            <h3>SÍGUENOS</h3>
-            <a href="#"><img width="50px" src="https://cdn-icons-png.flaticon.com/512/60/60580.png"></a>
-            <a href="#"><img width="50px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1vD1f6LCHjLfVrK0OhOrqG6yJOpv8HtAGZg&s"></a>
-            <a href="#"><img width="50px" src="https://i.pinimg.com/1200x/6d/0a/e6/6d0ae64489762fcf1c31ed88bdd852a3.jpg"></a>
-            <a href="#"><img width="50px" src="https://thumbs.dreamstime.com/b/icono-del-logotipo-de-youtube-en-blanco-y-negro-cuadrado-alta-resoluci%C3%B3n-archivo-pasos-vectoriales-tambi%C3%A9n-disponible-para-189206686.jpg"></a>
-            <a href="#"><img width="50px" src="https://img.freepik.com/vector-premium/ilustracion-icono-twitch-logotipo-aplicacion-twitch-icono-redes-sociales_561158-3633.jpg"></a>
-            <a href="#"><img width="50px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_aCvIriPAhgz0qsDIFR6S1ishGxqzhK3eNw&s"></a>
-        </div>
-        <div>
-            <div>
-                <img width="100px" src="https://cdn-icons-png.flaticon.com/512/1175/1175149.png">
-                <a href="#">Necesitas ayuda?</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- component -->
-    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
-    <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
-
-    <footer class="relative bg-blueGray-200 pt-8 pb-6">
+    <footer class="relative bg-blueGray-200 pt-8 pb-4">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap text-left lg:text-left">
                 <div class="w-full lg:w-6/12 px-4">
-                    <h4 class="text-3xl fonat-semibold text-blueGray-700">Let's keep in touch!</h4>
+                    <h4 class="text-3xl fonat-semibold text-blueGray-700 pb-2">SIGUENOS EN:</h4>
                     <h5 class="text-lg mt-0 mb-2 text-blueGray-600">
-                        Find us on any of these platforms, we respond 1-2 business days.
+                        Entérate de las novedades sobre el desarrollo del sitio web y las actividades futuras a través de nuestras redes sociales.
                     </h5>
                     <div class="mt-6 lg:mb-0 mb-6">
-                        <button class="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
-                            <i class="fab fa-twitter"></i></button><button class="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
-                            <i class="fab fa-facebook-square"></i></button><button class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
-                            <i class="fab fa-dribbble"></i></button><button class="bg-white text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
-                            <i class="fab fa-github"></i>
+                        <button class="bg-white text-blue-400 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                            <i class="fab fa-twitter text-3xl"></i>
+                        </button>
+                        <button class="bg-white text-blue-00 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                            <i class="fab fa-facebook-square text-3xl"></i>
+                        </button>
+                        <button class="bg-white text-blue-800 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                            <i class="fab fa-discord text-3xl"></i>
+                        </button>
+                        <button class="bg-white text-red-600 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                            <i class="fab fa-youtube text-3xl"></i>
+                        </button>
+                        <button class="bg-white text-purple-700 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                            <i class="fab fa-twitch text-3xl"></i>
+                        </button>
+                        <button class="bg-white text-pink-800 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                            <i class="fab fa-instagram text-3xl"></i>
                         </button>
                     </div>
                 </div>
                 <div class="w-full lg:w-6/12 px-4">
-                    <div class="flex flex-wrap items-top mb-6">
-                        <div class="w-full lg:w-4/12 px-4 ml-auto">
-                            <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Useful Links</span>
+                    <div class="flex flex-wrap items-top mb-0">
+                        <div class="w-full lg:w-4/12 px-4 ml-auto py-5">
+                            <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">ACERCA</span>
                             <ul class="list-unstyled">
-                                <li>
-                                    <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://www.creative-tim.com/presentation?ref=njs-profile">About Us</a>
-                                </li>
-                                <li>
-                                    <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://blog.creative-tim.com?ref=njs-profile">Blog</a>
-                                </li>
-                                <li>
-                                    <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://www.github.com/creativetimofficial?ref=njs-profile">Github</a>
-                                </li>
-                                <li>
-                                    <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://www.creative-tim.com/bootstrap-themes/free?ref=njs-profile">Free Products</a>
-                                </li>
+                                <li><a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="{{ 'f_nosotros' }}">Nosotros</a></li>
+                                <li><a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="{{ 'f_metodos_pago' }}">Metodos de Pago</a></li>
+                                <li><a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="{{ 'f_tienda' }}">Tienda</a></li>
+                                <li><a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="{{ 'f_torneos' }}">Torneos</a></li>
+                                <li><a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="{{ 'f_eventos' }}">Eventos</a></li>
+                                <li><a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="{{ 'f_categorias' }}">Categorías</a></li>
                             </ul>
                         </div>
-                        <div class="w-full lg:w-4/12 px-4">
-                            <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Other Resources</span>
+                        <div class="w-full lg:w-4/12 px-4 py-5">
+                            <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Terminos</span>
                             <ul class="list-unstyled">
-                                <li>
-                                    <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-profile">MIT License</a>
-                                </li>
-                                <li>
-                                    <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://creative-tim.com/terms?ref=njs-profile">Terms &amp; Conditions</a>
-                                </li>
-                                <li>
-                                    <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://creative-tim.com/privacy?ref=njs-profile">Privacy Policy</a>
-                                </li>
-                                <li>
-                                    <a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="https://creative-tim.com/contact-us?ref=njs-profile">Contact Us</a>
-                                </li>
+                                <li><a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="{{ 'f_poli_privacidad' }}">Políticas de Privacidad</a></li>
+                                <li><a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="{{ 'f_termin_condiciones' }}">Terminos y Condiciones</a></li>
+                                <li><a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="{{ 'f_poli_reembolsos' }}">Política de Reembolsos</a></li>
+                                <li><a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="{{ 'f_poli_cookies' }}">Política de Cookies</a></li>
                             </ul>
+                            <div class="w-full lg:w-12/12 px-4 pt-6">
+                                <button class="bg-green-500 text-white hover:bg-green-700 focus:ring-green-400 focus:ring-opacity-50 px-4 py-2 rounded">
+                                    ¿Necesitas Ayuda?
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <hr class="my-6 border-blueGray-300">
+            <hr class="mb-4 mt-2 border-blueGray-300">
             <div class="flex flex-wrap items-center md:justify-between justify-center">
                 <div class="w-full md:w-4/12 px-4 mx-auto text-center">
                     <div class="text-sm text-blueGray-500 font-semibold py-1">
-                        Copyright © <span id="get-current-year">2021</span><a href="https://www.creative-tim.com/product/notus-js" class="text-blueGray-500 hover:text-gray-800" target="_blank"> Notus JS by
-                            <a href="https://www.creative-tim.com?ref=njs-profile" class="text-blueGray-500 hover:text-blueGray-800">Creative Tim</a>.
+                        Copyright © <span id="get-current-year">2021</span><a href="{{ '/' }}" class="text-blueGray-500 hover:text-gray-800" target="_blank"> GAMETEX
                     </div>
                 </div>
             </div>

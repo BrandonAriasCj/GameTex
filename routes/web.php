@@ -94,6 +94,18 @@ Route::middleware(['auth.moderator'])->group(function () {
 });
 
 
+#Noticias:
+Route::get('noticias', function () {
+    return view('noticias.index');
+});
+
+
+
+
+
+
+
+
 //////////////////////
 
 #Rooter - FOOTER:
@@ -103,6 +115,9 @@ Route::get('f_nosotros', function () {
 });
 Route::get('f_tienda', function () {
     return view('footer.acerca.tienda');
+});
+Route::get('f_metodos_pago', function () {
+    return view('footer.acerca.metodos_pago');
 });
 Route::get('f_torneos', function () {
     return view('footer.acerca.torneos');
