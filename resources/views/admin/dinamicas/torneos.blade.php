@@ -13,12 +13,14 @@
         <section class="bg-green-600 justify-center m-2 p-2 align-top">
             <div class="">
                 <form action="{{ route('admin.dinamicas.torneos') }}" method="GET">
-                    <x-torneos-busq/>
+                    <x-torneos-busq />
                 </form>
             </div>
-
-            <x-torneos-modal :juegos="$juegos" :eventosTipos="$eventosTipos" :moderadores="$moderadores" :administradores="$administradores" />
+            
+            <!-- Modal para crear torneos -->
+            <x-torneos-modal :juegos="$juegos" :eventosTipos="$eventosTipos" :moderadores="$moderadores" />
         </section>
+        
         <main class="row bg-gray-100 justify-center">
             <div class="card-body flex m-2 p-2">
                 <table class="bg-gray-100 table table-sm table-bordered w-full table-fixed">
@@ -58,7 +60,6 @@
                                             <i class="fa-sharp fa-solid fa-trash-can-xmark"></i> Borrar
                                         </button>
                                     </form>
-                                                                           
                                 </td>                                
                             </tr>
                         @empty

@@ -7,7 +7,7 @@
     <title>Eventos</title>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-purple-500">
+<body class="bg-blue-900">
 
     <x-card class="flex w-500px">
         <section class="bg-green-600 justify-center m-2 p-2 align-top">
