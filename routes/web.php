@@ -54,6 +54,8 @@ Route::middleware(['auth.users'])->group(function () {
 
 // Rutas protegidas para administradores
 Route::middleware(['auth.admin'])->group(function () {
+    //////////////////////////////////////////////////////////////////////
+    ///////////////  Rutas Eventos ///////////////////
     Route::get('/admin/dashboard', [AdminDashController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/admin/dinamicas/eventos', [AdminDashController::class, 'eventos'])->name('admin.dinamicas.eventos');
@@ -64,7 +66,7 @@ Route::middleware(['auth.admin'])->group(function () {
 
     Route::put('/admin/dinamicas/eventos/{id}', [AdminDashController::class, 'updateEventos'])->name('admin.dinamicas.update');
     //////////////////////////////////////////////////////////////////////
-
+    ///////////////  Rutas Torneos ///////////////////
     Route::get('/admin/dinamicas/torneos', [AdminDashController::class, 'torneos'])->name('admin.dinamicas.torneos');
     Route::get('/admin/dinamicas/torneos/{id}', [AdminDashController::class, 'showTorneo'])->name('admin.dinamicas.showTorneo');
     Route::post('/admin/dinamicas/torneos', [AdminDashController::class, 'storeTorneos'])->name('admin.dinamicas.storeTorneos');
@@ -73,8 +75,13 @@ Route::middleware(['auth.admin'])->group(function () {
     Route::delete('/admin/dinamicas/torneos/{id}', [AdminDashController::class, 'destroyTorneos'])->name('admin.dinamicas.destroyTorneos');
     
     /////////////////////////////////////////////////////////////////////
-    Route::get('/admin/dinamicas/recompensas',[AdminDashController::class,'recompensas'])->name('admin.dinamicas.recompensas');
-
+    ///////////////  Rutas Recompensas ///////////////////
+    Route::get('/admin/dinamicas/recompensas', [AdminDashController::class, 'recompensas'])->name('admin.dinamicas.recompensas');
+    Route::post('/admin/dinamicas/recompensas', [AdminDashController::class, 'storeRecompensas'])->name('admin.dinamicas.storeRecompensas');
+    Route::get('/admin/dinamicas/recompensas-edit/{id}/edit', [AdminDashController::class, 'editRecompensas'])->name('admin.dinamicas.recompensas-edit');
+    Route::put('/admin/dinamicas/recompensas/{id}', [AdminDashController::class, 'updateRecompensas'])->name('admin.dinamicas.updateRecompensas');
+    Route::delete('/admin/dinamicas/recompensas/{id}', [AdminDashController::class, 'destroyRecompensas'])->name('admin.dinamicas.destroyRecompensas');
+    /////////////////////////////////////////////////////////////////////
 
 });
 

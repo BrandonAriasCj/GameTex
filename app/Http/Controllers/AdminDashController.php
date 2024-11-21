@@ -113,7 +113,7 @@ class AdminDashController extends Controller
 
     public function editEventos($id)
     {
-        $evento = eventosModel::findOrFail($id);
+        $evento = eventosModel::find($id);
         $moderadores = ModerModel::all();
 
         return view('admin.dinamicas.eventos-edit', compact('evento', 'moderadores'));
@@ -190,36 +190,43 @@ class AdminDashController extends Controller
     {
         $validatedData = $request->validate([
             'nombrej' => 'required|string',
-            'creador' => 'required|string',
             'fecha_inicio' => 'required|date',
             'fecha_fin' => 'required|date',
             'exp' => 'required|string',
             'juego_id' => 'required|exists:juegos_diccionary,id',
             'evento_tipo_id' => 'required|exists:eventos_tipo,id',
             'moderador_id' => 'required|exists:moderadores,id',
-            'administrador_id' => 'required|exists:administradores,id',
         ]);
-
-        // Crear o verificar la existencia del juego en torneos_juegos
+    
+        // Obtener el nombre y el ID del administrador logueado
+        $administrador = Auth::guard('admin')->user();
+    
+        // Obtener el juego del diccionario
+        $juegoDiccionario = JuegosDModel::find($validatedData['juego_id']);
+    
+        // Verificar o crear el juego en torneos_juegos
         $juego = torneoJuegosModel::firstOrCreate(
-            ['nombre' => juegosDModel::find($validatedData['juego_id'])->nombre]
+            ['nombre' => $juegoDiccionario->nombre]
         );
-
+    
         // Crear el torneo
         torneoModel::create([
             'nombrej' => $validatedData['nombrej'],
-            'creador' => $validatedData['creador'],
+            'creador' => $administrador->name,
             'fecha_inicio' => $validatedData['fecha_inicio'],
             'fecha_fin' => $validatedData['fecha_fin'],
             'exp' => $validatedData['exp'],
             'torneo_juego_id' => $juego->id,
             'evento_tipo_id' => $validatedData['evento_tipo_id'],
             'moderador_id' => $validatedData['moderador_id'],
-            'administrador_id' => $validatedData['administrador_id'],
+            'administrador_id' => $administrador->id,
         ]);
-
+    
         return redirect()->route('admin.dinamicas.torneos')->with('success', 'Torneo agregado');
     }
+    
+    
+
 
     
     public function editTorneos($id)
@@ -272,7 +279,9 @@ class AdminDashController extends Controller
     
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////
-    
+    public function recompensas(){
+        return view('admin.dinamicas.recompensas');
+    }
 
 
 }

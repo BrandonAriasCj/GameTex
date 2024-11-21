@@ -9,11 +9,6 @@
         </div>
 
         <div class="mb-4">
-            <label for="creador" class="block text-sm font-medium text-gray-700">Creador</label>
-            <input type="text" name="creador" id="creador" class="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring focus:border-blue-300" required>
-        </div>
-
-        <div class="mb-4">
             <label for="fecha_inicio" class="block text-sm font-medium text-gray-700">Fecha Inicio</label>
             <input type="date" name="fecha_inicio" id="fecha_inicio" class="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring focus:border-blue-300" required>
         </div>
@@ -51,15 +46,6 @@
             <select name="moderador_id" id="moderador_id" class="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring focus:border-blue-300" required>
                 @foreach ($moderadores as $moderador)
                     <option value="{{ $moderador->id }}">{{ $moderador->name }}</option>
-                @endforeach
-            </select>
-        </div>
-
-        <div class="mb-4">
-            <label for="administrador_id" class="block text-sm font-medium text-gray-700">Administrador</label>
-            <select name="administrador_id" id="administrador_id" class="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring focus:border-blue-300" required>
-                @foreach ($administradores as $administrador)
-                    <option value="{{ $administrador->id }}">{{ $administrador->name }}</option>
                 @endforeach
             </select>
         </div>

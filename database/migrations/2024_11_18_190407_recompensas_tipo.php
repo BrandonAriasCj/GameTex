@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('recompensas_tipo', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->Integer('stock');
+            $table->decimal('valor_dolar',3,2);
             $table->timestamps();
         });
     }

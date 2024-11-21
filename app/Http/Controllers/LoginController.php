@@ -39,7 +39,7 @@ class LoginController extends Controller
 
             case 'moderator':
                 Auth::guard('admin')->logout();
-                Auth::guard('users')->logout();
+                Auth::guard('users')->logout();//lo mismo
                 if (Auth::guard('moderator')->attempt($credentials)) {
                     Log::info('Usuario autenticado como moderador');
                     $request->session()->regenerate();
@@ -55,7 +55,7 @@ class LoginController extends Controller
                 if (Auth::guard('users')->attempt($credentials)) {
                     Log::info('Usuario autenticado como usuario');
                     $request->session()->regenerate();
-                    return redirect('/dashboard'); // Redirigir a '/user'
+                    return redirect('/dashboard'); // Redirigir a user
                 } else {
                     Log::info('Fallo en autenticación de usuario');
                 }
