@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Support\Facades\DB;
 return new class extends Migration
 {
     /**
@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('recompensas_tipo', function (Blueprint $table) {
-            $table->id();
+        Schema::create('noticias_tematica', function (Blueprint $table) {
             $table->string('nombre');
+            $table->timestamp('fecha_publicacion')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->foreignId('administrador_id')->constrained('administradores')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('recompensas_tipo');
+        //
     }
 };
