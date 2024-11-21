@@ -19,5 +19,17 @@ export default {
         },
     },
 
+    theme: {
+        extend: {
+            colors: {
+                metal: '#dda90d',  // Color metálico gris
+                oro: 'rgb(255, 223, 0)',
+                plata: 'rgb(192, 192, 192)', // Metal plateado brillante
+                bronce: 'rgb(205, 127, 50)',
+            },
+        },
+    },
+
     plugins: [forms, typography],
 };
+
