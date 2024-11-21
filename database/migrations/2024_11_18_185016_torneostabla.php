@@ -18,6 +18,10 @@ return new class extends Migration
             $table->timestamp('fecha_inicio')->nullable();
             $table->timestamp('fecha_fin')->nullable();
             $table->string('exp');
+            $table->foreignId('torneo_juego_id')->constrained('torneos_juegos')->onDelete('cascade');
+            $table->foreignId('evento_tipo_id')->constrained('eventos_tipo')->onDelete('cascade');
+            $table->foreignId('moderador_id')->constrained('moderadores')->onDelete('cascade');
+            $table->foreignId('administrador_id')->constrained('administradores')->onDelete('cascade');
             $table->timestamps();
         });
     }

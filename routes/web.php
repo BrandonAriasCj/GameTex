@@ -63,6 +63,10 @@ Route::middleware(['auth.admin'])->group(function () {
     Route::get('/admin/dinamicas/eventos-edit/{id}/edit', [AdminDashController::class, 'editEventos'])->name('admin.dinamicas.eventos-edit');
 
     Route::put('/admin/dinamicas/eventos/{id}', [AdminDashController::class, 'updateEventos'])->name('admin.dinamicas.update');
+    //////////////////////////////////////////////////////////////////////
+    Route::get('/admin/dinamicas/torneos',[AdminDashController::class,'torneos'])->name('admin.dinamicas.torneos');
+    /////////////////////////////////////////////////////////////////////
+    Route::get('/admin/dinamicas/recompensas',[AdminDashController::class,'recompensas'])->name('admin.dinamicas.recompensas');
 });
 
 

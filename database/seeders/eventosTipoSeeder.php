@@ -13,11 +13,19 @@ class eventosTipoSeeder extends Seeder
     public function run(): void
     {
         DB::table('eventos_tipo')->insert([ 
-            'id'=> 1,
-            'nombre'=>'Halloween Ghosts',
-            'descripcion'=>'evento de Halloween que promociona imagenes aterradoras de fantasmas en juegos',
-            'categoria'=>'party, screemers , terror, fantasmas',
-            'reglas'=>'solo una captura por usuario',
+            'id'=> 2,
+            'nombre'=>'otakon',
+            'descripcion'=>'evento de tematica otaku',
+            'categoria'=>'party,convencion , anime',
+            'reglas'=>'respetar el libro de normas pdf del evento',
+            
+        ]);
+        DB::table('eventos_tipo')->insert([ 
+            'id'=> 3,
+            'nombre'=>'gamin 6',
+            'descripcion'=>'6 meses de full contenido gaming, enlistate y se uno de nuestros creadores de contenido destacados',
+            'categoria'=>'torneos, gameplay, streamin',
+            'reglas'=>'debes resgitrarte con anticipación, no se admiten juagdores con sansciones, debes de ser mayor de edad',
             
         ]);
     }
