@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('torneos_juegos', function (Blueprint $table) {
+        Schema::create('juegos_diccionary', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->String('categoria');
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('torneos_juegos');
+        Schema::dropIfExists('juegos_diccionary');
     }
 };

@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
+use Carbon\Carbon;
 class ModerSeeder extends Seeder
 {
     /**
@@ -18,5 +18,6 @@ class ModerSeeder extends Seeder
             'email' => 'moder1@mail.com', 
             'password' => bcrypt('123'), 
         ]);
+
     }
 }
