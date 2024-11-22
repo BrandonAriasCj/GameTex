@@ -17,15 +17,18 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->withPersonalTeam()->create();
 
         User::factory()->withPersonalTeam()->create([
-            'name' => 'Test User',
+            'name' => 'Test Users',
             'email' => 'test@example.com',
         ]);
 
         $this->call([AdminSeeder::class ]);
         $this->call([ModerSeeder::class]);
         $this->call([eventosSeeder::class]);
+        $this->call([eventosTipoSeeder::class]);
         $this->call([UserSeeder::class]);
         $this->call([juegosDSeeder::class]);
         $this->call([recompensasTipo::class]);
+        $this->call([TorneoJuegosSeeder::class]);
+        $this->call([TorneosSeeder::class]);
     }
 }

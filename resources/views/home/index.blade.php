@@ -111,6 +111,7 @@
                 <h2 class="lg:px-20 md:px-10 px-5 lg:mx-0 md:mx-20 mx-5 font-bold text-4xl text-white text-center pt-8">
                     TORNEOS
                 </h2>
+<<<<<<< HEAD
                 <div class="flex overflow-x-scroll py-8 hide-scroll-bar">
                     <div class="flex flex-nowrap lg:ml-10 my-8 md:ml-20 ml-10 mr-10">
                         <!-- Imagen 1 -->
@@ -178,6 +179,21 @@
                                     src="https://image.api.playstation.com/vulcan/ap/rnd/202312/0123/978efa66c9645e4692ac7036a31aa002a49d0efb4b88b45c.png">
                             </a>
                         </div>
+=======
+                <div class="flex overflow-x-scroll pb-10 hide-scroll-bar">
+                    <div class="flex flex-nowrap lg:ml-10 md:ml-20 ml-10 mr-10">
+
+                        @foreach ($torneos as $torneo)
+                            <div class="inline-block px-3">
+                                <a href="#">
+                                    <img
+                                        class="w-30 h-64 max-w-xs rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"
+                                        src="{{ $torneo->imagen }}" data-id="{{ $torneo->id}}" alt="Imagen 1">
+                                </a>
+                            </div>
+                        @endforeach
+
+>>>>>>> 0f729ea6c72b32805450185d2fecf81b8d7049b3
                     </div>
                 </div>
             </div>

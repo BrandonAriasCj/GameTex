@@ -14,10 +14,10 @@ class ModerSeeder extends Seeder
     public function run(): void
     {
         DB::table('moderadores')->insert([ 
-            'name' => 'mod1', 
-            'email' => 'moder1@mail.com', 
-            'password' => bcrypt('123'), 
+            ['name' => 'mod1', 'email' => 'ms@mail.com', 'password' => bcrypt('325')],
+            ['name' => 'mod2', 'email' => 'fs@mail.com', 'password' => bcrypt('254')],
+            ['name' => 'mod3', 'email' => 'cd@mail.com', 'password' => bcrypt('258')],
         ]);
-
     }
 }
+
