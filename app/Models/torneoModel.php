@@ -57,4 +57,45 @@ class torneoModel extends Model
         // Si es una ruta local, prepende la URL base del servidor
         return asset('storage/' . $this->imagen);
     }
+    public static function search($search, $searchType)
+    {
+        $query = self::with(['juego', 'eventoTipo', 'moderador', 'administrador']);
+
+        if (!empty($search) && !empty($searchType)) {
+            if ($searchType == 'nombre') {
+                $query->where('nombrej', 'like', "%{$search}%");
+            } elseif ($searchType == 'nombrej') {
+                $query->whereHas('juego', function($q) use ($search) {
+                    $q->where('nombre', 'like', "%{$search}%");
+                });
+            } elseif ($searchType == 'moderador') {
+                $query->whereHas('moderador', function($q) use ($search) {
+                    $q->where('name', 'like', "%{$search}%");
+                });
+            }
+        }
+
+        return $query;
+    }
+    public static function store(array $data, $administrador)
+    {
+        $juegoDiccionario = JuegosDModel::find($data['juego_id']);
+
+        $juego = torneoJuegosModel::firstOrCreate(
+            ['nombre' => $juegoDiccionario->nombre]
+        );
+
+        return self::create([
+            'nombrej' => $data['nombrej'],
+            'creador' => $administrador->name,
+            'fecha_inicio' => $data['fecha_inicio'],
+            'fecha_fin' => $data['fecha_fin'],
+            'exp' => $data['exp'],
+            'torneo_juego_id' => $juego->id,
+            'evento_tipo_id' => $data['evento_tipo_id'],
+            'moderador_id' => $data['moderador_id'],
+            'administrador_id' => $administrador->id,
+        ]);
+    }
+
 }

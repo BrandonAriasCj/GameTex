@@ -90,7 +90,6 @@ class AdminDashController extends Controller
 
     public function updateEventos(Request $request, $id)
     {
-        // Validar los datos entrantes
         $validatedData = $request->validate([
             'fecha_inicio' => 'required|date',
             'fecha_fin' => 'required|date',
@@ -100,43 +99,22 @@ class AdminDashController extends Controller
             'categoria_tipo' => 'required|string',
             'reglas_tipo' => 'required|string|max:255',
         ]);
-
-        // Usar el modelo para actualizar el evento y su tipo
         eventosModel::updateEvent($id, $validatedData);
-
-        // Redirigir con mensaje de éxito
         return redirect()->route('admin.dinamicas.eventos')->with('success', 'Evento actualizado');
     }
-
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     public function torneos(Request $request)
     {
-        $query = torneoModel::with(['juego', 'eventoTipo', 'moderador', 'administrador']);
-    
-        if ($request->has('search') && !empty($request->input('search')) && $request->has('search_type')) {
-            $search = $request->input('search');
-            $searchType = $request->input('search_type');
+        $search = $request->input('search');
+        $searchType = $request->input('search_type');
 
-            if ($searchType == 'nombre') {
-                $query->where('nombrej', 'like', "%{$search}%");
-            } elseif ($searchType == 'nombrej') {
-                $query->whereHas('juego', function($q) use ($search) {
-                    $q->where('nombre', 'like', "%{$search}%");
-                });
-            } elseif ($searchType == 'moderador') {
-                $query->whereHas('moderador', function($q) use ($search) {
-                    $q->where('name', 'like', "%{$search}%");
-                });
-            }
-        }
-
-        $torneos = $query->paginate(4);
-        $juegos = juegosDModel::all(); 
+        $torneos = torneoModel::search($search, $searchType)->paginate(4);
+        
+        $juegos = juegosDModel::all();
         $eventosTipos = eventosTipoModel::all();
         $moderadores = ModerModel::all();
         $administradores = AdminModel::all();
-
         return view('/admin/dinamicas/torneos', compact('torneos', 'juegos', 'eventosTipos', 'moderadores', 'administradores'));
     }
 
@@ -152,38 +130,12 @@ class AdminDashController extends Controller
             'evento_tipo_id' => 'required|exists:eventos_tipo,id',
             'moderador_id' => 'required|exists:moderadores,id',
         ]);
-    
-        // Obtener el nombre y el ID del administrador logueado
+
         $administrador = Auth::guard('admin')->user();
-    
-        // Obtener el juego del diccionario
-        $juegoDiccionario = JuegosDModel::find($validatedData['juego_id']);
-    
-        // Verificar o crear el juego en torneos_juegos
-        $juego = torneoJuegosModel::firstOrCreate(
-            ['nombre' => $juegoDiccionario->nombre]
-        );
-    
-        // Crear el torneo
-        torneoModel::create([
-            'nombrej' => $validatedData['nombrej'],
-            'creador' => $administrador->name,
-            'fecha_inicio' => $validatedData['fecha_inicio'],
-            'fecha_fin' => $validatedData['fecha_fin'],
-            'exp' => $validatedData['exp'],
-            'torneo_juego_id' => $juego->id,
-            'evento_tipo_id' => $validatedData['evento_tipo_id'],
-            'moderador_id' => $validatedData['moderador_id'],
-            'administrador_id' => $administrador->id,
-        ]);
-    
+        torneoModel::store($validatedData, $administrador);
         return redirect()->route('admin.dinamicas.torneos')->with('success', 'Torneo agregado');
     }
-    
-    
 
-
-    
     public function editTorneos($id)
     {
         $torneo = torneoModel::findOrFail($id);
@@ -215,6 +167,7 @@ class AdminDashController extends Controller
     
             return redirect()->route('admin.dinamicas.torneos')->with('success', 'Torneo actualizado');
     }
+
     public function showTorneo($id)
     {
         $torneo = torneoModel::with(['juego', 'eventoTipo', 'moderador', 'administrador'])->findOrFail($id);
