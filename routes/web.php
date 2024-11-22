@@ -94,13 +94,20 @@ Route::middleware(['auth.moderator'])->group(function () {
 });
 
 
+#Torneos:
+Route::get('torneos', function() {
+    return view('torneos.index');
+});
+
+
 #Noticias:
 Route::get('noticias', function () {
     return view('noticias.index');
 });
 
-
-
+Route::get('articulo1', function () {
+    return view('noticias.articulos.art1');
+});
 
 
 
