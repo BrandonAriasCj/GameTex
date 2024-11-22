@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\index;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminDashController;
@@ -18,9 +19,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     })->name('dashboard');
 });
 
-Route::get('/', function () {
-    return view('/home/index');
-});
+Route::get('/',[index::class, 'index']);
 
 
 Route::get('tienda', function () {
