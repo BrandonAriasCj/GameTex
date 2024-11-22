@@ -12,6 +12,8 @@ class eventosTipoSeeder extends Seeder
      */
     public function run(): void
     {
+
+        
         DB::table('eventos_tipo')->insert([ 
             'id'=> 2,
             'nombre'=>'otakon',
@@ -29,7 +31,7 @@ class eventosTipoSeeder extends Seeder
             
         ]);
         DB::table('eventos_tipo')->insert([ 
-            'id'=>4 ,
+            'id'=> 4,
             'nombre'=>'sensei',
             'descripcion'=>'8 meses de full contenido gaming, enlistate y se uno de nuestros creadores de contenido destacados',
             'categoria'=>'torneos, gameplay, streamin',
