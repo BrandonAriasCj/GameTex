@@ -38,35 +38,17 @@ class AdminDashController extends Controller
         eventosModel::create($validatedData);
         return redirect()->back()->with('success', 'Datos guardados correctamente');
     }
-
+/////////////////////////////////////////////////////////////////////////////////////////////
     public function eventos(Request $request)
     {
-        $query = eventosModel::with(['eventosTipo', 'moderador']);
-    
-        if ($request->has('search') && !empty($request->input('search')) && $request->has('search_type')) {
-            $search = $request->input('search');
-            $searchType = $request->input('search_type');
-    
-            if ($searchType == 'nombre') {
-                $query->whereHas('eventosTipo', function($q) use ($search) {
-                    $q->where('nombre', 'like', "%{$search}%");
-                });
-            } elseif ($searchType == 'moderador') {
-                $query->whereHas('moderador', function($q) use ($search) {
-                    $q->where('name', 'like', "%{$search}%");
-                });
-            }
-        }
-    
-        $items = $query->paginate(4);
+        $search = $request->input('search');
+        $searchType = $request->input('search_type');
+        $items = eventosModel::search($search, $searchType)->paginate(4);
         $moderadores = ModerModel::all();
         $eventosTipos = eventosTipoModel::all();
-    
         return view('/admin/dinamicas/eventos', compact('items', 'moderadores', 'eventosTipos'));
     }
     
-    
-
     public function storeEventos(Request $request)
     {
         $validatedData = $request->validate([
@@ -79,23 +61,8 @@ class AdminDashController extends Controller
             'evento_tipo_nombre' => 'required|string|max:50',
             'moderador_id' => 'required|exists:moderadores,id',
         ]);
-    
-        $eventoTipo = eventosTipoModel::create([
-            'nombre' => $validatedData['evento_tipo_nombre'],
-            'descripcion' => $validatedData['descripcion'],
-            'categoria' => $validatedData['categoria'],
-            'reglas' => $validatedData['reglas'],
-        ]);
-    
-        eventosModel::create([
-            'nombre' => $validatedData['nombre'],
-            'fecha_inicio' => $validatedData['fecha_inicio'],
-            'fecha_fin' => $validatedData['fecha_fin'],
-            'evento_tipo_id' => $eventoTipo->id,
-            'moderador_id' => $validatedData['moderador_id'],
-        ]);
-    
-        return redirect()->route('admin.dinamicas.eventos')->with('exito', 'Evento agregado');
+        eventosModel::store($validatedData);
+        return redirect()->route('admin.dinamicas.eventos');
     }
     
 
@@ -123,8 +90,8 @@ class AdminDashController extends Controller
 
     public function updateEventos(Request $request, $id)
     {
+        // Validar los datos entrantes
         $validatedData = $request->validate([
-            'nombre' => 'required|string',
             'fecha_inicio' => 'required|date',
             'fecha_fin' => 'required|date',
             'moderador_id' => 'required|exists:moderadores,id',
@@ -134,24 +101,10 @@ class AdminDashController extends Controller
             'reglas_tipo' => 'required|string|max:255',
         ]);
 
-        $evento = eventosModel::findOrFail($id);
-        
+        // Usar el modelo para actualizar el evento y su tipo
+        eventosModel::updateEvent($id, $validatedData);
 
-        $evento->eventosTipo->update([
-            'nombre' => $validatedData['evento_tipo_nombre'],
-            'descripcion' => $validatedData['descripcion_tipo'],
-            'categoria' => $validatedData['categoria_tipo'],
-            'reglas' => $validatedData['reglas_tipo'],
-        ]);
-
-    
-        $evento->update([
-            'nombre' => $validatedData['nombre'],
-            'fecha_inicio' => $validatedData['fecha_inicio'],
-            'fecha_fin' => $validatedData['fecha_fin'],
-            'moderador_id' => $validatedData['moderador_id'],
-        ]);
-
+        // Redirigir con mensaje de éxito
         return redirect()->route('admin.dinamicas.eventos')->with('success', 'Evento actualizado');
     }
 
