@@ -48,11 +48,11 @@
                 </div>
             </div>
         </section>
-        <section class="bg-blue-900 text-white py-16 px-8 border p-0">
+        <section class="bg-blue-900 text-white py-14 px-8 border p-0">
             <div class="container mx-auto px-0 py-0">
                 <!-- Subtítulo de la sección -->
-                <h2 class="py-0 lg:px-20 md:px-10 px-5 lg:mx-0 md:mx-20 mx-5 font-bold text-4xl text-gray-800">
-                    Eventos
+                <h2 class="lg:px-20 md:px-10 px-5 lg:mx-0 md:mx-20 mx-5 font-bold text-4xl text-white text-center pb-5">
+                    EVENTOS
                 </h2>
                 <section class="text-gray-400 bg-gray-900 body-font">
                     <div class="flex flex-wrap justify-center px-5 py-5 mx-auto space-x-0 sm:space-x-4 md:space-x-10">
@@ -62,7 +62,7 @@
                                 <!-- Imagen con efecto hover -->
                                 <img alt="content" class="object-cover object-center h-full w-full transition duration-300 ease-in-out group-hover:brightness-50" src="https://image.api.playstation.com/vulcan/ap/rnd/202405/2117/bd406f42e9352fdb398efcf21a4ffe575b2306ac40089d21.png">
                                 <!-- Texto visible al hacer hover -->
-                                <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                                <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out px-5">
                                     Completa misiones épicas rápidamente para ganar Wukong. Los primeros 100 finalistas recibirán Cartas de Regalo de Steam.
                                 </p>
                             </div>
@@ -77,7 +77,7 @@
                                 <!-- Imagen con efecto hover -->
                                 <img alt="content" class="object-cover object-center h-full w-full transition duration-300 ease-in-out group-hover:brightness-50" src="https://preview.redd.it/8m9tv6m3ouq81.jpg?auto=webp&s=0f99cb2b9bd28d93667453c0806a5dd75f888c1e">
                                 <!-- Texto visible al hacer hover -->
-                                <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                                <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out px-5">
                                     Ganá torneos de Left4Dead2 y Counter Strike. Las mejores estrategias ganan premios en cartas de regalo de Steam.
                                 </p>
                             </div>
@@ -92,7 +92,7 @@
                                 <!-- Imagen con efecto hover -->
                                 <img alt="content" class="object-cover object-center h-full w-full transition duration-300 ease-in-out group-hover:brightness-50" src="https://image.api.playstation.com/vulcan/ap/rnd/202405/2216/cbb03393f0ab1149f2b89a8194ce19e596a24fa5bec6526a.png">
                                 <!-- Texto visible al hacer hover -->
-                                <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                                <p class="absolute inset-0 flex items-center justify-center text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out px-5">
                                     Participa en torneos de DragonBall Fighters y llevate el juego de Sparking Zero.
                                 </p>
                             </div>
@@ -105,12 +105,81 @@
             </div>
         </section>
 
-        <section class="bg-blue-900 text-white py-16 px-8 border p-4">
+        <section class="bg-blue-900 text-white spx-8 border p-4 pb-20">
             <!-- component -->
-            <div class="flex flex-col bg-white m-auto p-auto overflow-x-auto max-w-full h-50%">
-                <h2 class="flex py-5 lg:px-20 md:px-10 px-5 lg:mx-0 md:mx-20 mx-5 font-bold text-4xl text-gray-800">
-                    Torneos
+            <div class="flex flex-col m-auto p-auto overflow-x-auto max-w-full">
+                <h2 class="lg:px-20 md:px-10 px-5 lg:mx-0 md:mx-20 mx-5 font-bold text-4xl text-white text-center pt-8">
+                    TORNEOS
                 </h2>
+<<<<<<< HEAD
+                <div class="flex overflow-x-scroll py-8 hide-scroll-bar">
+                    <div class="flex flex-nowrap lg:ml-10 my-8 md:ml-20 ml-10 mr-10">
+                        <!-- Imagen 1 -->
+                        <div class="inline-block px-3 h-[110%]">
+                            <a href="#">
+                                <img
+                                    class="w-30 h-[100%] max-w-xs rounded-lg shadow-md bg-white hover:shadow-xl transition-transform duration-300 ease-in-out border-4 border-green-500 transform hover:scale-110"
+                                    src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/550/capsule_616x353.jpg?t=1729702523"
+                                    alt="Imagen 1">
+                            </a>
+                        </div>
+                        <!-- Imagen 2 -->
+                        <div class="inline-block px-3 h-[110%]">
+                            <a href="#">
+                                <img
+                                    class="w-30 h-[100%] max-w-xs rounded-lg shadow-md bg-white hover:shadow-xl transition-transform duration-300 ease-in-out border-4 border-red-500 transform hover:scale-110"
+                                    src="https://i.3djuegos.com/juegos/19026/counterstrike_2/fotos/ficha/counterstrike_2-5835305.webp">
+                            </a>
+                        </div>
+                        <!-- Imagen 3 -->
+                        <div class="inline-block px-3 h-[110%]">
+                            <a href="#">
+                                <img
+                                    class="w-30 h-[100%] max-w-xs rounded-lg shadow-md bg-white hover:shadow-xl transition-transform duration-300 ease-in-out border-4 border-blue-500 transform hover:scale-110"
+                                    src="https://cdn1.epicgames.com/offer/24b9b5e323bc40eea252a10cdd3b2f10/EGS_LeagueofLegends_RiotGames_S2_1200x1600-905a96cea329205358868f5871393042">
+                            </a>
+                        </div>
+                        <!-- Imagen 4 -->
+                        <div class="inline-block px-3 h-[110%]">
+                            <a href="#">
+                                <img
+                                    class="w-30 h-[100%] max-w-xs rounded-lg shadow-md bg-white hover:shadow-xl transition-transform duration-300 ease-in-out border-4 border-yellow-500 transform hover:scale-110"
+                                    src="https://media.vandal.net/m/78025/call-of-duty-mobile-2019102104887_1.jpg">
+                            </a>
+                        </div>
+                        <!-- Imagen 5 -->
+                        <div class="inline-block px-3 h-[110%]">
+                            <a href="#">
+                                <img
+                                    class="w-30 h-[100%] max-w-xs rounded-lg shadow-md bg-white hover:shadow-xl transition-transform duration-300 ease-in-out border-4 border-purple-500 transform hover:scale-110"
+                                    src="https://supercell.com/images/e93a34598d3723641a72eb9ce02691f6/790/games_thumbnail_brawlstars.5cd76330.webp">
+                            </a>
+                        </div>
+                        <!-- Imagen 6 -->
+                        <div class="inline-block px-3 h-[110%]">
+                            <a href="#">
+                                <img
+                                    class="w-30 h-[100%] max-w-xs rounded-lg shadow-md bg-white hover:shadow-xl transition-transform duration-300 ease-in-out border-4 border-orange-500 transform hover:scale-110"
+                                    src="https://yt3.googleusercontent.com/ytc/AIdro_m0DtuBhZUI1Mie9JUspzzqediBM76hO49vWA8hM5hwu9s=s900-c-k-c0x00ffffff-no-rj">
+                            </a>
+                        </div>
+                        <!-- Imagen 7 -->
+                        <div class="inline-block px-3 h-[110%]">
+                            <a href="#">
+                                <img
+                                    class="w-30 h-[100%] max-w-xs rounded-lg shadow-md bg-white hover:shadow-xl transition-transform duration-300 ease-in-out border-4 border-yellow-500 transform hover:scale-110"
+                                    src="https://image.api.playstation.com/cdn/UP0700/CUSA09072_00/2eBPISxxvTv5foYSDlqiBJfmRj5LZxv3.png">
+                            </a>
+                        </div>
+                        <!-- Imagen 8 -->
+                        <div class="inline-block px-3 h-[110%]">
+                            <a href="#">
+                                <img
+                                    class="w-30 h-[100%] max-w-xs rounded-lg shadow-md bg-white hover:shadow-xl transition-transform duration-300 ease-in-out border-4 border-teal-500 transform hover:scale-110"
+                                    src="https://image.api.playstation.com/vulcan/ap/rnd/202312/0123/978efa66c9645e4692ac7036a31aa002a49d0efb4b88b45c.png">
+                            </a>
+                        </div>
+=======
                 <div class="flex overflow-x-scroll pb-10 hide-scroll-bar">
                     <div class="flex flex-nowrap lg:ml-10 md:ml-20 ml-10 mr-10">
 
@@ -124,10 +193,12 @@
                             </div>
                         @endforeach
 
+>>>>>>> 0f729ea6c72b32805450185d2fecf81b8d7049b3
                     </div>
                 </div>
             </div>
         </section>
+
         <section class="bg-blue-900 text-white py-16 px-8 border p-4">
             <div class="flex justify-center items-center">
                 <div class="max-w-7xl mx-auto px-4">
@@ -235,8 +306,8 @@
                         <a target="_self" href="/blog/slug" class="absolute opacity-0 top-0 right-0 left-0 bottom-0"></a>
                         <div class="relative mb-4 rounded-2xl">
                             <img class="max-h-80 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105" src="https://images.pexels.com/photos/163097/twitter-social-media-communication-internet-network-163097.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
-                            <a class="flex justify-center items-center bg-red-700 bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100" href="/blog/slug" target="_self" rel="noopener noreferrer">
-                                Read article
+                            <a class="flex justify-center items-center bg-blue-300 bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100" href="/blog/slug" target="_self" rel="noopener noreferrer">
+                                Leer articulo
                                 <svg class="ml-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
                                 </svg>
@@ -249,14 +320,14 @@
                                 </div>
                                 <div class="flex flex-1">
                                     <div class="">
-                                        <p class="text-sm font-semibold ">Morris Muthigani</p>
-                                        <p class="text-sm text-gray-500">Published on 19/03/2024</p>
+                                        <p class="text-sm font-semibold ">Carlos Asparrin</p>
+                                        <p class="text-sm text-gray-500">Publicado el 21/11/2024</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="flex justify-end">
                                 <div class="text-sm flex items-center text-gray-500 ">
-                                    2 Days ago
+                                    Hace 2 días
                                     <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
@@ -286,8 +357,8 @@
                         <a target="_self" href="/blog/slug" class="absolute opacity-0 top-0 right-0 left-0 bottom-0"></a>
                         <div class="relative mb-4 rounded-2xl">
                             <img class="max-h-80 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105" src="https://images.pexels.com/photos/163097/twitter-social-media-communication-internet-network-163097.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
-                            <a class="flex justify-center items-center bg-red-700 bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100" href="/blog/slug" target="_self" rel="noopener noreferrer">
-                                Read article
+                            <a class="flex justify-center items-center bg-blue-300 bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100" href="/blog/slug" target="_self" rel="noopener noreferrer">
+                                Leer articulo
                                 <svg class="ml-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
                                 </svg>
@@ -300,14 +371,14 @@
                                 </div>
                                 <div class="flex flex-1">
                                     <div class="">
-                                        <p class="text-sm font-semibold ">Morris Muthigani</p>
-                                        <p class="text-sm text-gray-500">Published on 19/03/2024</p>
+                                        <p class="text-sm font-semibold ">Carlos Asparrin</p>
+                                        <p class="text-sm text-gray-500">Publicado el 21/11/2024</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="flex justify-end">
                                 <div class="text-sm flex items-center text-gray-500 ">
-                                    2 Days ago
+                                    Hace 2 días
                                     <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
@@ -332,14 +403,13 @@
                                 </span>
                                 <span class="">Share</span>
                             </button>
-                        </div>
                     </article>
                     <article class="bg-white p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:pb-14 hover:shadow-2xl rounded-2xl cursor-pointer border">
                         <a target="_self" href="/blog/slug" class="absolute opacity-0 top-0 right-0 left-0 bottom-0"></a>
                         <div class="relative mb-4 rounded-2xl">
                             <img class="max-h-80 rounded-2xl w-full object-cover transition-transform duration-300 transform group-hover:scale-105" src="https://images.pexels.com/photos/163097/twitter-social-media-communication-internet-network-163097.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
-                            <a class="flex justify-center items-center bg-red-700 bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100" href="/blog/slug" target="_self" rel="noopener noreferrer">
-                                Read article
+                            <a class="flex justify-center items-center bg-blue-300 bg-opacity-80 z-10 absolute top-0 left-0 w-full h-full text-white rounded-2xl opacity-0 transition-all duration-300 transform group-hover:scale-105 text-xl group-hover:opacity-100" href="/blog/slug" target="_self" rel="noopener noreferrer">
+                                Leer articulo
                                 <svg class="ml-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
                                 </svg>
@@ -352,14 +422,14 @@
                                 </div>
                                 <div class="flex flex-1">
                                     <div class="">
-                                        <p class="text-sm font-semibold ">Morris Muthigani</p>
-                                        <p class="text-sm text-gray-500">Published on 19/03/2024</p>
+                                        <p class="text-sm font-semibold ">Carlos Asparrin</p>
+                                        <p class="text-sm text-gray-500">Publicado el 21/11/2024</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="flex justify-end">
                                 <div class="text-sm flex items-center text-gray-500 ">
-                                    2 Days ago
+                                    Hace 2 días
                                     <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
@@ -384,12 +454,8 @@
                                 </span>
                                 <span class="">Share</span>
                             </button>
-                        </div>
                     </article>
                 </div>
-            </div>
-            </div>
-            </div>
             </div>
         </section>
     </main>

@@ -24,9 +24,12 @@ class DatabaseSeeder extends Seeder
         $this->call([AdminSeeder::class ]);
         $this->call([ModerSeeder::class]);
         $this->call([eventosSeeder::class]);
+        $this->call([eventosTipoSeeder::class]);
         $this->call([UserSeeder::class]);
         $this->call([juegosDSeeder::class]);
         $this->call([recompensasTipo::class]);
+        $this->call([TorneoJuegosSeeder::class]);
+        $this->call([TorneosSeeder::class]);
         $this->call([noticias_tematica::class]);
     }
 }

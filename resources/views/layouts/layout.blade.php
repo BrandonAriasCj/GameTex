@@ -10,6 +10,7 @@
 
 <body>
     @vite('resources/css/app.css')
+    @vite(['resources/js/app.js'])
     <!-- component -->
     <header>
         <nav x-data="{ open: false }" class="flex h-auto w-auto bg-white shadow-lg rounded-lg justify-between md:h-16">
@@ -25,7 +26,7 @@
                     class="flex flex-col w-full h-auto md:hidden">
                     <div class="flex flex-col items-center justify-center gap-2 py-4">
                         <a href="{{ '/' }}">Inicio</a>
-                        <a href="#">Torneos</a>
+                        <a href="{{ 'torneos' }}">Torneos</a>
                         <a href="{{ 'tienda' }}">Tienda</a>
                         <a href="{{ 'noticias' }}">Noticias</a>
                     </div>
@@ -56,7 +57,7 @@
                 </div>
                 <div class="hidden w-3/5 items-center justify-evenly font-semibold md:flex">
                     <a href="{{ '/' }}">Inicio</a>
-                    <a href="#">Torneos</a>
+                    <a href="{{ 'torneos' }}">Torneos</a>
                     <a href="{{ 'tienda' }}">Tienda</a>
                     <a href="{{ 'noticias' }}">Noticias</a>
                 </div>
@@ -115,7 +116,7 @@
                         <button class="bg-white text-blue-400 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
                             <i class="fab fa-twitter text-3xl"></i>
                         </button>
-                        <button class="bg-white text-blue-00 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                        <button class="bg-white text-blue-700 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
                             <i class="fab fa-facebook-square text-3xl"></i>
                         </button>
                         <button class="bg-white text-blue-800 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
