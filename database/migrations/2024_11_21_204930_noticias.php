@@ -12,13 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('noticias', function (Blueprint $table) {
+            $table->id();
             $table->string('titulo');
-            $table->string('contenido');
+            $table->text('contenido');
             $table->String('portada');
             $table->string('imagen1');
             $table->string('imagen2');
             $table->timestamp('fecha_publicacion')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->foreignId('administrador_id')->constrained('administradores')->onDelete('cascade');
+            $table->foreignId('noticias_tematica_id')->constrained('noticias_tematica')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('noticias');
     }
 };

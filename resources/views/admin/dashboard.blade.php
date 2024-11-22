@@ -24,7 +24,7 @@
 
             <!-- aqui el formulario de recompensas -->
             <div class="bg-gray-100  flex justify-center my-4 m-2 p-2 rounded">
-                <a href="{{route('admin.secundary.noticias')}}">
+                <a href="{{route('admin.gestion.noticias')}}">
                 <img src="https://i.pinimg.com/originals/d1/cb/b3/d1cbb399c90abc93f8b1acb33e327416.png" alt="Abrir Modal" class="w-34 h-34 cursor-pointer">
             </div>
             

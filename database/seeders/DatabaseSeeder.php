@@ -27,5 +27,6 @@ class DatabaseSeeder extends Seeder
         $this->call([UserSeeder::class]);
         $this->call([juegosDSeeder::class]);
         $this->call([recompensasTipo::class]);
+        $this->call([noticias_tematica::class]);
     }
 }
