@@ -195,58 +195,35 @@ class AdminDashController extends Controller
     //////////////////////////// TODO DE NOTICIAS /////////////////////////////////
     public function noticias(Request $request)
     {
-        $query = noticiasModel::with('administrador', 'tematica');
-    
-        if ($request->has('search') && !empty($request->input('search'))) {
-            $search = $request->input('search');
-            $query->where('titulo', 'like', "%{$search}%")
-                ->orWhere('contenido', 'like', "%{$search}%");
-        }
-    
-        $noticias = $query->paginate(4);
+        $search = $request->input('search');
+        $searchType = $request->input('search_type');
+
+
+        $noticias = noticiasModel::search($search, $searchType);
         $administradores = AdminModel::all();
         $tematicas = noticiasTematicaModel::all();
-    
+
         return view('admin.gestion.noticias', compact('noticias', 'administradores', 'tematicas'));
-    }  
+    }
 
     public function storeNoticias(Request $request)
     {
-        $validatedData = $request->validate([
-            'titulo' => 'required|string',
-            'contenido' => 'required|string',
-            'portada' => 'required|image',
-            'imagen1' => 'image',
-            'imagen2' => 'image',
-            'noticias_tematica_id' => 'required|exists:noticias_tematica,id',
-        ]);
-    
-        $administrador = Auth::guard('admin')->user();
-    
-        if (!$administrador) {
-            return redirect()->back()->withErrors(['auth' => 'No hay ningún administrador autenticado.']);
+        try {
+            noticiasModel::storeNoticia([], $request);
+            return redirect()->route('admin.gestion.noticias')->with('success', 'Noticia agregada');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['auth' => $e->getMessage()]);
         }
-    
-        $noticia = new noticiasModel();
-        $noticia->titulo = $validatedData['titulo'];
-        $noticia->contenido = $validatedData['contenido'];
-        $noticia->portada = $request->file('portada')->store('public/noticias');
-        $noticia->imagen1 = $request->file('imagen1')->store('public/noticias');
-        $noticia->imagen2 = $request->file('imagen2')->store('public/noticias');
-        $noticia->fecha_publicacion = now();
-        $noticia->administrador_id = $administrador->id;
-        $noticia->noticias_tematica_id = $validatedData['noticias_tematica_id'];
-        $noticia->save();
-    
-        return redirect()->route('admin.gestion.noticias')->with('success', 'Noticia agregada');
     }
     
-        
     public function editNoticias($id)
     {
-        $noticia = noticiasModel::findOrFail($id);
-        return view('admin.gestion.noticias-edit', compact('noticia'));
+        $noticia = noticiasModel::with('tematica')->findOrFail($id);
+        $tematicas = noticiasTematicaModel::all();
+    
+        return view('admin.gestion.noticias-edit', compact('noticia', 'tematicas'));
     }
+    
 
     public function updateNoticias(Request $request, $id)
     {
@@ -256,22 +233,24 @@ class AdminDashController extends Controller
             'portada' => 'sometimes|image',
             'imagen1' => 'sometimes|image',
             'imagen2' => 'sometimes|image',
+            'noticias_tematica_id' => 'required|exists:noticias_tematica,id', 
         ]);
 
-        $noticia = noticiasModel::findOrFail($id);
-        $noticia->titulo = $validatedData['titulo'];
-        $noticia->contenido = $validatedData['contenido'];
+        $data = [
+            'titulo' => $validatedData['titulo'],
+            'contenido' => $validatedData['contenido'],
+            'noticias_tematica_id' => $validatedData['noticias_tematica_id'], 
+        ];
         if ($request->hasFile('portada')) {
-            $noticia->portada = $request->file('portada')->store('public/noticias');
+            $data['portada'] = $request->file('portada')->store('public/noticias');
         }
         if ($request->hasFile('imagen1')) {
-            $noticia->imagen1 = $request->file('imagen1')->store('public/noticias');
+            $data['imagen1'] = $request->file('imagen1')->store('public/noticias');
         }
         if ($request->hasFile('imagen2')) {
-            $noticia->imagen2 = $request->file('imagen2')->store('public/noticias');
+            $data['imagen2'] = $request->file('imagen2')->store('public/noticias');
         }
-        $noticia->save();
-
+        noticiasModel::updateNoticia($id, $data);
         return redirect()->route('admin.gestion.noticias')->with('success', 'Noticia actualizada');
     }
 

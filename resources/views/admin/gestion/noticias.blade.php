@@ -13,13 +13,11 @@
         <section class="bg-green-600 justify-center m-2 p-2 align-top">
             <div class="">
                 <form action="{{ route('admin.gestion.noticias') }}" method="GET">
-                    <input type="text" name="search" placeholder="Buscar noticias..." class="border border-gray-300 rounded-md p-2">
-                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Buscar</button>
+                    <x-noticias-busq />
                 </form>
             </div>
             
-    
-            <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 cursor-pointer" onclick="openModalNoticias()">Crear</button>
+            <!-- Modal para crear noticias -->
             <x-noticias-modal :tematicas="$tematicas" />
         </section>
         
@@ -35,7 +33,7 @@
                             <th class="w-1/8 p-2">Imagen 2</th>
                             <th class="w-1/8 p-2">Fecha de Publicación</th>
                             <th class="w-1/8 p-2">Creador</th>
-                            <th class="w-1/8 p-2">Temática</th> <!-- Agregar columna de temática -->
+                            <th class="w-1/8 p-2">Temática</th>
                             <th class="w-1/12 p-2"></th>
                         </tr>
                     </thead>
@@ -49,7 +47,7 @@
                                 <td class="truncate m-2"><img src="{{ asset('storage/' . $noticia->imagen2) }}" alt="Imagen 2" class="w-16 h-16"></td>
                                 <td class="truncate m-2">{{ $noticia->fecha_publicacion }}</td>
                                 <td class="truncate m-2">{{ $noticia->administrador->name }}</td>
-                                <td class="truncate m-2">{{ $noticia->tematica->nombre }}</td> 
+                                <td class="truncate m-2">{{ $noticia->tematica->nombre }}</td>
                                 <td class="m-2 p-2">
                                     <form action="{{ route('admin.gestion.destroyNoticias', ['id' => $noticia->id]) }}" method="POST" style="display:inline;">
                                         @csrf
@@ -65,7 +63,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="9">No se encontraron datos</td> <!-- Ajustado el colspan -->
+                                <td colspan="9">No se encontraron datos</td>
                             </tr>
                         @endforelse
                     </tbody>
