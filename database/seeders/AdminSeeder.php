@@ -13,10 +13,8 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('administradores')->insert([ 
-            'name' => 'ax', 
-            'email' => 'ax@mail.com', 
-            'password' => bcrypt('123'), 
+        DB::table('administradores')->insert([
+            [ 'name' => 'ax', 'email' => 'ax@mail.com', 'password' => bcrypt('123') ]
         ]);
     }
 }

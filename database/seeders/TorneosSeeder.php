@@ -26,35 +26,7 @@ class TorneosSeeder extends Seeder
                 'evento_tipo_id' => 1,  // ID del tipo de evento (puedes adaptarlo según tu base de datos)
                 'moderador_id' => 1,    // ID del moderador
                 'administrador_id' => 1, // ID del administrador
-                'imagen' => 'left4dead_torneo.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nombrej' => 'Torneo Counter Strike',
-                'creador' => 'Marta Gómez',
-                'fecha_inicio' => now()->addDays(2),
-                'fecha_fin' => now()->addDays(6),
-                'exp' => 'Competición de disparos tácticos en Counter-Strike',
-                'torneo_juego_id' => 2, // ID de juego Counter Strike
-                'evento_tipo_id' => 2,  // ID del tipo de evento (puedes adaptarlo según tu base de datos)
-                'moderador_id' => 2,    // ID del moderador
-                'administrador_id' => 1, // ID del administrador
-                'imagen' => 'counterstrike_torneo.jpg',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'nombrej' => 'Torneo League of Legends',
-                'creador' => 'Luis Fernández',
-                'fecha_inicio' => now()->addDays(3),
-                'fecha_fin' => now()->addDays(7),
-                'exp' => 'Competencia de estrategia y acción en League of Legends',
-                'torneo_juego_id' => 3, // ID de juego League of Legends
-                'evento_tipo_id' => 3,  // ID del tipo de evento (puedes adaptarlo según tu base de datos)
-                'moderador_id' => 3,    // ID del moderador
-                'administrador_id' => 1, // ID del administrador
-                'imagen' => 'leagueoflegends_torneo.jpg',
+                'imagen' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfYy-tIMRG8K5BUekH84ajEz2LmuzOp61jfw&s',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
