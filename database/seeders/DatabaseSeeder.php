@@ -30,5 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call([recompensasTipo::class]);
         $this->call([TorneoJuegosSeeder::class]);
         $this->call([TorneosSeeder::class]);
+        $this->call([noticias_tematica::class]);
     }
 }

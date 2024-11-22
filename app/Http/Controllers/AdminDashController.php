@@ -9,6 +9,8 @@ use App\Models\eventosModel;
 use App\Models\ModerModel;
 use App\Models\eventosTipoModel;
 use App\Models\juegosDModel;
+use App\Models\noticiasModel;
+use App\Models\noticiasTematicaModel;
 use App\Models\torneoModel;
 use App\Models\torneoJuegosModel;
 
@@ -281,6 +283,98 @@ class AdminDashController extends Controller
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     public function recompensas(){
         return view('admin.dinamicas.recompensas');
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////// TODO DE NOTICIAS /////////////////////////////////
+    public function noticias(Request $request)
+    {
+        $query = noticiasModel::with('administrador', 'tematica');
+    
+        if ($request->has('search') && !empty($request->input('search'))) {
+            $search = $request->input('search');
+            $query->where('titulo', 'like', "%{$search}%")
+                ->orWhere('contenido', 'like', "%{$search}%");
+        }
+    
+        $noticias = $query->paginate(4);
+        $administradores = AdminModel::all();
+        $tematicas = noticiasTematicaModel::all();
+    
+        return view('admin.gestion.noticias', compact('noticias', 'administradores', 'tematicas'));
+    }  
+
+    public function storeNoticias(Request $request)
+    {
+        $validatedData = $request->validate([
+            'titulo' => 'required|string',
+            'contenido' => 'required|string',
+            'portada' => 'required|image',
+            'imagen1' => 'image',
+            'imagen2' => 'image',
+            'noticias_tematica_id' => 'required|exists:noticias_tematica,id',
+        ]);
+    
+        $administrador = Auth::guard('admin')->user();
+    
+        if (!$administrador) {
+            return redirect()->back()->withErrors(['auth' => 'No hay ningún administrador autenticado.']);
+        }
+    
+        $noticia = new noticiasModel();
+        $noticia->titulo = $validatedData['titulo'];
+        $noticia->contenido = $validatedData['contenido'];
+        $noticia->portada = $request->file('portada')->store('public/noticias');
+        $noticia->imagen1 = $request->file('imagen1')->store('public/noticias');
+        $noticia->imagen2 = $request->file('imagen2')->store('public/noticias');
+        $noticia->fecha_publicacion = now();
+        $noticia->administrador_id = $administrador->id;
+        $noticia->noticias_tematica_id = $validatedData['noticias_tematica_id'];
+        $noticia->save();
+    
+        return redirect()->route('admin.gestion.noticias')->with('success', 'Noticia agregada');
+    }
+    
+        
+    public function editNoticias($id)
+    {
+        $noticia = noticiasModel::findOrFail($id);
+        return view('admin.gestion.noticias-edit', compact('noticia'));
+    }
+
+    public function updateNoticias(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'titulo' => 'required|string',
+            'contenido' => 'required|string',
+            'portada' => 'sometimes|image',
+            'imagen1' => 'sometimes|image',
+            'imagen2' => 'sometimes|image',
+        ]);
+
+        $noticia = noticiasModel::findOrFail($id);
+        $noticia->titulo = $validatedData['titulo'];
+        $noticia->contenido = $validatedData['contenido'];
+        if ($request->hasFile('portada')) {
+            $noticia->portada = $request->file('portada')->store('public/noticias');
+        }
+        if ($request->hasFile('imagen1')) {
+            $noticia->imagen1 = $request->file('imagen1')->store('public/noticias');
+        }
+        if ($request->hasFile('imagen2')) {
+            $noticia->imagen2 = $request->file('imagen2')->store('public/noticias');
+        }
+        $noticia->save();
+
+        return redirect()->route('admin.gestion.noticias')->with('success', 'Noticia actualizada');
+    }
+
+    public function destroyNoticias($id)
+    {
+        $noticia = noticiasModel::findOrFail($id);
+        $noticia->delete();
+
+        return redirect()->route('admin.gestion.noticias')->with('success', 'Noticia eliminada');
     }
 
 

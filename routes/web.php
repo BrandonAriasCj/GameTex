@@ -110,7 +110,17 @@ Route::middleware(['auth.admin'])->group(function () {
     Route::put('/admin/dinamicas/recompensas/{id}', [AdminDashController::class, 'updateRecompensas'])->name('admin.dinamicas.updateRecompensas');
     Route::delete('/admin/dinamicas/recompensas/{id}', [AdminDashController::class, 'destroyRecompensas'])->name('admin.dinamicas.destroyRecompensas');
     /////////////////////////////////////////////////////////////////////
+    ///////////////  Rutas por definir ///////////////////
 
+    /////////////////////////////////////////////////////////////////////
+    ///////////////  Rutas noticias ///////////////////
+    Route::get('/admin/gestion/noticias', [AdminDashController::class, 'noticias'])->name('admin.gestion.noticias');
+    Route::post('/admin/gestion/noticias', [AdminDashController::class, 'storeNoticias'])->name('admin.gestion.storeNoticias');
+    Route::get('/admin/gestion/noticias-edit/{id}/edit', [AdminDashController::class, 'editNoticias'])->name('admin.gestion.noticias-edit');
+    Route::put('/admin/gestion/noticias/{id}', [AdminDashController::class, 'updateNoticias'])->name('admin.gestion.updateNoticias');
+    Route::delete('/admin/gestion/noticias/{id}', [AdminDashController::class, 'destroyNoticias'])->name('admin.gestion.destroyNoticias');
+
+    /////////////////////////////////////////////////////////////////////
 });
 
 

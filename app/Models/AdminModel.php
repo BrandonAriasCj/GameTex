@@ -19,4 +19,7 @@ class AdminModel extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function noticias() { return $this->hasMany(noticiasModel::class, 'administrador_id'); }
+    public function torneo() { return $this->hasMany(noticiasModel::class, 'administrador_id'); }
 }
