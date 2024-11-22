@@ -14,8 +14,6 @@ class noticias_tematica extends Seeder
     {
         DB::table('noticias_temtatica')->insert([ 
             'nombre' => 'musica', 
-            'fecha_publicacion' => Carbon::create('2024', '11', '24'), 
-            'password' => bcrypt('123'), 
         ]);
     }
 }
