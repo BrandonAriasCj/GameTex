@@ -44,3 +44,18 @@ document.onkeydown = function (event) {
     }
 };
 
+document.getElementById('game-filter').addEventListener('change', function() {
+    var selectedGame = this.value.toLowerCase(); // Obtener el valor seleccionado
+    var torneos = document.querySelectorAll('[data-juego]'); // Seleccionar todos los contenedores con data-juego
+
+    torneos.forEach(function(torneo) {
+        var juego = torneo.getAttribute('data-juego').toLowerCase(); // Obtener el valor del atributo data-juego
+
+        // Si no se ha seleccionado ningún juego o el juego del contenedor coincide con el seleccionado
+        if (selectedGame === "" || juego === selectedGame.toLowerCase()) {
+            torneo.style.display = 'block'; // Mostrar contenedor
+        } else {
+            torneo.style.display = 'none'; // Ocultar contenedor
+        }
+    });
+});
