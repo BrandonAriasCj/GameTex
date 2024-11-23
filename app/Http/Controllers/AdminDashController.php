@@ -69,8 +69,9 @@ class AdminDashController extends Controller
 
     public function showEventos($id)
     {
-        $evento = eventosModel::findOrFail($id);
-        return view('admin.dinamicas.edit', compact('evento'));
+        $evento = eventosModel::with('eventosTipo', 'moderador')->findOrFail($id);
+
+        return view('admin.dinamicas.eventos-show', compact('evento'));
     }
 
     public function deleteEventos($id)
@@ -169,13 +170,12 @@ class AdminDashController extends Controller
             return redirect()->route('admin.dinamicas.torneos')->with('success', 'Torneo actualizado');
     }
 
-    public function showTorneo($id)
+    public function showTorneos($id)
     {
         $torneo = torneoModel::with(['juego', 'eventoTipo', 'moderador', 'administrador'])->findOrFail($id);
 
-        return view('admin.dinamicas.showTorneo', compact('torneo'));
+        return view('admin.dinamicas.torneos-show', compact('torneo'));
     }
-
         
     
     public function destroyTorneos($id)
@@ -183,7 +183,7 @@ class AdminDashController extends Controller
             $torneo = torneoModel::findOrFail($id);
             $torneo->delete();
     
-            return redirect()->route('admin.dinamicas.torneos')->with('success', 'Torneo eliminado');
+            return redirect()->route('admin.dinamicas.torneos');
     }
     
     
@@ -198,8 +198,6 @@ class AdminDashController extends Controller
     {
         $search = $request->input('search');
         $searchType = $request->input('search_type');
-
-
         $noticias = noticiasModel::search($search, $searchType);
         $administradores = AdminModel::all();
         $tematicas = noticiasTematicaModel::all();
@@ -207,6 +205,12 @@ class AdminDashController extends Controller
         return view('admin.gestion.noticias', compact('noticias', 'administradores', 'tematicas'));
     }
 
+    public function showNoticia($id)
+    {
+        $noticia = noticiasModel::with('tematica')->findOrFail($id);
+
+        return view('admin.gestion.noticiasShow', compact('noticia'));
+    }
 
     
     public function editNoticias($id)
@@ -292,7 +296,7 @@ class AdminDashController extends Controller
         $noticia = noticiasModel::findOrFail($id);
         $noticia->delete();
 
-        return redirect()->route('admin.gestion.noticias')->with('success', 'Noticia eliminada');
+        return redirect()->route('admin.gestion.noticias');
     }
 
 
