@@ -44,6 +44,32 @@ document.onkeydown = function (event) {
     }
 };
 
+document.getElementById('share-button').addEventListener('click', function(event) {
+    // Prevenir el comportamiento predeterminado del botón
+    event.preventDefault();
+    
+    // Obtener el enlace del artículo
+    var articleLink = document.getElementById('article-link').href;
+    
+    // Crear un elemento de texto temporal para copiar la URL
+    var tempInput = document.createElement('input');
+    tempInput.value = articleLink;
+    document.body.appendChild(tempInput);
+    
+    // Seleccionar el contenido del input
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999); // Para dispositivos móviles
+    
+    // Copiar la URL al portapapeles
+    document.execCommand('copy');
+    
+    // Eliminar el input temporal después de copiar
+    document.body.removeChild(tempInput);
+    
+    // Opcional: mostrar un mensaje de éxito
+    alert('URL copiada al portapapeles: ' + articleLink);
+});
+
 
 // Filtro lógica:
 document.addEventListener('DOMContentLoaded', function () {
