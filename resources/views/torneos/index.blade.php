@@ -42,7 +42,7 @@
                     </div>
                 @endforeach
 
-                @include('components.modalParticipar');
+                @include('components.modalParticipar')
             </div>
         </div>
     </section>
