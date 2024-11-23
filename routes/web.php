@@ -10,7 +10,6 @@ use App\Http\Controllers\UserDashController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TorneosController;
 
-
 #Route::get('/', function () {
     #return view('welcome');
 #});
@@ -21,8 +20,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     })->name('dashboard');
 });
 
-Route::get('/',[index::class, 'index']);
-
+Route::get('/', function () {
+    return view('home.index');
+});
 
 Route::get('tienda', function () {
     return view('/tienda/index');
@@ -49,7 +49,7 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 // Rutas protegidas para usuarios
 Route::middleware(['auth.users'])->group(function () {
-    Route::get('dashboard', [UserDashController::class, 'index'])->name('dashboard');
+    Route::get('dashboard', [UserDashController::class, 'index']);
 
         // Ruta principal del panel
     Route::prefix('panel')->group(function () {
@@ -126,7 +126,6 @@ Route::middleware(['auth.moderator'])->group(function () {
 
 #Torneos:
 Route::get('torneos', [TorneosController::class, 'index'])->name('torneos.index');
-
 
 #Noticias:
 Route::get('noticias', function () {

@@ -22,9 +22,7 @@
                     <a href="{{ '/' }}"><img class="h-12" src="{{ asset('imagenes/logo.png') }}"></a>
                 </div>
 
-                <div
-                    x-show="open" x-transition:enter="transition ease-in-out duration-300"
-                    class="flex flex-col w-full h-auto md:hidden">
+                <div x-show="open" x-transition:enter="transition ease-in-out duration-300" class="flex flex-col w-full h-auto md:hidden">
                     <div class="flex flex-col items-center justify-center gap-2 py-4">
                         <a href="{{ '/' }}">Inicio</a>
                         <a href="{{ 'torneos' }}">Torneos</a>
@@ -33,26 +31,20 @@
                     </div>
                     <div class="flex flex-col items-center justify-center gap-2 py-2">
                         @if (Route::has('login'))
-                        @auth
-                        <a
-                            href="{{ url('/dashboard') }}"
-                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                            Perfil
-                        </a>
-                        @else
-                        <a
-                            href="{{ route('login') }}"
-                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                            Login
-                        </a>
-                        @if (Route::has('register'))
-                        <a
-                            href="{{ route('register') }}"
-                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                            Registro
-                        </a>
-                        @endif
-                        @endauth
+                            @if (Auth::guard('users')->check())
+                                <a href="{{ url('/dashboard') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                                    Perfil
+                                </a>
+                            @else
+                                <a href="{{ route('login') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                                    Login
+                                </a>
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                                        Registro
+                                    </a>
+                                @endif
+                            @endif
                         @endif
                     </div>
                 </div>
@@ -64,39 +56,31 @@
                 </div>
                 <div class="hidden w-1/5 items-center justify-evenly font-semibold md:flex">
                     @if (Route::has('login'))
-                    @auth
-                    <a
-                        href="{{ url('/dashboard') }}"
-                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                        Perfil
-                    </a>
-                    @else
-                    <a
-                        href="{{ route('login') }}"
-                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                        Login
-                    </a>
-
-                    @if (Route::has('register'))
-                    <a
-                        href="{{ route('register') }}"
-                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                        Registro
-                    </a>
-                    @endif
-                    @endauth
+                        @if (Auth::guard('users')->check())
+                            <a href="{{ url('/dashboard') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                                Perfil
+                            </a>
+                        @else
+                            <a href="{{ route('login') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                                Login
+                            </a>
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                                    Registro
+                                </a>
+                            @endif
+                        @endif
                     @endif
                 </div>
-                <button class="text-gray-500 w-10 h-10 relative focus:outline-none bg-white
-                          md:hidden
-                        " @click="open = !open">
+                <button class="text-gray-500 w-10 h-10 relative focus:outline-none bg-white md:hidden" @click="open = !open">
                     <span class="sr-only">Open main menu</span>
-                    <div class="block w-5 absolute left-1/2 top-1/2   transform  -translate-x-1/2 -translate-y-1/2">
-                        <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out" :class="{'rotate-45': open,' -translate-y-1.5': !open }"></span>
-                        <span aria-hidden="true" class="block absolute  h-0.5 w-5 bg-current   transform transition duration-500 ease-in-out" :class="{'opacity-0': open } "></span>
-                        <span aria-hidden="true" class="block absolute  h-0.5 w-5 bg-current transform  transition duration-500 ease-in-out" :class="{'-rotate-45': open, ' translate-y-1.5': !open}"></span>
+                    <div class="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out" :class="{'rotate-45': open, '-translate-y-1.5': !open}"></span>
+                        <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out" :class="{'opacity-0': open}"></span>
+                        <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out" :class="{'-rotate-45': open, 'translate-y-1.5': !open}"></span>
                     </div>
                 </button>
+                
             </div>
         </nav>
     </header>
