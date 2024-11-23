@@ -8,7 +8,6 @@ class torneoModel extends Model
 {
     protected $table = 'torneos';
 
-    // Asegúrate de incluir 'imagen' en la lista de fillable
     protected $fillable = [
         'nombrej', 
         'creador', 

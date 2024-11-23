@@ -89,7 +89,7 @@ Route::middleware(['auth.admin'])->group(function () {
 
     Route::get('/admin/dinamicas/eventos', [AdminDashController::class, 'eventos'])->name('admin.dinamicas.eventos');
     Route::post('/admin/dinamicas/eventos', [AdminDashController::class, 'storeEventos'])->name('admin.dinamicas.store');
-    Route::get('/admin/dinamicas/eventos/{id}', [AdminDashController::class, 'showEventos'])->name('admin.dinamicas.show');
+    Route::get('/admin/dinamicas/eventos-show/{id}', [AdminDashController::class, 'showEventos'])->name('admin.dinamicas.show');
     Route::delete('/admin/dinamicas/eventos/{id}', [AdminDashController::class, 'deleteEventos'])->name('admin.dinamicas.delete');
     Route::get('/admin/dinamicas/eventos-edit/{id}/edit', [AdminDashController::class, 'editEventos'])->name('admin.dinamicas.eventos-edit');
 
@@ -97,7 +97,7 @@ Route::middleware(['auth.admin'])->group(function () {
     //////////////////////////////////////////////////////////////////////
     ///////////////  Rutas Torneos ///////////////////
     Route::get('/admin/dinamicas/torneos', [AdminDashController::class, 'torneos'])->name('admin.dinamicas.torneos');
-    Route::get('/admin/dinamicas/torneos/{id}', [AdminDashController::class, 'showTorneo'])->name('admin.dinamicas.showTorneo');
+    Route::get('/admin/dinamicas/torneos-show/{id}', [AdminDashController::class, 'showTorneos'])->name('admin.dinamicas.showTorneos');
     Route::post('/admin/dinamicas/torneos', [AdminDashController::class, 'storeTorneos'])->name('admin.dinamicas.storeTorneos');
     Route::get('/admin/dinamicas/torneos-edit/{id}/edit', [AdminDashController::class, 'editTorneos'])->name('admin.dinamicas.torneos-edit');
     Route::put('/admin/dinamicas/torneos/{id}', [AdminDashController::class, 'updateTorneos'])->name('admin.dinamicas.updateTorneos');
@@ -116,6 +116,8 @@ Route::middleware(['auth.admin'])->group(function () {
     /////////////////////////////////////////////////////////////////////
     ///////////////  Rutas noticias ///////////////////
     Route::get('/admin/gestion/noticias', [AdminDashController::class, 'noticias'])->name('admin.gestion.noticias');
+    Route::get('/admin/gestion/noticiasShow/{id}', [AdminDashController::class, 'showNoticia'])->name('admin.gestion.noticiasShow');
+        
     Route::post('/admin/gestion/noticias', [AdminDashController::class, 'storeNoticias'])->name('admin.gestion.storeNoticias');
     Route::get('/admin/gestion/noticias-edit/{id}/edit', [AdminDashController::class, 'editNoticias'])->name('admin.gestion.noticias-edit');
     Route::put('/admin/gestion/noticias/{id}', [AdminDashController::class, 'updateNoticias'])->name('admin.gestion.updateNoticias');

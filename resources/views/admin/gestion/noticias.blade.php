@@ -52,6 +52,9 @@
                                     <form action="{{ route('admin.gestion.destroyNoticias', ['id' => $noticia->id]) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
+                                        <a href="{{ route('admin.gestion.noticiasShow', ['id' => $noticia->id]) }}" class="btn btn-warning">
+                                            <i class="fa-sharp-duotone fa-solid fa-feather"></i> Mostrar
+                                        </a>
                                         <a href="{{ route('admin.gestion.noticias-edit', ['id' => $noticia->id]) }}" class="btn btn-warning">
                                             <i class="fa-sharp-duotone fa-solid fa-feather"></i> Editar
                                         </a>
