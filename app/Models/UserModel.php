@@ -12,7 +12,7 @@ class UserModel extends Authenticatable
     protected $table = 'usuarios';
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','profile_photo_path',
     ];
 
     protected $hidden = [
@@ -25,4 +25,6 @@ class UserModel extends Authenticatable
         return $this->belongsToMany(TorneoModel::class, 'torneo_usuario', 'usuario_id', 'torneo_id')
                     ->withTimestamps(); // Incluye timestamps de la tabla intermedia
     }
+    public function getProfilePhotoUrlAttribute() { 
+        return $this->profile_photo_path ? asset('storage/' . $this->profile_photo_path) : asset('content-img/Makanaky.jpg'); }
 }

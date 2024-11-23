@@ -13,14 +13,9 @@
         <div>
             <label>Categorias:</label>
             <select>
-                <option>Left 4 Dead 2</option>
-                <option>Counter Strike 2</option>
-                <option>League of Legends</option>
-                <option>Call of Duty Mobile</option>
-                <option>Call of duty Warzone</option>
-                <option>Clash royale</option>
-                <option>Brawl Stars</option>
-                <option>Dragon Fighter Z</option>
+                @foreach($torneos as $torneo)
+                <option>{{ $torneo->torneo_juego_id }}</option>
+                @endforeach
             </select>
         </div>
     </section>
