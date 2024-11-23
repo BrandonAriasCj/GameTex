@@ -12,23 +12,11 @@ class recompensasTipo extends Seeder
      */
    public function run(): void
     {
-        DB::table('recompensas_tipo')->insert([ 
-            'nombre' => 'estrella de plata', 
-    
-        ]);
-        DB::table('recompensas_tipo')->insert([ 
-            'nombre' => 'estrella de oro', 
-
-        ]);
-        DB::table('recompensas_tipo')->insert([ 
-            'nombre' => 'estrella de rubí', 
-        ]);
-        DB::table('recompensas_tipo')->insert([ 
-            'nombre' => 'Estelar Coins',             
-        ]);
-        DB::table('recompensas_tipo')->insert([ 
-            'nombre' => 'planet Coins', 
-        ]);
+        DB::table('recompensas_tipo')->insert([
+            ['nombre' => 'Tarjetas de regalo'],
+            ['nombre' => 'Dinero'],
+            ['nombre' => 'Juegos'],
+        ]);        
             
     }
         
