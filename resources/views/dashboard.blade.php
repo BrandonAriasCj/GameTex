@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                <!-- Barra de Experiencia -->
+               
                 <div class="mb-6">
                     <h3 class="text-lg font-medium text-gray-900">Experiencia (EXP)</h3>
                     <div class="w-full bg-gray-200 rounded-full h-4 dark:bg-gray-700 mt-2">
@@ -17,7 +17,7 @@
                     <div class="mt-1 text-sm text-gray-500">Nivel 14 - 70% hacia el próximo nivel</div>
                 </div>
 
-                <!-- Actividad Reciente -->
+              
                 <div>
                     <h3 class="text-lg font-medium text-gray-900">Actividad Reciente</h3>
                     <div class="mt-2">

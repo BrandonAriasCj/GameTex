@@ -9,7 +9,7 @@ class noticiasModel extends Model
 
     protected $table = 'noticias';
 
-    // Define los campos que se pueden llenar de manera masiva
+ 
     protected $fillable = [
         'titulo',
         'contenido',
@@ -21,7 +21,6 @@ class noticiasModel extends Model
         'noticias_tematica_id',
     ];
 
-    // Relación con el modelo Administrador
     public function administrador()
     {
         return $this->belongsTo(AdminModel::class, 'administrador_id');

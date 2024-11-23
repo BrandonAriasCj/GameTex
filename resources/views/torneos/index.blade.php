@@ -3,10 +3,9 @@
 @section('contenido')
 @vite(['resources/js/clickTorneos.js'])
 <main>
-    <section>
-        <h1>Torneos</h1>
-        <div>
-            <label>Categorías:</label>
+    <section class="bg-blue-900 text-white py-4 px-8">
+        <div class="text-black">
+            <label class="font-bold text-white">Categorías:</label>
             <select id="game-filter">
                 <option value="">Seleccionar Juego</option>
                 <option value="Left 4 Dead 2">Left 4 Dead 2</option>
@@ -22,6 +21,9 @@
     </section>
 
     <section class="bg-blue-900 text-white py-14 px-8 border p-0">
+        <h2 class="lg:px-20 md:px-10 px-5 lg:mx-0 md:mx-20 mx-5 font-bold text-4xl text-white text-center pb-5">
+            TORNEOS
+        </h2>
         <div class="container mx-auto px-0 py-0">
             <div class="flex flex-wrap justify-center px-5 py-5 mx-auto space-x-0 sm:space-x-4 md:space-x-10">
                 <!-- Contenedores de torneos -->

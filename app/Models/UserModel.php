@@ -24,7 +24,7 @@ class UserModel extends Authenticatable
     public function torneos()
     {
         return $this->belongsToMany(TorneoModel::class, 'torneo_usuario', 'usuario_id', 'torneo_id')
-                    ->withTimestamps(); // Incluye timestamps de la tabla intermedia
+                    ->withTimestamps(); 
     }
     public function getProfilePhotoUrlAttribute() { 
         return $this->profile_photo_path ? asset('storage/' . $this->profile_photo_path) : asset('content-img/Makanaky.jpg'); }

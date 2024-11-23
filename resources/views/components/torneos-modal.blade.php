@@ -9,16 +9,6 @@
         </div>
 
         <div class="mb-4">
-            <label for="fecha_inicio" class="block text-sm font-medium text-gray-700">Fecha Inicio</label>
-            <input type="date" name="fecha_inicio" id="fecha_inicio" class="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring focus:border-blue-300" required>
-        </div>
-
-        <div class="mb-4">
-            <label for="fecha_fin" class="block text-sm font-medium text-gray-700">Fecha Fin</label>
-            <input type="date" name="fecha_fin" id="fecha_fin" class="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring focus:border-blue-300" required>
-        </div>
-
-        <div class="mb-4">
             <label for="exp" class="block text-sm font-medium text-gray-700">Experiencia</label>
             <input type="text" name="exp" id="exp" class="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring focus:border-blue-300" required>
         </div>
@@ -48,6 +38,16 @@
                     <option value="{{ $moderador->id }}">{{ $moderador->name }}</option>
                 @endforeach
             </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="fecha_inicio" class="block text-sm font-medium text-gray-700">Fecha Inicio</label>
+            <input type="date" name="fecha_inicio" id="fecha_inicio" class="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring focus:border-blue-300" required>
+        </div>
+
+        <div class="mb-4">
+            <label for="fecha_fin" class="block text-sm font-medium text-gray-700">Fecha Fin</label>
+            <input type="date" name="fecha_fin" id="fecha_fin" class="mt-1 block w-full border border-gray-300 rounded-md p-2 shadow-sm focus:ring focus:border-blue-300" required>
         </div>
 
         <div class="flex justify-end">

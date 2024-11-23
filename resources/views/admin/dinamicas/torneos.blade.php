@@ -7,17 +7,16 @@
     <title>Torneos</title>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-purple-500">
+<body class="bg-gray-100">
 
     <x-card class="flex w-500px">
-        <section class="bg-green-600 justify-center m-2 p-2 align-top">
+        <section class="bg-gray-500 justify-center m-2 p-2 align-top">
             <div class="">
                 <form action="{{ route('admin.dinamicas.torneos') }}" method="GET">
                     <x-torneos-busq />
                 </form>
             </div>
             
-            <!-- Modal para crear torneos -->
             <x-torneos-modal :juegos="$juegos" :eventosTipos="$eventosTipos" :moderadores="$moderadores" />
         </section>
         
@@ -50,7 +49,7 @@
                                     <form action="{{ route('admin.dinamicas.destroyTorneos', $torneo->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <a href="{{ route('admin.dinamicas.showTorneo', $torneo->id) }}" class="btn btn-info">
+                                        <a href="{{ route('admin.dinamicas.showTorneos', $torneo->id) }}" class="btn btn-info">
                                             <i class="fa-sharp-duotone fa-solid fa-eye"></i> Mostrar
                                         </a>
                                         <a href="{{ route('admin.dinamicas.torneos-edit', $torneo->id) }}" class="btn btn-warning">
@@ -72,7 +71,7 @@
                 <div class="d-flex justify-content-end">{{ $torneos->links() }}</div>
             </div>
         </main>
-        <a href="{{ route('admin.dashboard') }}" class="bg-gray-100 btn btn-secondary mt-4">Volver</a>
+        <a href="{{ route('admin.dashboard') }}" class=" btn btn-secondary mt-4">Volver</a>
     </x-card>
 
     @vite('resources/js/app.js')

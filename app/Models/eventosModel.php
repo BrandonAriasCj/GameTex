@@ -62,18 +62,15 @@ class eventosModel extends Model
     }
     public static function updateEvent($id, array $data)
     {
-        // Encontrar el evento existente
         $evento = self::findOrFail($id);
 
-        // Actualizar el tipo de evento relacionado
+
         $evento->eventosTipo->update([
             'nombre' => $data['evento_tipo_nombre'],
             'descripcion' => $data['descripcion_tipo'],
             'categoria' => $data['categoria_tipo'],
             'reglas' => $data['reglas_tipo'],
         ]);
-
-        // Actualizar el evento
         $evento->update([
             'fecha_inicio' => $data['fecha_inicio'],
             'fecha_fin' => $data['fecha_fin'],

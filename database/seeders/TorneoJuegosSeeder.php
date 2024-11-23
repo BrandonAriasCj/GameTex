@@ -14,8 +14,8 @@ class TorneoJuegosSeeder extends Seeder
     public function run(): void
     {
         DB::table('torneos_juegos')->insert([
-            ['nombre' => 'Left4 Dead2', 'created_at' => '2024-11-21 00:00:00', 'updated_at' => '2024-11-21 00:00:00'],
-            ['nombre' => 'Counter Strike', 'created_at' => '2024-11-21 00:00:00', 'updated_at' => '2024-11-21 00:00:00'],
+            ['nombre' => 'Left 4 Dead 2', 'created_at' => '2024-11-21 00:00:00', 'updated_at' => '2024-11-21 00:00:00'],
+            ['nombre' => 'Counter Strike 2', 'created_at' => '2024-11-21 00:00:00', 'updated_at' => '2024-11-21 00:00:00'],
             ['nombre' => 'League of legends', 'created_at' => '2024-11-21 00:00:00', 'updated_at' => '2024-11-21 00:00:00'],
             ['nombre' => 'Call of Duty Mobile', 'created_at' => '2024-11-21 00:00:00', 'updated_at' => '2024-11-21 00:00:00'],
             ['nombre' => 'Brawl Stars', 'created_at' => '2024-11-21 00:00:00', 'updated_at' => '2024-11-21 00:00:00'],

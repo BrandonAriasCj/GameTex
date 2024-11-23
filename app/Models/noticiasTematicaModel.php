@@ -8,7 +8,7 @@ class noticiasTematicaModel extends Model
 {
     protected $table = 'noticias_tematica';
 
-    // Define los campos que se pueden llenar de manera masiva
+
     protected $fillable = [
         'id',
         'nombre',

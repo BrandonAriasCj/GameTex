@@ -7,10 +7,10 @@
     <title>Eventos</title>
     @vite('resources/css/app.css')
 </head>
-<body class="bg-blue-900">
+<body class="bg-gray-100">
 
     <x-card class="flex w-500px">
-        <section class="bg-green-600 justify-center m-2 p-2 align-top">
+        <section class="bg-gray-500 justify-center m-2 p-2 align-top">
             <div class="">
                 <form action="{{ route('admin.dinamicas.eventos') }}" method="GET">
                     <x-eventos-busq />
@@ -70,7 +70,7 @@
             </div>
         </main>
         <div class="d-flex justify-content-end">{{ $items->links() }}</div>
-        <a href="{{ route('admin.dashboard') }}" class="bg-gray-100 btn btn-secondary mt-4">Volver</a>
+        <a href="{{ route('admin.dashboard') }}" class=" btn btn-secondary mt-4">Volver</a>
     </x-card>
 
     @vite('resources/js/app.js')
