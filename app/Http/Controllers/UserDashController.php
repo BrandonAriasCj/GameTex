@@ -14,7 +14,8 @@ class UserDashController extends Controller
 
     public function index()
     {
-        return view('dashboard');
+        $actividades = []; 
+        return view('dashboard', compact('actividades'));
     }
 
 }
