@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\index;
+use App\Http\Controllers\JugadorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminDashController;
@@ -53,29 +54,19 @@ Route::middleware(['auth.users'])->group(function () {
         // Ruta principal del panel
     Route::prefix('panel')->group(function () {
         // Ruta principal: /panel
-        Route::get('/', function () {
-            return view('jugador/index');
-        })->name('panel.index');
+        Route::get('/', [JugadorController::class, 'index'])->name('panel.index');
         
         // Subruta: /panel/descripcion
-        Route::get('/descripcion', function () {
-            return view('jugador/descripcion');
-        })->name('panel.descripcion');
+        Route::get('/descripcion',[JugadorController::class , 'descripcion'])->name('panel.descripcion');
         
         // Subruta: /panel/partidas
-        Route::get('/partidas', function () {
-            return view('jugador/partidas');
-        })->name('panel.partidas');
+        Route::get('/partidas', [JugadorController::class, 'partidas'])->name('panel.partidas');
         
         // Subruta: /panel/ranquin
-        Route::get('/ranking', function () {
-            return view('jugador/ranking');
-        })->name('panel.ranking');
+        Route::get('/ranking', [JugadorController::class, 'ranking'])->name('panel.ranking');
         
         // Subruta: /panel/reglas
-        Route::get('/reglas', function () {
-            return view('jugador/reglas');
-        })->name('panel.reglas');
+        Route::get('/reglas', [JugadorController::class, 'reglas'])->name('panel.reglas');
     });
 
 });
