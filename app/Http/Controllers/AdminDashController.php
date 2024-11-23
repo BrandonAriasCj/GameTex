@@ -150,7 +150,7 @@ class AdminDashController extends Controller
     }
 
     
-    public function updateTorneo(Request $request, $id)
+    public function updateTorneos(Request $request, $id)
     {
             $validatedData = $request->validate([
                 'nombrej' => 'required|string',
@@ -170,7 +170,7 @@ class AdminDashController extends Controller
             return redirect()->route('admin.dinamicas.torneos')->with('success', 'Torneo actualizado');
     }
 
-    public function showTorneo($id)
+    public function showTorneos($id)
     {
         $torneo = torneoModel::with(['juego', 'eventoTipo', 'moderador', 'administrador'])->findOrFail($id);
 
