@@ -6,6 +6,10 @@
         </div>
         <div id="modal-content" class="p-4 text-white">
             <p>Contenido del torneo</p>
+        <a href="/panel" class="inline-block bg-blue-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300">
+            Participa
+        </a>
+
         </div>
     </div>
 </div>
