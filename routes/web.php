@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminDashController;
 use App\Http\Controllers\ModerDashController;
 use App\Http\Controllers\UserDashController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TorneosController;
 
 
 #Route::get('/', function () {
@@ -133,9 +134,7 @@ Route::middleware(['auth.moderator'])->group(function () {
 
 
 #Torneos:
-Route::get('torneos', function() {
-    return view('torneos.index');
-});
+Route::get('torneos', [TorneosController::class, 'index'])->name('torneos.index');
 
 
 #Noticias:

@@ -121,7 +121,7 @@
                                         class="w-30 h-64 max-w-xs rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"
                                         src="{{ $torneo->imagen }}" alt="Imagen 1">
                                 </a>
-                            </div>
+                            </div>  
                         @endforeach
 
                         @include('components.modalParticipar')
