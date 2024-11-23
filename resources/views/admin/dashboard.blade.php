@@ -8,7 +8,7 @@
             <!-- Aqui el formulario de Eventos -->
             <div class="bg-gray-100  flex justify-center my-4 m-2 p-2 rounded">
                 <a href="{{route('admin.dinamicas.eventos')}}">
-                <img src="https://i.pinimg.com/originals/d1/cb/b3/d1cbb399c90abc93f8b1acb33e327416.png" class="w-34 h-34 cursor-pointer" >
+                <img src="https://cdn-icons-png.flaticon.com/512/11543/11543334.png" class="w-34 h-34 cursor-pointer" >
                 </a>
             </div>
 
@@ -16,7 +16,7 @@
             <!-- aqui el formulario de torneos -->
             <div class="bg-gray-100  flex justify-center my-4 m-2 p-2 rounded">
                 <a href="{{route('admin.dinamicas.torneos')}}">
-                <img src="https://i.pinimg.com/originals/d1/cb/b3/d1cbb399c90abc93f8b1acb33e327416.png" alt="Abrir Modal" class="w-34 h-34 cursor-pointer" >
+                <img src="https://cdn-icons-png.flaticon.com/512/5443/5443068.png" alt="Abrir Modal" class="w-34 h-34 cursor-pointer" >
                 </a>
             </div>
 
@@ -24,8 +24,8 @@
 
             <!-- aqui el formulario de recompensas -->
             <div class="bg-gray-100  flex justify-center my-4 m-2 p-2 rounded">
-                <a href="{{route('admin.gestion.noticias')}}">
-                <img src="https://i.pinimg.com/originals/d1/cb/b3/d1cbb399c90abc93f8b1acb33e327416.png" alt="Abrir Modal" class="w-34 h-34 cursor-pointer">
+                <a href="{{route('admin.dinamicas.recompensas')}}">
+                <img src="https://cdn-icons-png.flaticon.com/512/2984/2984746.png" alt="Abrir Modal" class="w-34 h-34 cursor-pointer">
             </div>
             
 
@@ -37,7 +37,7 @@
                 
             </figure>
             <figure class="bg-gray-100 m2-p2 flex justify-center my-4 m-2 p-2 rounded">
-               
+                <a href="{{route('admin.gestion.noticias')}}">
                 <img src="https://static.vecteezy.com/system/resources/previews/017/206/553/original/content-designer-icon-simple-element-from-content-marketing-collection-creative-content-designer-icon-for-web-design-templates-infographics-and-more-vector.jpg" class="w-72 h-35" > 
             </figure>
         </section>
