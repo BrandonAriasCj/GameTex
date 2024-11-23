@@ -28,23 +28,28 @@
             <div class="flex flex-wrap justify-center px-5 py-5 mx-auto space-x-0 sm:space-x-4 md:space-x-10">
                 <!-- Contenedores de torneos -->
                 @foreach ($torneos as $torneo)
-                    <div data-id="{{$torneo->id}}" data-juego="{{$torneo->juego->nombre}}" class="px-0 py-4 md:w-1/3 sm:mb-0 mb-6 group relative w-full sm:w-1/2 lg:w-1/5">
+                <div data-id="{{$torneo->id}}" data-juego="{{$torneo->juego->nombre}}" class="px-0 py-4 md:w-1/3 sm:mb-0 mb-6 group relative w-full sm:w-1/2 lg:w-1/5">
+                    <!-- Enlace para redirigir al filtro -->
+                    <a href="{{ route('torneos.index', ['juego' => $torneo->juego->nombre]) }}" class="block w-full h-full">
                         <div class="rounded-lg h-96 overflow-hidden relative">
                             <img alt="content" class="object-cover object-center h-full transition duration-300 ease-in-out group-hover:brightness-50" src="{{$torneo->imagen}}">
                             <div class="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out px-5">
-                                <ul>
-                                    <h3 class="text-lg font-semibold">{{ $torneo->nombrej }}</h3><br>
-                                    <li>Juego-Tipo: {{$torneo->juego->nombre}} </li><br>
-                                    <li>Premio: </li>
+                                <ul class="list-none">
+                                    <li class="font-semibold text-lg">{{ $torneo->nombrej }}</li>
+                                    <li>Juego-Tipo: {{$torneo->juego->nombre}}</li>
+                                    <li>Premio: {{ $torneo->premio ?? 'No disponible' }}</li>
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </a>
+                </div>
                 @endforeach
 
-                @include('components.modalParticipar')
+                @include('components.modalParticipar');
             </div>
         </div>
     </section>
+
+
 </main>
 @endsection

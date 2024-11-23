@@ -44,6 +44,7 @@ document.onkeydown = function (event) {
     }
 };
 
+//Share
 document.getElementById('share-button').addEventListener('click', function(event) {
     // Prevenir el comportamiento predeterminado del botón
     event.preventDefault();
