@@ -188,5 +188,9 @@ Route::get('f_poli_cookies', function () {
 });
 
 
+Route::get('modalPar', function () {
+    return view('components.modalParticipar');
+});
+
 
 
