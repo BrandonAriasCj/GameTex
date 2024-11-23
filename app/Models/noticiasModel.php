@@ -47,41 +47,4 @@ class noticiasModel extends Model
         return $query->paginate(4);
     }
     
-    public static function storeNoticia(array $data, $request)
-    {
-        $validatedData = $request->validate([
-            'titulo' => 'required|string',
-            'contenido' => 'required|string',
-            'portada' => 'required|image',
-            'imagen1' => 'image|nullable',
-            'imagen2' => 'image|nullable',
-            'noticias_tematica_id' => 'required|exists:noticias_tematica,id',
-        ]);
-        $administrador = Auth::guard('admin')->user();
-
-        if (!$administrador) {
-            throw new \Exception('No hay ningún administrador autenticado.');
-        }
-
-        $data = [
-            'titulo' => $validatedData['titulo'],
-            'contenido' => $validatedData['contenido'],
-            'portada' => $request->file('portada')->store('public/noticias'),
-            'imagen1' => $request->file('imagen1') ? $request->file('imagen1')->store('public/noticias') : null,
-            'imagen2' => $request->file('imagen2') ? $request->file('imagen2')->store('public/noticias') : null,
-            'fecha_publicacion' => now(),
-            'administrador_id' => $administrador->id,
-            'noticias_tematica_id' => $validatedData['noticias_tematica_id'],
-        ];
-
-        return self::create($data);
-    }
-
-    public static function updateNoticia($id, array $data)
-    {
-        $noticia = self::findOrFail($id);
-        $noticia->update($data);
-
-        return $noticia;
-    }
 }

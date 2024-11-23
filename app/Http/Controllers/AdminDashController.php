@@ -13,6 +13,7 @@ use App\Models\noticiasModel;
 use App\Models\noticiasTematicaModel;
 use App\Models\torneoModel;
 use App\Models\torneoJuegosModel;
+use Illuminate\Support\Facades\Log;
 
 class AdminDashController extends Controller
 {
@@ -206,15 +207,7 @@ class AdminDashController extends Controller
         return view('admin.gestion.noticias', compact('noticias', 'administradores', 'tematicas'));
     }
 
-    public function storeNoticias(Request $request)
-    {
-        try {
-            noticiasModel::storeNoticia([], $request);
-            return redirect()->route('admin.gestion.noticias')->with('success', 'Noticia agregada');
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['auth' => $e->getMessage()]);
-        }
-    }
+
     
     public function editNoticias($id)
     {
@@ -225,6 +218,40 @@ class AdminDashController extends Controller
     }
     
 
+    public function storeNoticias(Request $request)
+    {
+        $validatedData = $request->validate([
+            'titulo' => 'required|string',
+            'contenido' => 'required|string',
+            'portada' => 'required|image',
+            'imagen1' => 'image|nullable',
+            'imagen2' => 'image|nullable',
+            'noticias_tematica_id' => 'required|exists:noticias_tematica,id',
+        ]);
+
+        $administrador = Auth::guard('admin')->user();
+
+        if (!$administrador) {
+            return redirect()->back()->withErrors(['auth' => 'No hay ningún administrador autenticado.']);
+        }
+
+        $data = [
+            'titulo' => $validatedData['titulo'],
+            'contenido' => $validatedData['contenido'],
+            'portada' => $request->file('portada')->store('content-img', 'public'),
+            'imagen1' => $request->file('imagen1') ? $request->file('imagen1')->store('content-img', 'public') : null,
+            'imagen2' => $request->file('imagen2') ? $request->file('imagen2')->store('content-img', 'public') : null,
+            'fecha_publicacion' => now(),
+            'administrador_id' => $administrador->id,
+            'noticias_tematica_id' => $validatedData['noticias_tematica_id'],
+        ];
+
+        $noticia = noticiasModel::create($data);
+
+        Log::info('Noticia creada: ', $noticia->toArray());
+        return redirect()->route('admin.gestion.noticias')->with('success', 'Noticia agregada');
+    }
+
     public function updateNoticias(Request $request, $id)
     {
         $validatedData = $request->validate([
@@ -233,26 +260,32 @@ class AdminDashController extends Controller
             'portada' => 'sometimes|image',
             'imagen1' => 'sometimes|image',
             'imagen2' => 'sometimes|image',
-            'noticias_tematica_id' => 'required|exists:noticias_tematica,id', 
+            'noticias_tematica_id' => 'required|exists:noticias_tematica,id',
         ]);
-
+        $noticia = noticiasModel::findOrFail($id);
         $data = [
             'titulo' => $validatedData['titulo'],
             'contenido' => $validatedData['contenido'],
-            'noticias_tematica_id' => $validatedData['noticias_tematica_id'], 
+            'noticias_tematica_id' => $validatedData['noticias_tematica_id'],
         ];
         if ($request->hasFile('portada')) {
-            $data['portada'] = $request->file('portada')->store('public/noticias');
+            $data['portada'] = $request->file('portada')->store('content-img', 'public');
         }
         if ($request->hasFile('imagen1')) {
-            $data['imagen1'] = $request->file('imagen1')->store('public/noticias');
+            $data['imagen1'] = $request->file('imagen1')->store('content-img', 'public');
         }
         if ($request->hasFile('imagen2')) {
-            $data['imagen2'] = $request->file('imagen2')->store('public/noticias');
+            $data['imagen2'] = $request->file('imagen2')->store('content-img', 'public');
         }
-        noticiasModel::updateNoticia($id, $data);
+    
+        $noticia->update($data);
+    
+        Log::info('Noticia actualizada: ', $noticia->toArray());
+    
         return redirect()->route('admin.gestion.noticias')->with('success', 'Noticia actualizada');
     }
+    
+    
 
     public function destroyNoticias($id)
     {
