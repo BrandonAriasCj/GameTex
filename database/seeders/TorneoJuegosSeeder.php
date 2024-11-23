@@ -16,7 +16,12 @@ class TorneoJuegosSeeder extends Seeder
         DB::table('torneos_juegos')->insert([
             ['nombre' => 'Left4 Dead2', 'created_at' => '2024-11-21 00:00:00', 'updated_at' => '2024-11-21 00:00:00'],
             ['nombre' => 'Counter Strike', 'created_at' => '2024-11-21 00:00:00', 'updated_at' => '2024-11-21 00:00:00'],
-            ['nombre' => 'Jaassadfa', 'created_at' => '2024-11-21 00:00:00', 'updated_at' => '2024-11-21 00:00:00'],
+            ['nombre' => 'League of legends', 'created_at' => '2024-11-21 00:00:00', 'updated_at' => '2024-11-21 00:00:00'],
+            ['nombre' => 'Call of Duty Mobile', 'created_at' => '2024-11-21 00:00:00', 'updated_at' => '2024-11-21 00:00:00'],
+            ['nombre' => 'Brawl Stars', 'created_at' => '2024-11-21 00:00:00', 'updated_at' => '2024-11-21 00:00:00'],
+            ['nombre' => 'Clash Royale', 'created_at' => '2024-11-21 00:00:00', 'updated_at' => '2024-11-21 00:00:00'],
+            ['nombre' => 'Dragon Ball Fighters', 'created_at' => '2024-11-21 00:00:00', 'updated_at' => '2024-11-21 00:00:00'],
+            ['nombre' => 'Call of Duty Warzone', 'created_at' => '2024-11-21 00:00:00', 'updated_at' => '2024-11-21 00:00:00'],
         ]);
     }
 }
