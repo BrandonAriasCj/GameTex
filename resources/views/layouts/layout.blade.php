@@ -32,20 +32,20 @@
                     </div>
                     <div class="flex flex-col items-center justify-center gap-2 py-2">
                         @if (Route::has('login'))
-                            @if (Auth::guard('users')->check())
-                                <a href="{{ url('/dashboard') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                                    Perfil
-                                </a>
-                            @else
-                                <a href="{{ route('login') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                                    Login
-                                </a>
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                                        Registro
-                                    </a>
-                                @endif
-                            @endif
+                        @if (Auth::guard('users')->check())
+                        <a href="{{ url('/dashboard') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                            Perfil
+                        </a>
+                        @else
+                        <a href="{{ route('login') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                            Login
+                        </a>
+                        @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                            Registro
+                        </a>
+                        @endif
+                        @endif
                         @endif
                     </div>
                 </div>
@@ -57,20 +57,20 @@
                 </div>
                 <div class="hidden w-1/5 items-center justify-evenly font-semibold md:flex">
                     @if (Route::has('login'))
-                        @if (Auth::guard('users')->check())
-                            <a href="{{ url('/dashboard') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                                Perfil
-                            </a>
-                        @else
-                            <a href="{{ route('login') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                                Login
-                            </a>
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
-                                    Registro
-                                </a>
-                            @endif
-                        @endif
+                    @if (Auth::guard('users')->check())
+                    <a href="{{ url('/dashboard') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                        Perfil
+                    </a>
+                    @else
+                    <a href="{{ route('login') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                        Login
+                    </a>
+                    @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                        Registro
+                    </a>
+                    @endif
+                    @endif
                     @endif
                 </div>
                 <button class="text-gray-500 w-10 h-10 relative focus:outline-none bg-white md:hidden" @click="open = !open">
@@ -81,7 +81,7 @@
                         <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out" :class="{'-rotate-45': open, 'translate-y-1.5': !open}"></span>
                     </div>
                 </button>
-                
+
             </div>
         </nav>
     </header>
@@ -99,25 +99,33 @@
                         Entérate de las novedades sobre el desarrollo del sitio web y las actividades futuras a través de nuestras redes sociales.
                     </h5>
                     <div class="mt-6 lg:mb-0 mb-6">
-                        <button class="bg-white text-blue-400 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
-                            <i class="fab fa-twitter text-3xl"></i>
-                        </button>
-                        <button class="bg-white text-blue-700 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
-                            <i class="fab fa-facebook-square text-3xl"></i>
-                        </button>
-                        <button class="bg-white text-blue-800 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
-                            <i class="fab fa-discord text-3xl"></i>
-                        </button>
-                        <button class="bg-white text-red-600 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
-                            <i class="fab fa-youtube text-3xl"></i>
-                        </button>
-                        <button class="bg-white text-purple-700 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
-                            <i class="fab fa-twitch text-3xl"></i>
-                        </button>
-                        <button class="bg-white text-pink-800 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
-                            <i class="fab fa-instagram text-3xl"></i>
-                        </button>
+                        <a href="https://x.com/GAMETEX2024" target="_blank">
+                            <button class="bg-white text-blue-400 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                                <i class="fab fa-twitter text-3xl"></i>
+                            </button>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61555013789282" target="_blank">
+                            <button class="bg-white text-blue-700 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                                <i class="fab fa-facebook-square text-3xl"></i>
+                            </button>
+                        </a>
+                        <a href="https://discord.gg/eTHuf32W" target="_blank">
+                            <button class="bg-white text-blue-800 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                                <i class="fab fa-discord text-3xl"></i>
+                            </button>
+                        </a>
+                        <a href="https://www.youtube.com/@GAMETEX2024" target="_blank">
+                            <button class="bg-white text-red-600 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                                <i class="fab fa-youtube text-3xl"></i>
+                            </button>
+                        </a>
+                        <a href="https://www.twitch.tv/gametex2024" target="_blank">
+                            <button class="bg-white text-purple-700 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2" type="button">
+                                <i class="fab fa-twitch text-3xl"></i>
+                            </button>
+                        </a>
                     </div>
+
                 </div>
                 <div class="w-full lg:w-6/12 px-4">
                     <div class="flex flex-wrap items-top mb-0">
