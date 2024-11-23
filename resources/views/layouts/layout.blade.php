@@ -147,11 +147,11 @@
                                 <li><a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="{{ 'f_poli_reembolsos' }}">Política de Reembolsos</a></li>
                                 <li><a class="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm" href="{{ 'f_poli_cookies' }}">Política de Cookies</a></li>
                             </ul>
-                            <div class="w-full lg:w-12/12 px-4 pt-6">
+                            <!--<div class="w-full lg:w-12/12 px-4 pt-6">
                                 <button class="bg-green-500 text-white hover:bg-green-700 focus:ring-green-400 focus:ring-opacity-50 px-4 py-2 rounded">
                                     ¿Necesitas Ayuda?
                                 </button>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>

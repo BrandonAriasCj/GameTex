@@ -137,9 +137,6 @@ Route::get('articulo1', function () {
 });
 
 
-
-
-
 //////////////////////
 
 #Rooter - FOOTER:
