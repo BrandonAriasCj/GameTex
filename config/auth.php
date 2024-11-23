@@ -48,7 +48,7 @@ return [
             'driver' => 'session',
             'provider' => 'moderators',
         ],
-        'users' => [ // Asegúrate de que este guard esté correctamente definido
+        'users' => [ 
             'driver' => 'session',
             'provider' => 'users',
         ],
