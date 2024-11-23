@@ -26,7 +26,7 @@
     <div style="display:flex">                              
         <aside>
             <div><a href="{{route('panel.index')}}">Jugador</a></div>
-            <div><a href="{{route('panel.descripcion')}}">Descripcion</a></div>
+            <div><a href="{{route('panel.descripcion', ['id' => 1])}}">Descripcion</a></div>
             <div><a href="{{route('panel.partidas')}}">Partidas</a></div>
             <div><a href="{{route('panel.ranking')}}">Rankinks</a></div>
             <div><a href="{{route('panel.reglas')}}">Reglas</a></div>

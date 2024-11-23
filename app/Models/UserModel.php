@@ -19,6 +19,7 @@ class UserModel extends Authenticatable
         'password', 'remember_token',
     ];
 
+
     // Relación muchos a muchos con la tabla `torneos` usando la tabla intermedia `torneo_usuario`
     public function torneos()
     {

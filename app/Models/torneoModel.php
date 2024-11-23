@@ -24,6 +24,11 @@ class torneoModel extends Model
         'updated_at', 
     ];
 
+    public function usuarios()
+    {
+        return $this->belongsToMany(UserModel::class, 'torneo_usuario', 'torneo_id', 'usuario_id');
+    }
+
     public function juego()
     {
         return $this->belongsTo(torneoJuegosModel::class, 'torneo_juego_id');

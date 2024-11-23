@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call([TorneoJuegosSeeder::class]);
         $this->call([TorneosSeeder::class]);
         $this->call([noticias_tematica::class]);
+        $this->call([TorneosUsuariosSeeder::class]);
     }
 }
