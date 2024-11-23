@@ -14,7 +14,7 @@ class eventosSeeder extends Seeder
      */
     public function run(): void
     {
-        // Inserta un tipo de evento
+
         $eventoTipoId = DB::table('eventos_tipo')->insertGetId([
             'nombre' => 'Conferencia',
             'descripcion' => 'Evento de conferencia anual',
@@ -24,7 +24,6 @@ class eventosSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
 
-        // Inserta un moderador
         $moderadorId = DB::table('moderadores')->insertGetId([
             'name' => 'casparrin',
             'email' => 'casp@mail.com',
@@ -33,7 +32,6 @@ class eventosSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
 
-        // Inserta un evento utilizando los IDs recién creados
         DB::table('eventos')->insert([
             'fecha_inicio' => Carbon::create('2024', '10', '15'),
             'fecha_fin' => Carbon::create('2024', '11', '24'),

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\index;
 use App\Http\Controllers\JugadorController;
+use App\Models\UserModel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminDashController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\ModerDashController;
 use App\Http\Controllers\UserDashController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TorneosController;
+use App\Models\torneoModel;
 
 #Route::get('/', function () {
     #return view('welcome');
@@ -49,7 +51,7 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 // Rutas protegidas para usuarios
 Route::middleware(['auth.users'])->group(function () {
-    Route::get('dashboard', [UserDashController::class, 'index']);
+    Route::get('dashboard', [UserDashController::class, 'index'])->name('dashboard');
 
         // Ruta principal del panel
     Route::prefix('panel')->group(function () {
@@ -57,7 +59,7 @@ Route::middleware(['auth.users'])->group(function () {
         Route::get('/', [JugadorController::class, 'index'])->name('panel.index');
         
         // Subruta: /panel/descripcion
-        Route::get('/descripcion',[JugadorController::class , 'descripcion'])->name('panel.descripcion');
+        Route::get('/{id?}/descripcion',[JugadorController::class , 'descripcion'])->name('panel.descripcion');
         
         // Subruta: /panel/partidas
         Route::get('/partidas', [JugadorController::class, 'partidas'])->name('panel.partidas');
@@ -179,6 +181,9 @@ Route::get('f_poli_cookies', function () {
 Route::get('modalPar', function () {
     return view('components.modalParticipar');
 });
+
+
+
 
 
 

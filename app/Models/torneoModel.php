@@ -18,10 +18,15 @@ class torneoModel extends Model
         'evento_tipo_id', 
         'moderador_id', 
         'administrador_id',
-        'imagen', // Nueva columna para la ruta o URL de la imagen
+        'imagen', 
         'created_at', 
         'updated_at', 
     ];
+
+    public function usuarios()
+    {
+        return $this->belongsToMany(UserModel::class, 'torneo_usuario', 'torneo_id', 'usuario_id');
+    }
 
     public function juego()
     {
@@ -43,17 +48,14 @@ class torneoModel extends Model
         return $this->belongsTo(AdminModel::class, 'administrador_id');
     }
 
-    /**
-     * Método para obtener la URL completa de la imagen del torneo
-     */
+
     public function getImagenUrlAttribute()
     {
-        // Verifica si el campo contiene una ruta local o una URL completa
+      
         if (filter_var($this->imagen, FILTER_VALIDATE_URL)) {
             return $this->imagen;
         }
 
-        // Si es una ruta local, prepende la URL base del servidor
         return asset('storage/' . $this->imagen);
     }
     public static function search($search, $searchType)
