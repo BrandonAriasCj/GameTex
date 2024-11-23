@@ -32,7 +32,7 @@ window.closeModal = function (modalId) {
     document.getElementsByTagName('body')[0].classList.remove('overflow-y-hidden')
 }
 
-// Close all modals when pressing ESC
+// Model
 document.onkeydown = function (event) {
     event = event || window.event;
     if (event.keyCode === 27) {
@@ -44,20 +44,75 @@ document.onkeydown = function (event) {
     }
 };
 
-document.getElementById('game-filter').addEventListener('change', function() {
-    var selectedGame = this.value.toLowerCase(); // Obtener el valor seleccionado
-    var torneos = document.querySelectorAll('[data-juego]'); // Seleccionar todos los contenedores con data-juego
 
-    torneos.forEach(function(torneo) {
-        var juego = torneo.getAttribute('data-juego').toLowerCase(); // Obtener el valor del atributo data-juego
-
-        // Si no se ha seleccionado ningún juego o el juego del contenedor coincide con el seleccionado
-        if (selectedGame === "" || juego === selectedGame.toLowerCase()) {
-            torneo.style.display = 'block'; // Mostrar contenedor
-        } else {
-            torneo.style.display = 'none'; // Ocultar contenedor
-        }
+// Filtro lógica:
+document.addEventListener('DOMContentLoaded', function () {
+    // Añadir evento de clic a cada imagen en el carrusel
+    const images = document.querySelectorAll('[data-juego]');
+    
+    images.forEach(function (image) {
+        image.addEventListener('click', function () {
+            // Obtener el nombre del juego desde el atributo data-juego
+            const juego = image.getAttribute('data-juego');
+            
+            // Redireccionar a la página de torneos con el parámetro game en la URL
+            window.location.href = '/torneos?game=' + encodeURIComponent(juego);
+        });
     });
+
+    // Obtener el filtro del URL si existe
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedGame = urlParams.get('game');
+
+    // Si hay un juego seleccionado en la URL, aplica el filtro
+    if (selectedGame) {
+        document.getElementById('game-filter').value = selectedGame;
+        filterTorneos(selectedGame);
+    }
+
+    // Manejar el evento de cambio en el filtro manualmente
+    document.getElementById('game-filter').addEventListener('change', function () {
+        const selectedValue = this.value;
+        
+        // Actualizar la URL con el parámetro game
+        updateURLParameter('game', selectedValue);
+        
+        // Aplicar el filtro a la lista de torneos
+        filterTorneos(selectedValue);
+    });
+
+    // Función para filtrar los torneos según el juego seleccionado
+    function filterTorneos(game) {
+        var selectedGame = game.toLowerCase();
+        var torneos = document.querySelectorAll('[data-juego]');
+
+        torneos.forEach(function (torneo) {
+            var juego = torneo.getAttribute('data-juego').toLowerCase();
+
+            if (selectedGame === "" || juego === selectedGame) {
+                torneo.style.display = 'block';
+            } else {
+                torneo.style.display = 'none';
+            }
+        });
+    }
+
+    // Función para actualizar el parámetro de la URL
+    function updateURLParameter(param, value) {
+        const currentUrl = window.location.href;
+        const url = new URL(currentUrl);
+        
+        if (value) {
+            url.searchParams.set(param, value);
+        } else {
+            url.searchParams.delete(param);
+        }
+        
+        // Cambiar la URL sin recargar la página
+        window.history.replaceState(null, '', url.toString());
+    }
 });
+
+
 
 
