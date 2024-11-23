@@ -19,11 +19,11 @@ class UserModel extends Authenticatable
         'password', 'remember_token',
     ];
 
-    // Relación muchos a muchos con la tabla `torneos` usando la tabla intermedia `torneo_usuario`
+    //para la tabla intermedia
     public function torneos()
     {
         return $this->belongsToMany(TorneoModel::class, 'torneo_usuario', 'usuario_id', 'torneo_id')
-                    ->withTimestamps(); // Incluye timestamps de la tabla intermedia
+                    ->withTimestamps(); 
     }
     public function getProfilePhotoUrlAttribute() { 
         return $this->profile_photo_path ? asset('storage/' . $this->profile_photo_path) : asset('content-img/Makanaky.jpg'); }

@@ -17,7 +17,6 @@
                 </form>
             </div>
             
-            <!-- Modal para crear torneos -->
             <x-torneos-modal :juegos="$juegos" :eventosTipos="$eventosTipos" :moderadores="$moderadores" />
         </section>
         
