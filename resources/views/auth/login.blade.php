@@ -1,4 +1,3 @@
-<!-- resources/views/auth/login.blade.php -->
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
@@ -24,16 +23,6 @@
             <div class="mt-4">
                 <x-label for="password" value="Password" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="user_type" value="User Type" />
-                <select id="user_type" name="user_type" class="block mt-1 w-full" required>
-                    <option value="">Select User Type</option>
-                    <option value="admin">Admin</option>
-                    <option value="moderator">Moderator</option>
-                    <option value="users">User</option>
-                </select>
             </div>
 
             <div class="flex items-center justify-end mt-4">
