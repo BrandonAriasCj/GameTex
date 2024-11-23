@@ -51,7 +51,7 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 // Rutas protegidas para usuarios
 Route::middleware(['auth.users'])->group(function () {
-    Route::get('dashboard', [UserDashController::class, 'index']);
+    Route::get('dashboard', [UserDashController::class, 'index'])->name('dashboard');
 
         // Ruta principal del panel
     Route::prefix('panel')->group(function () {
