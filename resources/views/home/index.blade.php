@@ -115,15 +115,16 @@
                     <div class="flex flex-nowrap lg:ml-10 md:ml-20 ml-10 mr-10">
 
                         @foreach ($torneos as $torneo)
-                            <div class="inline-block px-3">
-                                <a href="#">
+                            <div class="inline-block px-3" data-id="{{ $torneo->id}}">
+                                <a>
                                     <img
                                         class="w-30 h-64 max-w-xs rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out"
-                                        src="{{ $torneo->imagen }}" data-id="{{ $torneo->id}}" alt="Imagen 1">
+                                        src="{{ $torneo->imagen }}" alt="Imagen 1">
                                 </a>
                             </div>
                         @endforeach
 
+                        @include('components.modalParticipar')
                     </div>
                 </div>
             </div>

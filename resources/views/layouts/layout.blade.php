@@ -11,6 +11,8 @@
 <body>
     @vite('resources/css/app.css')
     @vite(['resources/js/app.js'])
+    @vite(['resources/js/clickTorneos.js'])
+
     <!-- component -->
     <header>
         <nav x-data="{ open: false }" class="flex h-auto w-auto bg-white shadow-lg rounded-lg justify-between md:h-16">
