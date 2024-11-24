@@ -5,14 +5,3 @@
 [x-cloak] {
     display: none;
 }
-
-
-/*Diseño del scroll-Torneos*/
-.hide-scroll-bar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.hide-scroll-bar::-webkit-scrollbar {
-    display: none;
-}
