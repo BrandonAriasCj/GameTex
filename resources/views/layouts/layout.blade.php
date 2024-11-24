@@ -26,8 +26,6 @@
                     <div class="flex flex-col items-center justify-center gap-2 py-4">
                         <a href="{{ '/' }}">Inicio</a>
                         <a href="{{ 'torneos' }}">Torneos</a>
-                        <a href="{{ 'tienda' }}">Tienda</a>
-                        <a href="{{ 'noticias' }}">Noticias</a>
                     </div>
                     <div class="flex flex-col items-center justify-center gap-2 py-2">
                         @if (Route::has('login'))
@@ -51,8 +49,6 @@
                 <div class="hidden w-3/5 items-center justify-evenly font-semibold md:flex">
                     <a href="{{ '/' }}">Inicio</a>
                     <a href="{{ 'torneos' }}">Torneos</a>
-                    <a href="{{ 'tienda' }}">Tienda</a>
-                    <a href="{{ 'noticias' }}">Noticias</a>
                 </div>
                 <div class="hidden w-1/5 items-center justify-evenly font-semibold md:flex">
                     @if (Route::has('login'))

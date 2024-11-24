@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 
 @section('contenido')
-@vite(['resources/js/clickTorneos.js'])
 <main>
     <section class="bg-blue-900 text-white py-4 px-8">
         <div class="text-black">
