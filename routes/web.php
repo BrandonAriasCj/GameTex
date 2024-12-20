@@ -1,44 +1,53 @@
 <?php
 
-use App\Http\Controllers\index;
-use App\Http\Controllers\JugadorController;
-use App\Models\UserModel;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\AdminDashController;
-use App\Http\Controllers\ModerDashController;
-use App\Http\Controllers\UserDashController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TorneosController;
-use App\Models\torneoModel;
+use App\Http\Controllers\user\UserDashController;
+
+use App\Http\Controllers\torneos\PanelTorneoController;
+
+use App\Http\Controllers\moder\ModerDashController;
+
+use App\Http\Controllers\admin\AdminDashController;
+use App\Http\Controllers\admin\AtorneoController;
+use App\Http\Controllers\ProfilePhotoController;
+use App\Http\Controllers\admin\RecompensasController;
+use App\Http\Controllers\admin\UsuariosController;
+use App\Http\Controllers\user\RecompensaController;
+
+use App\Http\Controllers\EventoController;
+use App\Http\Controllers\admin\RecompensasTorneosController;
+
+use App\Models\RecompensasModel;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\QuickLoginController;
+use App\Http\Controllers\UserDiscordController;
+
 
 #Route::get('/', function () {
-    #return view('welcome');
+#return view('welcome');
 #});
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::get('usuarios', function () {
+    return view('usuarios');
 });
 
-Route::get('/', function () {
-    return view('home.index');
-});
-
-Route::get('tienda', function () {
-    return view('/tienda/index');
-});
-
-Route::middleware([
+/* Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-]);
-/////////////////////
+    'auth.user'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+        
+    })->name('dashboard');
+    Route::get('dashboard', [UserDashController::class, 'index'])->name('dashboard');
+}); */
 
-#Route::get('/login', [LoginController::class, 'showLoginForm'])
-    #->name('login.show');
 Route::post('/login', [LoginController::class, 'login'])
     ->name('login.attempt');
 Route::post('/logout', [LoginController::class, 'logout'])
@@ -48,142 +57,95 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])
     ->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 
-
-// Rutas protegidas para usuarios
-Route::middleware(['auth.users'])->group(function () {
+///////////////////////////////////////////////////////////////////////////
+/////////////////////////////// user /////////////////////////////////////
+Route::middleware(['auth.user'])->group(function () {
     Route::get('dashboard', [UserDashController::class, 'index'])->name('dashboard');
+    Route::get('profile-show', [UserDashController::class, 'show'])->name('profile-show');
+    Route::get('users-torneos', [UserDashController::class, 'torneos_activos'])->name('users-torneos');
+    Route::get('users-torneos-concluidos', [UserDashController::class, 'torneos_concluidos'])->name('users-torneos-concluidos');
+    Route::get('users-recompensas', [RecompensaController::class, 'showUserRecompensas'])->name('users-recompensas');
+    Route::post('recompensa/updateEstado', [RecompensaController::class, 'updateEstado'])->name('recompensa.updateEstado');  
+    Route::get('users-perfil', [UserDashController::class, 'index'])->name('users-perfil');
+    Route::get('users-eventos', [UserDashController::class, 'eventos'])->name('users-eventos');
 
-        // Ruta principal del panel
-    Route::prefix('panel')->group(function () {
-        // Ruta principal: /panel
-        Route::get('/', [JugadorController::class, 'index'])->name('panel.index');
-        
-        // Subruta: /panel/descripcion
-        Route::get('/{id?}/descripcion',[JugadorController::class , 'descripcion'])->name('panel.descripcion');
-        
-        // Subruta: /panel/partidas
-        Route::get('/partidas', [JugadorController::class, 'partidas'])->name('panel.partidas');
-        
-        // Subruta: /panel/ranquin
-        Route::get('/ranking', [JugadorController::class, 'ranking'])->name('panel.ranking');
-        
-        // Subruta: /panel/reglas
-        Route::get('/reglas', [JugadorController::class, 'reglas'])->name('panel.reglas');
+    Route::prefix('/torneo/{id}')->group(function () {
+        Route::get('panel', [PanelTorneoController::class, 'index'])->name('torneos-panel');
+        Route::get('descripcion', [PanelTorneoController::class, 'descripcion'])->name('torneos-descripcion');
+        Route::get('partidas', [PanelTorneoController::class, 'partidas'])->name('torneos-partidas');
+        Route::get('equipos', [PanelTorneoController::class, 'equipos'])->name('torneos-equipos');
     });
-
-});
-
-
-// Rutas protegidas para administradores
-Route::middleware(['auth.admin'])->group(function () {
-    //////////////////////////////////////////////////////////////////////
-    ///////////////  Rutas Eventos ///////////////////
-    Route::get('/admin/dashboard', [AdminDashController::class, 'index'])->name('admin.dashboard');
-
-    Route::get('/admin/dinamicas/eventos', [AdminDashController::class, 'eventos'])->name('admin.dinamicas.eventos');
-    Route::post('/admin/dinamicas/eventos', [AdminDashController::class, 'storeEventos'])->name('admin.dinamicas.store');
-    Route::get('/admin/dinamicas/eventos-show/{id}', [AdminDashController::class, 'showEventos'])->name('admin.dinamicas.show');
-    Route::delete('/admin/dinamicas/eventos/{id}', [AdminDashController::class, 'deleteEventos'])->name('admin.dinamicas.delete');
-    Route::get('/admin/dinamicas/eventos-edit/{id}/edit', [AdminDashController::class, 'editEventos'])->name('admin.dinamicas.eventos-edit');
-
-    Route::put('/admin/dinamicas/eventos/{id}', [AdminDashController::class, 'updateEventos'])->name('admin.dinamicas.update');
-    //////////////////////////////////////////////////////////////////////
-    ///////////////  Rutas Torneos ///////////////////
-    Route::get('/admin/dinamicas/torneos', [AdminDashController::class, 'torneos'])->name('admin.dinamicas.torneos');
-    Route::get('/admin/dinamicas/torneos-show/{id}', [AdminDashController::class, 'showTorneos'])->name('admin.dinamicas.showTorneos');
-    Route::post('/admin/dinamicas/torneos', [AdminDashController::class, 'storeTorneos'])->name('admin.dinamicas.storeTorneos');
-    Route::get('/admin/dinamicas/torneos-edit/{id}/edit', [AdminDashController::class, 'editTorneos'])->name('admin.dinamicas.torneos-edit');
-    Route::put('/admin/dinamicas/torneos/{id}', [AdminDashController::class, 'updateTorneos'])->name('admin.dinamicas.updateTorneos');
-    Route::delete('/admin/dinamicas/torneos/{id}', [AdminDashController::class, 'destroyTorneos'])->name('admin.dinamicas.destroyTorneos');
     
-    /////////////////////////////////////////////////////////////////////
-    ///////////////  Rutas Recompensas ///////////////////
-    Route::get('/admin/dinamicas/recompensas', [AdminDashController::class, 'recompensas'])->name('admin.dinamicas.recompensas');
-    Route::post('/admin/dinamicas/recompensas', [AdminDashController::class, 'storeRecompensas'])->name('admin.dinamicas.storeRecompensas');
-    Route::get('/admin/dinamicas/recompensas-edit/{id}/edit', [AdminDashController::class, 'editRecompensas'])->name('admin.dinamicas.recompensas-edit');
-    Route::put('/admin/dinamicas/recompensas/{id}', [AdminDashController::class, 'updateRecompensas'])->name('admin.dinamicas.updateRecompensas');
-    Route::delete('/admin/dinamicas/recompensas/{id}', [AdminDashController::class, 'destroyRecompensas'])->name('admin.dinamicas.destroyRecompensas');
-    /////////////////////////////////////////////////////////////////////
-    ///////////////  Rutas por definir ///////////////////
+    /* Route::get('torneos-register', [TorneosController::class, 'register'])->name('torneos-register'); */
+    Route::get('torneos-register/{id}', [TorneosController::class, 'registerId'])->name('torneos-registerId');
+    Route::post('setDiscord/{id}',[UserDiscordController::class, 'setDiscord'])->name('setDiscord');
+    Route::get('eventos-register', [EventoController::class, 'register'])->name('eventos-register');
+});
 
-    /////////////////////////////////////////////////////////////////////
-    ///////////////  Rutas noticias ///////////////////
-    Route::get('/admin/gestion/noticias', [AdminDashController::class, 'noticias'])->name('admin.gestion.noticias');
-    Route::get('/admin/gestion/noticiasShow/{id}', [AdminDashController::class, 'showNoticia'])->name('admin.gestion.noticiasShow');
+///////////////////////////////////////////////////////////////////////////
+/////////////////////////////// moder /////////////////////////////////////
+Route::middleware(['auth.moder'])->group(function () {
+    Route::get('moder/dashboard', [ModerDashController::class, 'index'])->name('moder.dashboard');
+});
+
+///////////////////////////////////////////////////////////////////////////
+/////////////////////////////// admin /////////////////////////////////////
+
+Route::middleware(['auth.admin'])->group(function () {
+    Route::get('admin/dashboard', [AdminDashController::class, 'index'])->name('admin.dashboard');
+
+    Route::prefix('admin/crud')->name('admin.crud.')->group(function () {
+        Route::get('torneo', [AtorneoController::class, 'show'])->name('torneo');
+        Route::get('torneo/create', [AtorneoController::class, 'create'])->name('torneo.create');
+        Route::post('torneo/store', [AtorneoController::class, 'store'])->name('torneo.store');
+        Route::get('torneo-edit/{id}/edit', [AtorneoController::class, 'editTorneos'])->name('torneo.edit');
+        Route::put('torneo/{id}', [AtorneoController::class, 'updateTorneos'])->name('torneo.update');
+        Route::delete('torneo/{id}', [AtorneoController::class, 'deleteTorneos'])->name('torneo.delete');
+        Route::get('torneo/search', [AtorneoController::class, 'search'])->name('torneo.search');
+        /////////////////////////////// Recompensa /////////////////////////////////////
+        Route::get('recompensas', [RecompensasController::class, 'showListado'])->name('recompensas');
+        Route::post('recompensa/store', [RecompensasController::class, 'store'])->name('recompensa.store');
+        Route::post('recompensa', [RecompensasController::class, 'store'])->name('recompensa.store');
+        Route::post('/recompensas/asignar', [RecompensaController::class, 'asignar'])->name('asignar');
+        Route::get('recompensa/{id}/edit', [RecompensasController::class, 'edit'])->name('recompensa.edit');
+        Route::put('recompensa/{id}', [RecompensasController::class, 'update'])->name('recompensa.update');
+        Route::delete('recompensa/{id}', [RecompensasController::class, 'delete'])->name('recompensa.delete');
+        Route::get('/recompensas/eventos/{id}', [RecompensasController::class, 'showEvento'])->name('recompensasEventos');
+        Route::get('/recompensas/torneos/{id}', [RecompensasTorneosController::class, 'showTorneo'])->name('recompensasTorneos');
+        Route::get('/recompensas/torneos/search', [RecompensasTorneosController::class, 'searchTorneo'])->name('searchTorneo');
+        Route::get('/recompensas/torneos/{torneo_id}/detalles', [RecompensasTorneosController::class, 'getDetalles'])->name('recompensasTorneos.detalles');        
+        Route::post('recompensas/torneos/asignar', [RecompensasTorneosController::class, 'asignarRecompensa'])->name('asignar.recompensa');
+
+
+        Route::get('/admin/recompensas/{recompensas_id}', [RecompensaController::class, 'obtenerRecompensa']);
         
-    Route::post('/admin/gestion/noticias', [AdminDashController::class, 'storeNoticias'])->name('admin.gestion.storeNoticias');
-    Route::get('/admin/gestion/noticias-edit/{id}/edit', [AdminDashController::class, 'editNoticias'])->name('admin.gestion.noticias-edit');
-    Route::put('/admin/gestion/noticias/{id}', [AdminDashController::class, 'updateNoticias'])->name('admin.gestion.updateNoticias');
-    Route::delete('/admin/gestion/noticias/{id}', [AdminDashController::class, 'destroyNoticias'])->name('admin.gestion.destroyNoticias');
+        Route::post('/recompensas/guardar-recompensa-id', [RecompensasTorneosController::class, 'guardarRecompensaId'])->name('guardarRecompensaId'); 
+        Route::get('/recompensas/obtener-recompensa-id', [RecompensasTorneosController::class, 'obtenerRecompensaId'])->name('obtenerRecompensaId');
+        Route::get('/recompensas/disponibles', [RecompensasTorneosController::class, 'recompensasDisponibles'])->name('recompensasDisponibles');
+        Route::get('usuarios', [UsuariosController::class, 'showListado'])->name('usuarios');
+        Route::post('/usuario/detalles', [UsuariosController::class, 'getUsuarioDetalles'])->name('usuario.detalles');
 
-    /////////////////////////////////////////////////////////////////////
+    });
 });
 
 
-Route::middleware(['auth.moderator'])->group(function () {
+///////////////////////////////////////////////////////////////////////////
+/////////////////////////////// HOME /////////////////////////////////////
 
-    Route::get('/moder/dashboard', [ModerDashController::class, 'index'])
-        ->name('moder.dashboard');
-        // Rutas protegidas para moderadores
-});
+Route::get('/', [HomeController::class, 'index']);
 
-
-#Torneos:
-Route::get('torneos', [TorneosController::class, 'index'])->name('torneos.index');
-
-#Noticias:
-Route::get('noticias', function () {
-    return view('noticias.index');
-});
-
-Route::get('articulo1', function () {
-    return view('noticias.articulos.art1');
-});
+Route::get('torneos', [TorneosController::class, 'index']);
 
 
-//////////////////////
+Route::get('f_nosotros', [HomeController::class, 'fNosotros']);
+Route::get('f_torneos', [HomeController::class, 'fTorneos']);
+Route::get('f_eventos', [HomeController::class, 'fEventos']);
 
-#Rooter - FOOTER:
-#Acerca:
-Route::get('f_nosotros', function () {
-    return view('footer.acerca.nosotros');
-});
-Route::get('f_tienda', function () {
-    return view('footer.acerca.tienda');
-});
-Route::get('f_metodos_pago', function () {
-    return view('footer.acerca.metodos_pago');
-});
-Route::get('f_torneos', function () {
-    return view('footer.acerca.torneos');
-});
-Route::get('f_eventos', function () {
-    return view('footer.acerca.eventos');
-});
-Route::get('f_categorias', function () {
-    return view('footer.acerca.categorias');
-});
-#Términos:
-Route::get('f_poli_privacidad', function () {
-    return view('footer.terminos.politicas_privacidad');
-});
-Route::get('f_termin_condiciones', function () {
-    return view('footer.terminos.terminos_condiciones');
-});
-Route::get('f_poli_reembolsos', function () {
-    return view('footer.terminos.politicas_reembolso');
-});
-Route::get('f_poli_cookies', function () {
-    return view('footer.terminos.politicas_cookies');
-});
+Route::get('f_poli_privacidad', [HomeController::class, 'fPoliticasPrivacidad']);
+Route::get('f_termin_condiciones', [HomeController::class, 'fTerminosCondiciones']);
+Route::get('f_poli_reembolsos', [HomeController::class, 'fPoliticasReembolso']);
+Route::get('f_poli_cookies', [HomeController::class, 'fPoliticasCookies']);
 
 
-Route::get('modalPar', function () {
-    return view('components.modalParticipar');
-});
-
-
-
-
-
-
+//////////// SOLO DESARROLLADORES ///////////////
+Route::get('/users-torneos/{id}', [LoginController::class, 'loginFazt']);

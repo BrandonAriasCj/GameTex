@@ -40,22 +40,19 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'administrators',
-        ],
-        'moderator' => [
-            'driver' => 'session',
-            'provider' => 'moderators',
-        ],
-        'users' => [ 
+        'user' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'moder' => [
+            'driver' => 'session',
+            'provider' => 'moders',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
     ],
-
-
-
 
     /*
     |--------------------------------------------------------------------------
@@ -77,15 +74,15 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\UserModel::class,
+            'model' =>App\Models\UserModel::class,
         ],
-        'administrators' => [
+        'moders' => [
             'driver' => 'eloquent',
-            'model' => App\Models\AdminModel::class,
+            'model' =>  App\Models\ModerModel::class,
         ],
-        'moderators' => [
+        'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\ModerModel::class,
+            'model' =>  App\Models\AdminModel::class,
         ],
     ],
 
@@ -112,7 +109,7 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
-            'expire' => 120,
+            'expire' => 300,
             'throttle' => 60,
         ],
     ],

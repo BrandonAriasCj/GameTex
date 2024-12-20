@@ -9,6 +9,10 @@ class eventosModel extends Model
     protected $table = 'eventos';
     protected $fillable = [
         'id',
+        'nombre',
+        'descripcion',
+        'reglas',
+        'imagen',
         'fecha_inicio',
         'fecha_fin',
         'created_at',
@@ -23,6 +27,10 @@ class eventosModel extends Model
     public function moderador() 
     { 
         return $this->belongsTo(ModerModel::class, 'moderador_id');
+    }
+    public function recompensa() 
+    { 
+        return $this->belongsTo(RecompensasModel::class, 'recompensas_id');
     }
 
     public static function search($search, $searchType)
@@ -42,41 +50,5 @@ class eventosModel extends Model
         }
 
         return $query;
-    }
-
-    public static function store(array $data)
-    {
-        $eventoTipo = eventosTipoModel::create([
-            'nombre' => $data['evento_tipo_nombre'],
-            'descripcion' => $data['descripcion'],
-            'categoria' => $data['categoria'],
-            'reglas' => $data['reglas'],
-        ]);
-        return self::create([
-            'nombre' => $data['nombre'],
-            'fecha_inicio' => $data['fecha_inicio'],
-            'fecha_fin' => $data['fecha_fin'],
-            'evento_tipo_id' => $eventoTipo->id,
-            'moderador_id' => $data['moderador_id'],
-        ]);
-    }
-    public static function updateEvent($id, array $data)
-    {
-        $evento = self::findOrFail($id);
-
-
-        $evento->eventosTipo->update([
-            'nombre' => $data['evento_tipo_nombre'],
-            'descripcion' => $data['descripcion_tipo'],
-            'categoria' => $data['categoria_tipo'],
-            'reglas' => $data['reglas_tipo'],
-        ]);
-        $evento->update([
-            'fecha_inicio' => $data['fecha_inicio'],
-            'fecha_fin' => $data['fecha_fin'],
-            'moderador_id' => $data['moderador_id'],
-        ]);
-
-        return $evento;
     }
 }

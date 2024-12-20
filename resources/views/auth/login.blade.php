@@ -1,33 +1,50 @@
 <x-guest-layout>
-    <x-authentication-card>
+    <x-authentication-card class="mb-[100px]">
         <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>
+        <x-slot name="titulo">
+            Iniciar Sesión
+        </x-slot>
 
+        {{-- Mostrar errores de validación --}}
         <x-validation-errors class="mb-4" />
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
-        @endif
-
-        <form method="POST" action="{{ route('login.attempt') }}">
+        <form method="POST" action="{{ route('login') }}" class="mr-5">
             @csrf
 
+            {{-- Campo para el email --}}
             <div>
-                <x-label for="email" value="Email" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-label for="email" class="text-white" value="{{ __('Correo Electrónico') }}" />
+                <x-input id="email" class="block mt-1 w-full text-black" type="email" name="email" :value="old('email')" required
+                    autofocus autocomplete="username" />
             </div>
 
+            {{-- Campo para la contraseña --}}
             <div class="mt-4">
-                <x-label for="password" value="Password" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                <x-label for="password" class="text-white" value="{{ __('Contraseña') }}" />
+                <x-input id="password" class="block mt-1 w-full text-black" type="password" name="password" required
+                    autocomplete="current-password" />
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <x-button class="ml-4">
-                    Log in
+            {{-- Recordarme --}}
+            <div class="block mt-4">
+                @if (Route::has('password.request'))
+                    <a class="text-white underline text-s hover:text-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        href="#">
+                        {{ __('¿Olvidaste tu contraseña?') }}
+                    </a>
+                @endif
+            </div>
+
+            {{-- Botón de enviar --}}
+            <div class="flex items-center justify-end mt-4 text-white hover:text-gray-400">
+                <a href="{{ route('register') }}">
+                    {{ __('¿No tienes una cuenta?') }}
+                </a>
+
+                <x-button onclick="showLoadingScreen()" class="ms-4 bg-gray-900 hover:bg-black">
+                    {{ __('Iniciar Sesión') }}
                 </x-button>
             </div>
         </form>

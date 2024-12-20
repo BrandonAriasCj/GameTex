@@ -1,145 +1,100 @@
 import './bootstrap';
-import '../css/app.css';
+import $ from 'jquery';
 
-document.addEventListener('DOMContentLoaded', () => {
-    const openModalButton = document.getElementById('openModal');
-    const closeModalButtons = document.querySelectorAll('#closeModal, #closeModalFooter');
-    const modal = document.getElementById('myModal');
+// Función para mostrar la pantalla de carga
+function showLoadingScreen() {
+    $('#loading-screen').removeClass('hidden');
+}
 
-    // Función para mostrar el modal
-    openModalButton.addEventListener('click', () => {
-        modal.classList.remove('hidden');
-    });
+// Función para ocultar la pantalla de carga
+function hideLoadingScreen() {
+    $('#loading-screen').addClass('hidden');
+    setTimeout(() => {
+        $('#loading-screen').hide();
+    }, 500); // Tiempo de la transición en milisegundos
+}
 
-    // Función para ocultar el modal
-    closeModalButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            modal.classList.add('hidden');
-        });
-    });
+// Ocultar la pantalla de carga al cargar el documento
+$(document).ready(function() {
+    hideLoadingScreen();
+});
+
+// Exportar las funciones para que puedan ser llamadas desde otros scripts
+window.showLoadingScreen = showLoadingScreen;
+window.hideLoadingScreen = hideLoadingScreen;
+
+
+document.getElementById('torneos-container').addEventListener('mousemove', function(e) {
+    const container = e.currentTarget;
+    const carousel = document.getElementById('carousel');
+
+    const containerWidth = container.offsetWidth;
+    const carouselWidth = carousel.scrollWidth;
+
+    const mouseX = e.clientX - container.getBoundingClientRect().left;
+    
+    const scrollPercent = mouseX / containerWidth;
+
+    const speedFactor = 2; 
+
+    const scrollPosition = (carouselWidth - containerWidth) * scrollPercent * speedFactor;
+
+    carousel.scrollLeft = scrollPosition;
 });
 
 
-//Logica modal de tienda - comprar
-
-window.openModal = function (modalId) {
-    document.getElementById(modalId).style.display = 'block'
-    document.getElementsByTagName('body')[0].classList.add('overflow-y-hidden')
-}
-
-window.closeModal = function (modalId) {
-    document.getElementById(modalId).style.display = 'none'
-    document.getElementsByTagName('body')[0].classList.remove('overflow-y-hidden')
-}
-
-// Model
-document.onkeydown = function (event) {
-    event = event || window.event;
-    if (event.keyCode === 27) {
-        document.getElementsByTagName('body')[0].classList.remove('overflow-y-hidden')
-        let modals = document.getElementsByClassName('modal');
-        Array.prototype.slice.call(modals).forEach(i => {
-            i.style.display = 'none'
-        })
-    }
-};
-
-//Share
-document.getElementById('share-button').addEventListener('click', function(event) {
-    // Prevenir el comportamiento predeterminado del botón
-    event.preventDefault();
-    
-    // Obtener el enlace del artículo
-    var articleLink = document.getElementById('article-link').href;
-    
-    // Crear un elemento de texto temporal para copiar la URL
-    var tempInput = document.createElement('input');
-    tempInput.value = articleLink;
-    document.body.appendChild(tempInput);
-    
-    // Seleccionar el contenido del input
-    tempInput.select();
-    tempInput.setSelectionRange(0, 99999); // Para dispositivos móviles
-    
-    // Copiar la URL al portapapeles
-    document.execCommand('copy');
-    
-    // Eliminar el input temporal después de copiar
-    document.body.removeChild(tempInput);
-    
-    // Opcional: mostrar un mensaje de éxito
-    alert('URL copiada al portapapeles: ' + articleLink);
-});
 
 
-// Filtro lógica:
-document.addEventListener('DOMContentLoaded', function () {
-    // Añadir evento de clic a cada imagen en el carrusel
-    const images = document.querySelectorAll('[data-juego]');
-    
-    images.forEach(function (image) {
-        image.addEventListener('click', function () {
-            // Obtener el nombre del juego desde el atributo data-juego
-            const juego = image.getAttribute('data-juego');
-            
-            // Redireccionar a la página de torneos con el parámetro game en la URL
-            window.location.href = '/torneos?game=' + encodeURIComponent(juego);
-        });
-    });
+//////////////////Lógica Torneos/////////////////
+document.addEventListener("DOMContentLoaded", function () {
+    const gameFilter = document.getElementById('game-filter');
+    const torneoContainers = document.querySelectorAll('[data-game]');
+    const searchInput = document.getElementById('search-dropdown');
 
-    // Obtener el filtro del URL si existe
-    const urlParams = new URLSearchParams(window.location.search);
-    const selectedGame = urlParams.get('game');
+    // Filtrar torneos por el tipo de juego seleccionado en el dropdown
+    gameFilter.addEventListener('change', function () {
+        const selectedGame = gameFilter.value;
 
-    // Si hay un juego seleccionado en la URL, aplica el filtro
-    if (selectedGame) {
-        document.getElementById('game-filter').value = selectedGame;
-        filterTorneos(selectedGame);
-    }
-
-    // Manejar el evento de cambio en el filtro manualmente
-    document.getElementById('game-filter').addEventListener('change', function () {
-        const selectedValue = this.value;
-        
-        // Actualizar la URL con el parámetro game
-        updateURLParameter('game', selectedValue);
-        
-        // Aplicar el filtro a la lista de torneos
-        filterTorneos(selectedValue);
-    });
-
-    // Función para filtrar los torneos según el juego seleccionado
-    function filterTorneos(game) {
-        var selectedGame = game.toLowerCase();
-        var torneos = document.querySelectorAll('[data-juego]');
-
-        torneos.forEach(function (torneo) {
-            var juego = torneo.getAttribute('data-juego').toLowerCase();
-
-            if (selectedGame === "" || juego === selectedGame) {
-                torneo.style.display = 'block';
+        torneoContainers.forEach(function (container) {
+            const gameType = container.getAttribute('data-game');
+            if (selectedGame === 'all' || gameType === selectedGame) {
+                container.style.display = "block"; // Mostrar el contenedor
             } else {
-                torneo.style.display = 'none';
+                container.style.display = "none"; // Ocultar el contenedor
             }
         });
-    }
+    });
 
-    // Función para actualizar el parámetro de la URL
-    function updateURLParameter(param, value) {
-        const currentUrl = window.location.href;
-        const url = new URL(currentUrl);
-        
-        if (value) {
-            url.searchParams.set(param, value);
-        } else {
-            url.searchParams.delete(param);
-        }
-        
-        // Cambiar la URL sin recargar la página
-        window.history.replaceState(null, '', url.toString());
-    }
+
+    // Filtrar los torneos por búsqueda
+    searchInput.addEventListener('input', function () {
+        const searchTerm = searchInput.value.toLowerCase();
+        torneoContainers.forEach(function (container) {
+            const title = container.querySelector('h3').textContent.toLowerCase();
+            if (title.includes(searchTerm)) {
+                container.style.display = "block"; // Mostrar el contenedor
+            } else {
+                container.style.display = "none"; // Ocultar el contenedor
+            }
+        });
+    });
 });
 
 
+document.querySelectorAll('[data-drawer-target]').forEach(button => {
+    button.addEventListener('click', () => {
+        const drawerId = button.getAttribute('data-drawer-target');
+        const drawer = document.getElementById(drawerId);
+        drawer.classList.toggle('-translate-x-full'); // Abrir y cerrar el modal
+    });
+});
+
+document.querySelectorAll('[data-drawer-dismiss]').forEach(button => {
+    button.addEventListener('click', () => {
+        const drawerId = button.getAttribute('aria-controls');
+        const drawer = document.getElementById(drawerId);
+        drawer.classList.add('-translate-x-full'); // Cerrar el modal
+    });
+});
 
 

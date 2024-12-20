@@ -4,7 +4,6 @@ namespace Database\Seeders;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Carbon\Carbon;
 class eventosTipoSeeder extends Seeder
 {
     /**
@@ -12,8 +11,6 @@ class eventosTipoSeeder extends Seeder
      */
     public function run(): void
     {
-
-        
         DB::table('eventos_tipo')->insert([ 
             'id'=> 2,
             'nombre'=>'otakon',
@@ -38,6 +35,5 @@ class eventosTipoSeeder extends Seeder
             'reglas'=>'debes resgitrarte con anticipación, no se admiten juagdores con sansciones, debes de ser mayor de edad',
             
         ]);
-        
     }
 }

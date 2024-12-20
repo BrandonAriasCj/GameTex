@@ -16,16 +16,12 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
-        },
-    },
-
-    theme: {
-        extend: {
+            screens: {
+                'xs': { 'max': '640px' }, // Pantallas menores a 640px
+            },
             colors: {
-                metal: '#dda90d',  // Color metálico gris
-                oro: 'rgb(255, 223, 0)',
-                plata: 'rgb(192, 192, 192)', // Metal plateado brillante
-                bronce: 'rgb(205, 127, 50)',
+                customBlue: '#1e1b4b', // Color personalizado
+                plata: '#22c55e',
             },
         },
     },

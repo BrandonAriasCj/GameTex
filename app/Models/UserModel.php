@@ -1,31 +1,86 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Illuminate\Support\Facades\Storage;
 class UserModel extends Authenticatable
 {
+    use HasFactory;
     use Notifiable;
 
-    protected $table = 'usuarios';
+    protected $table = 'users';
 
     protected $fillable = [
-        'name', 'email', 'password','profile_photo_path',
+        'name',
+        'email',
+        'actividad',
+        'discord',
+        'estado',
+        'descripcion',
+        'password',
+        'current_team_id', 
+        'profile_photo_path',
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
+    protected $appends = [
+        'profile_photo_url',
+    ];
 
-    // Relación muchos a muchos con la tabla `torneos` usando la tabla intermedia `torneo_usuario`
+    public function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
+
+    public function getProfilePhotoUrlAttribute()
+    {
+        if ($this->profile_photo_path) {
+            return Storage::url($this->profile_photo_path);
+        }
+        return $this->defaultProfilePhotoUrl();
+    }
+
+    protected function defaultProfilePhotoUrl()
+    {
+        return 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=7F9CF5&background=EBF4FF';
+    }
+
     public function torneos()
     {
-        return $this->belongsToMany(TorneoModel::class, 'torneo_usuario', 'usuario_id', 'torneo_id')
-                    ->withTimestamps(); 
+        return $this->belongsToMany(
+            TorneosModel::class,
+            'torneos_has_usuarios', // Nombre de la tabla intermedia
+            'usuario_id',           // Llave foránea hacia usuarios
+            'torneo_id'             // Llave foránea hacia torneos
+        );
     }
-    public function getProfilePhotoUrlAttribute() { 
-        return $this->profile_photo_path ? asset('storage/' . $this->profile_photo_path) : asset('content-img/Makanaky.jpg'); }
+    
+    public function equipos()
+    {
+        return $this->belongsToMany(
+            EquiposModel::class,
+            'torneos_has_usuarios', // Nombre de la tabla intermedia
+            'usuario_id',           // Llave foránea hacia usuarios
+            'equipo_id'             // Llave foránea hacia equipos
+        );
+    }
+    
+
+    public function recompensas()
+    {
+        return $this->belongsToMany(RecompensasModel::class, 'usuarios_has_recompensas', 'usuario_id', 'recompensa_id')->withTimestamps();
+    }
+
+
 }

@@ -2,10 +2,20 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use App\Models\AdminModel;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\RecompensasTipoModel;
+use App\Models\RecompensasModel;
+use App\Models\ModerModel;
+use App\Models\AdminModel;
+use App\Models\TorneosModel;
+use App\Models\eventosModel;
+use App\Models\UserModel;
+use App\Models\TorneosHasUsuariosModel;
+use App\Models\UsuariosHasRecompensasModel;
+use App\Models\EquiposModel;
+use App\Models\FasesModel;
+use App\Models\PartidasModel;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,23 +24,37 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->withPersonalTeam()->create();
+        
+        $this->call([ UserSeeder::class, ]);
+        UserModel::factory(200)->create();
+        /* $this->call([ ModerSeeder::class, ]); */
+        /* $this->call([ eventosSeeder::class, ]); */
+        /* $this->call([ eventosTipoSeeder::class, ]); */
+        /* $this->call([ RecompensasTipoSeeder::class, ]); */
+        $this->call([ TorneosJuegosSeeder::class]);
+        $this->call([ RecompensasTipoSeeder::class]);
+        
+        // Ejecutar todos los factories necesarios para poblar las tablas
+        
+        // Factori anterior para recompensas tipo
+        /* $recompensaTipo = RecompensasTipoModel::factory(5)->create(); */
+        
+        
+        // Crear moderador y administrador
+        $moderador = ModerModel::factory(5)->create();
+        $this->call([ AdminSeeder::class ]);
+        $administrador = AdminModel::factory(2)->create();
+        $torneos = TorneosModel::factory(20)->create();
+        TorneosHasUsuariosModel::factory(500)->create();
+        UserModel::factory(10)->create();
+/*         $this->call([ TorneosHasUsuariosSeeder::class ]); */
+/*         $this->call([ EquiposModelSeeder::class ]); */
+/*         EquiposModel::factory(500)->create(); */
+/*         TorneosHasUsuariosModel::factory(100)->create(); */
+        $recompensas = RecompensasModel::factory(30)->create();
+        $recompensas = UsuariosHasRecompensasModel::factory(30)->create();
+/*         $this->call([ FasesModelSeeder::class ]); */
+/*         $this->call([ PartidasModelSeeder::class ]); */
 
-        User::factory()->withPersonalTeam()->create([
-            'name' => 'Test Users',
-            'email' => 'test@example.com',
-        ]);
-
-        $this->call([AdminSeeder::class ]);
-        $this->call([ModerSeeder::class]);
-        $this->call([eventosSeeder::class]);
-        $this->call([eventosTipoSeeder::class]);
-        $this->call([UserSeeder::class]);
-        $this->call([juegosDSeeder::class]);
-        $this->call([recompensasTipo::class]);
-        $this->call([TorneoJuegosSeeder::class]);
-        $this->call([TorneosSeeder::class]);
-        $this->call([noticias_tematica::class]);
-        $this->call([TorneosUsuariosSeeder::class]);
     }
 }
