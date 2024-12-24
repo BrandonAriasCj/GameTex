@@ -27,20 +27,20 @@
                         <ul class="flex md:flex-col items-center justify-center gap-2">
 
                             <li class="h-6 w-6 block rounded-full bg-accent-400 text-gray-50">
-                                <a href="https://x.com/GAMETEX2024" class="block h-full w-full p-1" target="_blank">
+                                <a href="https://x.com/GAMETEX2024" class="block h-full w-full p-1" target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-twitter"></i>
                                 </a>
                             </li>
 
                             <li class="h-6 w-6 block rounded-full bg-accent-400 text-gray-50">
-                                <a href="https://discord.gg/eTHuf32W" class="block h-full w-full p-1" target="_blank">
+                                <a href="https://discord.gg/eTHuf32W" class="block h-full w-full p-1" target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-discord"></i>
                                 </a>
                             </li>
 
                             <li class="h-6 w-6 block rounded-full bg-accent-400 text-gray-50">
                                 <a href="https://www.youtube.com/@GAMETEX2024" class="block h-full w-full p-1"
-                                    target="_blank">
+                                    target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-youtube"></i>
                                 </a>
                             </li>

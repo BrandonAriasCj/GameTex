@@ -149,21 +149,21 @@
                                 <i class="fab fa-facebook-square text-3xl"></i>
                             </button>
                         </a>
-                        <a href="https://discord.gg/eTHuf32W" target="_blank">
+                        <a href="https://discord.gg/eTHuf32W" target="_blank" rel="noopener noreferrer">
                             <button
                                 class="bg-white text-blue-800 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                                 type="button">
                                 <i class="fab fa-discord text-3xl"></i>
                             </button>
                         </a>
-                        <a href="https://www.youtube.com/@GAMETEX2024" target="_blank">
+                        <a href="https://www.youtube.com/@GAMETEX2024" target="_blank" rel="noopener noreferrer">
                             <button
                                 class="bg-white text-red-600 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                                 type="button">
                                 <i class="fab fa-youtube text-3xl"></i>
                             </button>
                         </a>
-                        <a href="https://www.twitch.tv/gametex2024" target="_blank">
+                        <a href="https://www.twitch.tv/gametex2024" target="_blank" rel="noopener noreferrer">
                             <button
                                 class="bg-white text-purple-700 shadow-lg font-normal h-14 w-14 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
                                 type="button">
@@ -206,7 +206,7 @@
                 <div class="w-full md:w-4/12 px-4 mx-auto text-center">
                     <div class="text-sm text-blueGray-500 font-semibold py-1">
                         Copyright © <span id="get-current-year">2021</span><a href="{{ '/' }}"
-                            class="text-blueGray-500 hover:text-gray-800" target="_blank"> GAMETEX</a>
+                            class="text-blue-400 hover:text-blue-500" target="_self"> GAMETEX</a>
                     </div>
                 </div>
             </div>
