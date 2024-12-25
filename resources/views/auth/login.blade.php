@@ -14,28 +14,29 @@
             @csrf
 
             {{-- Campo para el email --}}
+            <br>
             <div>
-                <x-label for="email" class="text-white" value="{{ __('Correo Electrónico') }}" />
-                <x-input id="email" class="block mt-1 w-full text-black" type="email" name="email" :value="old('email')" required
-                    autofocus autocomplete="username" />
+                <x-input id="email" class="block mt-1 w-full text-gray-300 bg-transparent" placeholder="Correo electrónico" type="email" name="email" :value="old('email')" required
+                autofocus autocomplete="username" />
             </div>
-
+            <br>
             {{-- Campo para la contraseña --}}
             <div class="mt-4">
-                <x-label for="password" class="text-white" value="{{ __('Contraseña') }}" />
-                <x-input id="password" class="block mt-1 w-full text-black" type="password" name="password" required
-                    autocomplete="current-password" />
+                <!-- <x-label for="password" class="text-white" value="{{ __('Contraseña') }}" /> -->
+                <x-input id="password" class="block mt-1 w-full text-gray-400 bg-transparent" placeholder="Contraseña" type="password" name="password" required
+                autocomplete="current-password" />
             </div>
-
+            
             {{-- Recordarme --}}
             <div class="block mt-4">
                 @if (Route::has('password.request'))
-                    <a class="text-white underline text-s hover:text-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        href="#">
-                        {{ __('¿Olvidaste tu contraseña?') }}
-                    </a>
-                @endif
+                <a class="text-indigo-400 text-sm hover:text-indigo-500 rounded-md focus:outline-none"
+                href="#">
+                {{ __('¿Olvidaste tu contraseña?') }}
+            </a>
+            @endif
             </div>
+            <br>
 
             {{-- Botón de enviar --}}
             <div class="flex items-center justify-end mt-4 text-white hover:text-gray-400">
